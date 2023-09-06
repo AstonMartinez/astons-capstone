@@ -12,7 +12,17 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    bio = db.Column(db.String(500))
+    experience_points = db.Column(db.Integer, nullable=False)
+    level = db.Column(db.Integer, nullable=False)
+    date_joined = db.Column(db.DateTime, nullable=False)
+    gold = db.Column(db.Integer, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+
+    habits = db.relationship('Habit', back_populates='user', cascade='all, delete-orphan')
+    dailies = db.relationship('Daily', back_populates='user', cascade='all, delete-orphan')
+    to_dos = db.relationship('ToDo', back_populates='user', cascade='all, delete-orphan')
 
     @property
     def password(self):
@@ -29,5 +39,10 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'bio': self.bio,
+            'experience_points': self.experience_points,
+            'level': self.level,
+            'date_joined': self.date_joined,
+            "gold": self.gold
         }
