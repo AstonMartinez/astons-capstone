@@ -267,6 +267,7 @@ def seed_users():
         user_id=1,
         title='Feed the dog',
         notes='Give Loki and Freyja food before work',
+        difficulty='easy',
         start_date=datetime(2023, 9, 6),
         num_weeks=1,
         day_of_week='all',
@@ -277,6 +278,7 @@ def seed_users():
         user_id=1,
         title='Do the dishes',
         notes='Dont let them sit there forever, no matter how tempting that seems.',
+        difficulty='easy',
         start_date=datetime(2023, 9, 6),
         num_weeks=1,
         day_of_week='all',
@@ -287,6 +289,7 @@ def seed_users():
         user_id=1,
         title='Go to the gym',
         notes='Even if its just to stare at everyone awkwardly and quickly retreat.',
+        difficulty='easy',
         start_date=datetime(2023, 9, 6),
         num_weeks=1,
         day_of_week='friday',
@@ -297,6 +300,7 @@ def seed_users():
         user_id=1,
         title='Spend 15 minutes tidying',
         notes='Repeat in each room',
+        difficulty='easy',
         start_date=datetime(2023, 9, 6),
         num_weeks=1,
         day_of_week='wednesday',
@@ -307,6 +311,7 @@ def seed_users():
         user_id=1,
         title='Attend board meeting',
         notes='Board meetings are oh so boring.',
+        difficulty='easy',
         start_date=datetime(2023, 9, 6),
         num_weeks=1,
         day_of_week='thursday',
@@ -317,6 +322,7 @@ def seed_users():
         user_id=1,
         title='Do homework',
         notes='Just do it.',
+        difficulty='easy',
         start_date=datetime(2023, 9, 6),
         num_weeks=1,
         day_of_week='all',
@@ -327,6 +333,7 @@ def seed_users():
         user_id=1,
         title='Write weekly article',
         notes='AND edit it.',
+        difficulty='easy',
         start_date=datetime(2023, 9, 6),
         num_weeks=1,
         day_of_week='wednesday',
@@ -337,6 +344,7 @@ def seed_users():
         user_id=1,
         title='Bathe dogs',
         notes='They are perpetually stinky.',
+        difficulty='easy',
         start_date=datetime(2023, 9, 6),
         num_weeks=1,
         day_of_week='thursday',
@@ -347,6 +355,7 @@ def seed_users():
         user_id=1,
         title='Grocery Shopping',
         notes='Because food is life.',
+        difficulty='easy',
         start_date=datetime(2023, 9, 6),
         num_weeks=1,
         day_of_week='tuesday',
@@ -357,6 +366,7 @@ def seed_users():
         user_id=1,
         title='Get allergy shots',
         notes='at Dr.Smiths office',
+        difficulty='easy',
         start_date=datetime(2023, 9, 6),
         num_weeks=1,
         day_of_week='wednesday',
@@ -367,6 +377,7 @@ def seed_users():
         user_id=1,
         title='Lunch with Bestie',
         notes='At Taco Bell',
+        difficulty='easy',
         start_date=datetime(2023, 9, 6),
         num_weeks=1,
         day_of_week='thursday',
@@ -377,6 +388,7 @@ def seed_users():
         user_id=1,
         title='Check the mail',
         notes='Why are there always bills inside but never surprise checks?',
+        difficulty='easy',
         start_date=datetime(2023, 9, 6),
         num_weeks=1,
         day_of_week='all',
@@ -593,13 +605,13 @@ def seed_users():
 def undo_users():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
-        # db.session.execute(f"TRUNCATE table {SCHEMA}.habits RESTART IDENTITY CASCADE;")
-        # db.session.execute(f"TRUNCATE table {SCHEMA}.dailies RESTART IDENTITY CASCADE;")
-        # db.session.execute(f"TRUNCATE table {SCHEMA}.to_dos RESTART IDENTITY CASCADE;")
-        # db.session.execute(f"TRUNCATE table {SCHEMA}.equipment RESTART IDENTITY CASCADE;")
-        # db.session.execute(f"TRUNCATE table {SCHEMA}.user_equipment RESTART IDENTITY CASCADE;")
-        # db.session.execute(f"TRUNCATE table {SCHEMA}.achievements RESTART IDENTITY CASCADE;")
-        # db.session.execute(f"TRUNCATE table {SCHEMA}.user_achievements RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.habits RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.dailies RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.to_dos RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.equipment RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.user_equipment RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.achievements RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.user_achievements RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
         db.session.execute(text("DELETE FROM habits"))

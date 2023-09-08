@@ -27,8 +27,7 @@ const UserDashboard = () => {
         setHasSubmitted(true)
     }
 
-    const handleNewHabit = (e) => {
-        e.preventDefault()
+    const handleNewHabitEnter = () => {
         const newHabit = {
             title: habitTitle
         }
@@ -44,19 +43,41 @@ const UserDashboard = () => {
         return <Redirect to='/my-dashboard' />
     }
 
+    const handleButtonClick = async () => {
+        const newDaily = {
+            title: "New daily"
+        }
+        const newDailyTitle = "New Daily"
+
+        const request = await fetch('/api/dailies/new', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newDaily)
+        })
+        return
+    }
+
     return (
         <div>
             <div>
                 <h2>Habits</h2>
-                <form onSubmit={handleNewHabit}>
+                <form>
                     <input
                     name='new-habit'
                     id='new-habit-title-input'
                     value={habitTitle}
                     onChange={(e) => setHabitTitle(e.target.value)}
                     placeholder='Add a Habit'
+                    onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                            handleNewHabitEnter()
+                        } else {
+                            setHabitTitle(e.target.value)
+                        }
+                    }}
                     />
-                    <button type='submit'>+</button>
                 </form>
                 <div>
                     {habitsToMap && habitsToMap.map(habit => (
@@ -71,21 +92,25 @@ const UserDashboard = () => {
                         </>
                     ))}
                 </div>
+                {showModal && (
+                    <UpdateHabitModal
+                        habitId={selectedHabit.id}
+                        habitData={selectedHabit}
+                        onSubmit={() => {
+                            setShowModal(false)
+                            setSelectedHabit(null)
+                        }}
+                        onClose={() => {
+                            setShowModal(false)
+                            setSelectedHabit(null)
+                        }}
+                    />
+                )}
             </div>
-            {showModal && (
-                <UpdateHabitModal
-                    habitId={selectedHabit.id}
-                    habitData={selectedHabit}
-                    onSubmit={() => {
-                        setShowModal(false)
-                        setSelectedHabit(null)
-                    }}
-                    onClose={() => {
-                        setShowModal(false)
-                        setSelectedHabit(null)
-                    }}
-                />
-            )}
+            <div>
+                <h2>Dailies</h2>
+                <button onClick={handleButtonClick}>Add a Daily</button>
+            </div>
         </div>
     )
 }
