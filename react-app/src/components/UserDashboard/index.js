@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import UpdateHabit from './UpdateHabit';
 import UpdateHabitModal from './UpdateHabitModal';
+import DailiesComponent from '../Dailies';
 
 const UserDashboard = () => {
     const dispatch = useDispatch()
@@ -41,22 +42,6 @@ const UserDashboard = () => {
         setSelectedHabit(habit)
         setShowModal(true)
         return <Redirect to='/my-dashboard' />
-    }
-
-    const handleButtonClick = async () => {
-        const newDaily = {
-            title: "New daily"
-        }
-        const newDailyTitle = "New Daily"
-
-        const request = await fetch('/api/dailies/new', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newDaily)
-        })
-        return
     }
 
     return (
@@ -108,8 +93,7 @@ const UserDashboard = () => {
                 )}
             </div>
             <div>
-                <h2>Dailies</h2>
-                <button onClick={handleButtonClick}>Add a Daily</button>
+                <DailiesComponent />
             </div>
         </div>
     )
