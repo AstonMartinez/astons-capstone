@@ -18,8 +18,20 @@ function LoginFormPage() {
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+    } else {
+      <Redirect to='/my-dashboard' />
     }
   };
+
+  const handleDemoLogin = async (e) => {
+    e.preventDefault()
+    const data = await dispatch(login("demo@aa.io", "password"))
+    if(data) {
+      setErrors(data)
+    } else {
+      <Redirect to='/my-dashboard' />
+    }
+  }
 
   return (
     <>
@@ -50,6 +62,7 @@ function LoginFormPage() {
         </label>
         <button type="submit">Log In</button>
       </form>
+      <button onClick={handleDemoLogin}>Demo User</button>
     </>
   );
 }
