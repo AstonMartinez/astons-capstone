@@ -15,18 +15,18 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData }) => {
     // const [positiveFill, setPositiveFill] = useState(false)
     // const [negativeFill, setNegativeFill] = useState(false)
 
-    const handleClickOutside = useCallback((e) => {
-        if (modalOverlayRef.current === e.target) {
-            onClose();
-        }
-    }, [onClose]);
+    // const handleClickOutside = useCallback((e) => {
+    //     if (modalOverlayRef.current === e.target) {
+    //         onClose();
+    //     }
+    // }, [onClose]);
 
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside)
-        }
-    }, [handleClickOutside])
+    // useEffect(() => {
+    //     document.addEventListener('mousedown', handleClickOutside)
+    //     return () => {
+    //         document.removeEventListener('mousedown', handleClickOutside)
+    //     }
+    // }, [handleClickOutside])
 
     const processDeleteTags = (item) => {
         const allTags = tags.split(", ")
@@ -46,7 +46,7 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log("submitting")
+        // console.log("submitting")
         const updatedHabit = {
             title: title,
             notes: notes,
@@ -54,7 +54,7 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData }) => {
             difficulty: difficulty,
             tags: tags
         }
-        console.log("UPDATED HABIT: ", updatedHabit)
+        // console.log("UPDATED HABIT: ", updatedHabit)
 
         dispatch(updateUserHabit(habitId, updatedHabit))
         .then(() => dispatch(getUserHabits()))

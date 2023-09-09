@@ -267,10 +267,12 @@ def seed_users():
         user_id=1,
         title='Feed the dog',
         notes='Give Loki and Freyja food before work',
+        checklist="one, two, three, four, five",
         difficulty='easy',
         start_date=datetime(2023, 9, 6),
-        num_weeks=1,
-        day_of_week='all',
+        repeats="daily",
+        num_repeats=1,
+        day_of_repeat='all',
         tags='Chores'
     )
 
@@ -278,10 +280,12 @@ def seed_users():
         user_id=1,
         title='Do the dishes',
         notes='Dont let them sit there forever, no matter how tempting that seems.',
+        checklist="one, two, three, four, five",
         difficulty='easy',
         start_date=datetime(2023, 9, 6),
-        num_weeks=1,
-        day_of_week='all',
+        repeats="daily",
+        num_repeats=1,
+        day_of_repeat='all',
         tags='Chores'
     )
 
@@ -289,10 +293,12 @@ def seed_users():
         user_id=1,
         title='Go to the gym',
         notes='Even if its just to stare at everyone awkwardly and quickly retreat.',
+        checklist="one, two, three, four, five",
         difficulty='easy',
         start_date=datetime(2023, 9, 6),
-        num_weeks=1,
-        day_of_week='friday',
+        repeats="weekly",
+        num_repeats=1,
+        day_of_repeat='Thursday',
         tags='Exercise, Health + Wellness'
     )
 
@@ -300,10 +306,12 @@ def seed_users():
         user_id=1,
         title='Spend 15 minutes tidying',
         notes='Repeat in each room',
+        checklist="one, two, three, four, five",
         difficulty='easy',
         start_date=datetime(2023, 9, 6),
-        num_weeks=1,
-        day_of_week='wednesday',
+        repeats="daily",
+        num_repeats=1,
+        day_of_repeat='all',
         tags='Chores'
     )
 
@@ -311,10 +319,12 @@ def seed_users():
         user_id=1,
         title='Attend board meeting',
         notes='Board meetings are oh so boring.',
+        checklist="one, two, three, four, five",
         difficulty='easy',
         start_date=datetime(2023, 9, 6),
-        num_weeks=1,
-        day_of_week='thursday',
+        repeats="weekly",
+        num_repeats=1,
+        day_of_repeat='Wednesday',
         tags='Teams, Work'
     )
 
@@ -322,10 +332,12 @@ def seed_users():
         user_id=1,
         title='Do homework',
         notes='Just do it.',
+        checklist="one, two, three, four, five",
         difficulty='easy',
         start_date=datetime(2023, 9, 6),
-        num_weeks=1,
-        day_of_week='all',
+        repeats="daily",
+        num_repeats=1,
+        day_of_repeat='all',
         tags='School'
     )
 
@@ -333,10 +345,12 @@ def seed_users():
         user_id=1,
         title='Write weekly article',
         notes='AND edit it.',
+        checklist="one, two, three, four, five",
         difficulty='easy',
         start_date=datetime(2023, 9, 6),
-        num_weeks=1,
-        day_of_week='wednesday',
+        repeats="weekly",
+        num_repeats=1,
+        day_of_repeat='Friday',
         tags='Creativity, Work'
     )
 
@@ -344,10 +358,12 @@ def seed_users():
         user_id=1,
         title='Bathe dogs',
         notes='They are perpetually stinky.',
+        checklist="one, two, three, four, five",
         difficulty='easy',
         start_date=datetime(2023, 9, 6),
-        num_weeks=1,
-        day_of_week='thursday',
+        repeats="weekly",
+        num_repeats=1,
+        day_of_repeat='all',
         tags='Chores'
     )
 
@@ -355,10 +371,12 @@ def seed_users():
         user_id=1,
         title='Grocery Shopping',
         notes='Because food is life.',
+        checklist="one, two, three, four, five",
         difficulty='easy',
         start_date=datetime(2023, 9, 6),
-        num_weeks=1,
-        day_of_week='tuesday',
+        repeats="weekly",
+        num_repeats=1,
+        day_of_repeat='Monday',
         tags='Chores'
     )
 
@@ -366,10 +384,12 @@ def seed_users():
         user_id=1,
         title='Get allergy shots',
         notes='at Dr.Smiths office',
+        checklist="one, two, three, four, five",
         difficulty='easy',
         start_date=datetime(2023, 9, 6),
-        num_weeks=1,
-        day_of_week='wednesday',
+        repeats="weekly",
+        num_repeats=1,
+        day_of_repeat='Tuesday',
         tags='Health + Wellness'
     )
 
@@ -377,10 +397,12 @@ def seed_users():
         user_id=1,
         title='Lunch with Bestie',
         notes='At Taco Bell',
+        checklist="one, two, three, four, five",
         difficulty='easy',
         start_date=datetime(2023, 9, 6),
-        num_weeks=1,
-        day_of_week='thursday',
+        repeats="monthly",
+        num_repeats=1,
+        day_of_repeat='all',
         tags='Teams'
     )
 
@@ -388,10 +410,12 @@ def seed_users():
         user_id=1,
         title='Check the mail',
         notes='Why are there always bills inside but never surprise checks?',
+        checklist="one, two, three, four, five",
         difficulty='easy',
         start_date=datetime(2023, 9, 6),
-        num_weeks=1,
-        day_of_week='all',
+        repeats="daily",
+        num_repeats=1,
+        day_of_repeat='all',
         tags='Chores'
     )
 

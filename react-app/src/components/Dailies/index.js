@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import { createNewDaily, getUserDailies } from '../../store/dailies'
+import UpdateDeleteDaily from './UpdateDeleteDaily'
+import UpdateDeleteDailyModal from './UpdateDeleteDailyModal'
 
 const DailiesComponent = () => {
     const dispatch = useDispatch()
@@ -21,6 +23,7 @@ const DailiesComponent = () => {
         setDailyTitle('')
     }
 
+    // Handles adding a new daily when the user presses Enter
     const handleNewDailyEnter = () => {
         const newDaily = {
             title: dailyTitle
@@ -31,6 +34,7 @@ const DailiesComponent = () => {
         })
     }
 
+    // Handles opening the modal for deleting/updating
     const handleUpdateDeleteClick = async (daily) => {
         setSelectedDaily(daily)
         setShowModal(true)
@@ -66,24 +70,24 @@ const DailiesComponent = () => {
                             <h5>{daily.title}</h5>
                             <p>{daily.notes}</p>
                         </div>
-                        {/* <UpdateHabit habitId={habit.id} /> */}
+                        <UpdateDeleteDaily habitId={daily.id} />
                     </>
                 ))}
             </div>
-            {/* {showModal && (
-                <UpdateHabitModal
-                    habitId={selectedHabit.id}
-                    habitData={selectedHabit}
+            {showModal && (
+                <UpdateDeleteDailyModal
+                    dailyId={selectedDaily.id}
+                    dailyData={selectedDaily}
                     onSubmit={() => {
                         setShowModal(false)
-                        setSelectedHabit(null)
+                        setSelectedDaily(null)
                     }}
                     onClose={() => {
                         setShowModal(false)
-                        setSelectedHabit(null)
+                        setSelectedDaily(null)
                     }}
                 />
-            )} */}
+            )}
         </div>
     </div>
     )

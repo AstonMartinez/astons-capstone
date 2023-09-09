@@ -29,9 +29,11 @@ def create_daily():
         user_id = current_user.id
         title = request.json["title"]
         notes = ''
+        checklist = ''
         start_date = datetime.now()
-        num_weeks = 1
-        day_of_week = start_date.strftime("%A")
+        repeats = "weekly"
+        num_repeats = 1
+        day_of_repeat = start_date.strftime("%A")
         difficulty = 'easy'
         tags = ''
 
@@ -39,10 +41,12 @@ def create_daily():
             user_id=user_id,
             title=title,
             notes=notes,
+            checklist=checklist,
             difficulty=difficulty,
             start_date=start_date,
-            num_weeks=num_weeks,
-            day_of_week=day_of_week,
+            repeats=repeats,
+            num_repeats=num_repeats,
+            day_of_repeat=day_of_repeat,
             tags=tags)
 
         db.session.add(new_daily)
@@ -58,23 +62,42 @@ def update_daily(id):
 
     title = request.json["title"]
     notes = request.json["notes"]
+    checklist = request.json["checklist"]
     difficulty = request.json["difficulty"]
     start_date = request.json["start_date"]
-    num_weeks = request.json["num_weeks"]
-    day_of_week = request.json["day_of_week"]
+    repeats = request.json["repeats"]
+    num_repeats = request.json["num_repeats"]
+    day_of_repeat = request.json["day_of_repeat"]
     tags = request.json["tags"]
 
+    current_start_date = curr_daily.start_date.strftime("%d %m %Y").split()
+    new_start_date = start_date.split()
+
+    # print("""
+    #       CURRENT START DATE + NEW START DATE
+    #       """, current_start_date, new_start_date)
+
     if form.validate_on_submit():
+        if current_start_date != new_start_date:
+            new_day = int(new_start_date[0])
+            new_month = int(new_start_date[1])
+            new_year = int(new_start_date[2])
+            curr_daily.start_date = datetime(new_year, new_month, new_day)
+
         curr_daily.title = title
         curr_daily.notes = notes
+        curr_daily.checklist = checklist
         curr_daily.difficulty = difficulty
-        curr_daily.start_date = start_date
-        curr_daily.num_weeks = num_weeks
-        curr_daily.day_of_week = day_of_week
+
+        curr_daily.repeats = repeats
+        curr_daily.num_repeats = num_repeats
+        curr_daily.day_of_repeat = day_of_repeat
         curr_daily.tags = tags
 
         updated_daily = curr_daily
         updated_daily_dict = updated_daily.to_dict()
+        # print("""
+        #   LOOOOOOOOOOOOOOK""", updated_daily_dict)
         db.session.commit()
         return updated_daily_dict
     return {'errors': validation_errors_to_error_messages(form.errors)}

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: b37cd62f5e9f
+Revision ID: f68b601117a0
 Revises: 
-Create Date: 2023-09-07 19:32:56.631138
+Create Date: 2023-09-08 18:15:10.386447
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b37cd62f5e9f'
+revision = 'f68b601117a0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -63,10 +63,12 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('notes', sa.String(length=500), nullable=False),
+    sa.Column('checklist', sa.Text(), nullable=True),
     sa.Column('difficulty', sa.String(length=50), nullable=True),
     sa.Column('start_date', sa.DateTime(), nullable=False),
-    sa.Column('num_weeks', sa.Integer(), nullable=False),
-    sa.Column('day_of_week', sa.String(), nullable=True),
+    sa.Column('repeats', sa.String(), nullable=False),
+    sa.Column('num_repeats', sa.Integer(), nullable=False),
+    sa.Column('day_of_repeat', sa.String(), nullable=True),
     sa.Column('tags', sa.String(length=255), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')

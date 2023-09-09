@@ -81,3 +81,14 @@ def delete_habit(id):
     db.session.delete(curr_habit)
     db.session.commit()
     return curr_habit.to_dict()
+
+@habit_routes.route('/<int:id>/change-habit-type', methods=["PUT"])
+def change_habit_type(id):
+    curr_habit = Habit.query.get(id)
+    new_type = request.json["type"]
+
+    curr_habit.type = new_type
+    updated_habit = curr_habit
+    updated_habit_dict = updated_habit.to_dict()
+    db.session.commit()
+    return updated_habit_dict

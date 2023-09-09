@@ -1,0 +1,103 @@
+#dailies-sunday-filled {
+    width: 50px;
+    height: 50px;
+    background-color: purple;
+    color: white;
+}
+
+#dailies-sunday-empty {
+    width: 50px;
+    height: 50px;
+    color: purple;
+    background-color: white;
+}
+
+#dailies-monday-filled {
+    width: 50px;
+    height: 50px;
+    background-color: purple;
+    color: white;
+}
+
+#dailies-monday-empty {
+    width: 50px;
+    height: 50px;
+    color: purple;
+    background-color: white;
+}
+
+#dailies-tuesday-filled {
+    width: 50px;
+    height: 50px;
+    background-color: purple;
+    color: white;
+}
+
+#dailies-tuesday-empty {
+    width: 50px;
+    height: 50px;
+    color: purple;
+    background-color: white;
+}
+
+#dailies-wednesday-filled {
+    width: 50px;
+    height: 50px;
+    background-color: purple;
+    color: white;
+}
+
+#dailies-wednesday-empty {
+    width: 50px;
+    height: 50px;
+    color: purple;
+    background-color: white;
+}
+
+#dailies-thursday-filled {
+    width: 50px;
+    height: 50px;
+    background-color: purple;
+    color: white;
+}
+
+#dailies-thursday-empty {
+    width: 50px;
+    height: 50px;
+    color: purple;
+    background-color: white;
+}
+
+#dailies-friday-filled {
+    width: 50px;
+    height: 50px;
+    background-color: purple;
+    color: white;
+}
+
+#dailies-friday-empty {
+    width: 50px;
+    height: 50px;
+    color: purple;
+    background-color: white;
+}
+
+#dailies-saturday-filled {
+    width: 50px;
+    height: 50px;
+    background-color: purple;
+    color: white;
+}
+
+#dailies-saturday-empty {
+    width: 50px;
+    height: 50px;
+    color: purple;
+    background-color: white;
+}
+
+.weekday {
+    width: 50px;
+    height: 50px;
+    border: 1px solid white;
+}
