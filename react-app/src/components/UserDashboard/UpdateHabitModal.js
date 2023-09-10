@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 import { updateUserHabit, getUserHabits, deleteUserHabit } from '../../store/habits'
 import { useDispatch } from 'react-redux'
 // import { useHistory } from 'react-router-dom'
 import './UpdateHabitModal.css'
 
-const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData }) => {
+const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) => {
     const dispatch = useDispatch()
     const modalOverlayRef = useRef()
     const [title, setTitle] = useState(habitData.title)
@@ -13,6 +13,8 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData }) => {
     const [difficulty, setDifficulty] = useState(habitData.difficulty)
     const [tags, setTags] = useState(habitData.tags)
     const [errors, setErrors] = useState([])
+    const [status, setStatus] = useState(habitData.status)
+    console.log("TOP FILL: ", fillType)
 
     const determineTopFill = () => {
         if(habitData.status === "strong") {
@@ -25,6 +27,7 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData }) => {
     }
 
     const initFill = determineTopFill()
+    console.log(initFill)
 
 
     const [topFill, setTopFill] = useState(initFill)
@@ -98,6 +101,33 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData }) => {
         }
     }
 
+    const getUpdatedStatus = (incrementedVal) => {
+        if(habitData.type === "positive") {
+            if(incrementedVal >= 1) {
+                setStatus("strong")
+                setTopFill("green")
+                return "strong"
+            } else {
+                setStatus("regular")
+                setTopFill("orange")
+                return "regular"
+            }
+        } else if(habitData.type === "positive, negative") {
+            if(incrementedVal > habitData.neg_count) {
+                setStatus("strong")
+                setTopFill("green")
+                return
+            } else if(incrementedVal === habitData.neg_count) {
+                setStatus("regular")
+                setTopFill("orange")
+                return
+            }
+        } else {
+            setStatus("weak")
+            setTopFill("dark-orange")
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         // console.log("submitting")
@@ -108,7 +138,7 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData }) => {
             difficulty: difficulty,
             pos_count: habitData.pos_count,
             neg_count: habitData.neg_count,
-            status: habitData.status,
+            status: status,
             tags: tags
         }
         // console.log("UPDATED HABIT: ", updatedHabit)

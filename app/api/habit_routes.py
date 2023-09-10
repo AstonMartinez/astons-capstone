@@ -66,6 +66,8 @@ def update_habit(id):
     neg_count = request.json["neg_count"]
     status = request.json["status"]
 
+    print(status)
+
     if form.validate_on_submit():
         curr_habit.title = title
         curr_habit.notes = notes
