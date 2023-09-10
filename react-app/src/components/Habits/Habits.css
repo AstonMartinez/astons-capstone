@@ -1,0 +1,160 @@
+.sidebar {
+    width: 48px;
+    height: 100px;
+}
+
+.right-habit-sidebar {
+    border-radius: 0px 5px 5px 0px;
+}
+
+.left-habit-sidebar {
+    border-radius: 5px 0px 0px 5px;
+    /* border: 1px solid black; */
+
+}
+
+#single-habit-container {
+    /* border: 1px solid lightgray; */
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 5px;
+    margin: 2px 5px;
+    width: 310px;
+
+}
+
+#single-habit-text-div {
+    margin-left: 5px;
+    text-align: left;
+    /* border: 1px solid black; */
+    width: 200px;
+}
+
+.habit-title-text {
+    font-family: 'Roboto Condensed',sans-serif;
+    font-size: 14px;
+}
+
+.habit-notes-text {
+    font-family: 'Roboto Condensed',sans-serif;
+    font-size: 12px;
+}
+
+#habit-positive-div, #habit-negative-div {
+    width: 30px;
+    /* font-size: 25px; */
+    /* border: 1px solid black; */
+    border-radius: 28px;
+    text-align: center;
+    margin: 30px auto;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#habit-positive-div:hover, #habit-negative-div:hover {
+    cursor: pointer;
+}
+
+#habit-positive-div > p {
+    padding-right: 1px;
+    padding-bottom: 1px;
+}
+
+#habit-positive-div:hover, #habit-negative-div:hover {
+    cursor: pointer;
+}
+
+/* !!!RIGHT SIDEBAR */
+#right-sidebar-green {
+    background-color: #2fcc8f;
+}
+
+#right-sidebar-orange {
+    background-color: #ffbe5d;
+}
+
+#right-sidebar-dark-orange {
+    background-color: #ff944c;
+}
+
+#right-sidebar-gray {
+    background-color: #edecee;
+}
+
+/* !!!LEFT SIDEBAR */
+#left-sidebar-green {
+    background-color: #2fcc8f;
+}
+
+#left-sidebar-orange {
+    background-color: #ffbe5d;
+}
+
+#left-sidebar-dark-orange {
+    background-color: #ff944c;
+}
+
+#left-sidebar-gray {
+    background-color: #edecee;
+}
+
+
+/* !!!POS BUTTON */
+.sidebar-positive-green {
+    background-color: #219f72;
+    color: white;
+}
+
+.sidebar-positive-orange {
+    background-color: #dda246;
+    color: white;
+}
+
+.sidebar-positive-dark-orange {
+    background-color: #df7b39;
+    color: white;
+}
+
+.sidebar-positive-gray {
+    background-color: #edecee;
+    border: 1px solid #a09ba7;
+    color: #a09ba7;
+}
+
+
+/* !!!NEG BUTTON */
+.sidebar-negative-green {
+    background-color: #219f72;
+    color: white;
+}
+
+.sidebar-negative-orange {
+    background-color: #dda246;
+    color: white;
+}
+
+.sidebar-negative-dark-orange {
+    background-color: #df7b39;
+    color: white;
+}
+
+.sidebar-negative-gray {
+    background-color: #edecee;
+    border: 1px solid #a09ba7;
+    color: #a09ba7;
+}
+
+
+#habit-positive-div > p {
+    font-size: 20px;
+}
+
+#habit-negative-div > p {
+    font-size: 22px;
+    padding-bottom: 18px;
+}

@@ -53,12 +53,18 @@ def update_habit(id):
     curr_habit = Habit.query.get(id)
     form = UpdateHabitForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("""
+          LOOK HERE
+          """, request.json)
 
     title = request.json["title"]
     notes = request.json["notes"]
     type = request.json["type"]
     difficulty = request.json["difficulty"]
     tags = request.json["tags"]
+    pos_count = request.json["pos_count"]
+    neg_count = request.json["neg_count"]
+    status = request.json["status"]
 
     if form.validate_on_submit():
         curr_habit.title = title
@@ -66,6 +72,9 @@ def update_habit(id):
         curr_habit.type = type
         curr_habit.difficulty = difficulty
         curr_habit.tags = tags
+        curr_habit.pos_count = pos_count
+        curr_habit.neg_count = neg_count
+        curr_habit.status = status
 
         updated_habit = curr_habit
         updated_habit_dict = updated_habit.to_dict()
@@ -82,13 +91,33 @@ def delete_habit(id):
     db.session.commit()
     return curr_habit.to_dict()
 
-@habit_routes.route('/<int:id>/change-habit-type', methods=["PUT"])
-def change_habit_type(id):
+@habit_routes.route('/<int:id>/change-habit-counts', methods=["PUT"])
+def change_habit_counts(id):
     curr_habit = Habit.query.get(id)
-    new_type = request.json["type"]
 
-    curr_habit.type = new_type
+    if request.json["pos_count"]:
+        curr_habit.pos_count = request.json["pos_count"]
+
+    if request.json["neg_count"]:
+        curr_habit.neg_count = request.json["neg_count"]
+
     updated_habit = curr_habit
     updated_habit_dict = updated_habit.to_dict()
     db.session.commit()
     return updated_habit_dict
+
+@habit_routes.route('/<int:id>/change-habit-type', methods=["PUT"])
+def change_habit_type(id):
+    curr_habit = Habit.query.get(id)
+    curr_habit.type = request.json["type"]
+
+    updated_habit = curr_habit
+    updated_habit_dict = updated_habit.to_dict()
+    db.session.commit()
+    return updated_habit_dict
+
+@habit_routes.route('/<int:id>')
+def get_one_habit(id):
+    habit = Habit.query.get(id)
+    habit_dict = habit.to_dict()
+    return habit_dict

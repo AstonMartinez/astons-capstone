@@ -20,7 +20,8 @@ def seed_users():
         level=1,
         date_joined=datetime(2023, 9, 6),
         password='password',
-        gold=500
+        gold=500,
+        health=100
         )
     marnie = User(
         username='marnie',
@@ -30,7 +31,8 @@ def seed_users():
         level=1,
         date_joined=datetime(2023, 9, 6),
         password='password',
-        gold=0
+        gold=0,
+        health=100
         )
     bobbie = User(
         username='bobbie',
@@ -40,7 +42,8 @@ def seed_users():
         level=1,
         date_joined=datetime(2023, 9, 6),
         password='password',
-        gold=0
+        gold=0,
+        health=100
         )
     user1 = User(
         username='User1',
@@ -50,7 +53,8 @@ def seed_users():
         level=2,
         date_joined=datetime(2023, 9, 6),
         password='user1password',
-        gold=0
+        gold=0,
+        health=100
         )
     user2 = User(
         username='User2',
@@ -60,7 +64,8 @@ def seed_users():
         level=3,
         date_joined=datetime(2023, 9, 6),
         password='user2password',
-        gold=0
+        gold=0,
+        health=100
         )
     user3 = User(
         username='User3',
@@ -70,7 +75,8 @@ def seed_users():
         level=2,
         date_joined=datetime(2023, 9, 6),
         password='user3password',
-        gold=0
+        gold=0,
+        health=100
         )
     user4 = User(
         username='User4',
@@ -80,7 +86,8 @@ def seed_users():
         level=4,
         date_joined=datetime(2023, 9, 6),
         password='user4password',
-        gold=0
+        gold=0,
+        health=100
         )
     user5 = User(
         username='User5',
@@ -90,7 +97,8 @@ def seed_users():
         level=1,
         date_joined=datetime(2023, 9, 6),
         password='user5password',
-        gold=0
+        gold=0,
+        health=100
         )
     user6 = User(
         username='User6',
@@ -100,7 +108,8 @@ def seed_users():
         level=3,
         date_joined=datetime(2023, 9, 6),
         password='user6password',
-        gold=0
+        gold=0,
+        health=100
         )
     user7 = User(
         username='User7',
@@ -110,7 +119,8 @@ def seed_users():
         level=2,
         date_joined=datetime(2023, 9, 6),
         password='user7password',
-        gold=0
+        gold=0,
+        health=100
         )
     user8 = User(
         username='User8',
@@ -120,7 +130,8 @@ def seed_users():
         level=3,
         date_joined=datetime(2023, 9, 6),
         password='user8password',
-        gold=0
+        gold=0,
+        health=100
         )
     user9 = User(
         username='User9',
@@ -130,7 +141,8 @@ def seed_users():
         level=5,
         date_joined=datetime(2023, 9, 6),
         password='user9password',
-        gold=0
+        gold=0,
+        health=100
         )
     user10 = User(
         username='User10',
@@ -140,7 +152,8 @@ def seed_users():
         level=2,
         date_joined=datetime(2023, 9, 6),
         password='user10password',
-        gold=0
+        gold=0,
+        health=100
         )
     user11 = User(
         username='User11',
@@ -150,7 +163,8 @@ def seed_users():
         level=1,
         date_joined=datetime(2023, 9, 6),
         password='user11password',
-        gold=0
+        gold=0,
+        health=100
         )
     user12 = User(
         username='User12',
@@ -160,7 +174,8 @@ def seed_users():
         level=4,
         date_joined=datetime(2023, 9, 6),
         password='user12password',
-        gold=0
+        gold=0,
+        health=100
         )
 
     db.session.add_all([demo, marnie, bobbie, user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12])
@@ -171,6 +186,9 @@ def seed_users():
         notes='my morning routine habit',
         type='positive',
         difficulty='easy',
+        pos_count=0,
+        neg_count=0,
+        status="regular",
         tags='Health + Wellness')
 
     habit2 = Habit(
@@ -179,6 +197,9 @@ def seed_users():
         notes='My sleep & evening routine habit',
         type='positive',
         difficulty='medium',
+        pos_count=0,
+        neg_count=0,
+        status="regular",
         tags='Health + Wellness')
 
     habit3 = Habit(
@@ -187,6 +208,9 @@ def seed_users():
         notes='My habit for quitting smoking',
         type='negative',
         difficulty='hard',
+        pos_count=0,
+        neg_count=0,
+        status="regular",
         tags='Health + Wellness')
 
     habit4 = Habit(
@@ -194,6 +218,9 @@ def seed_users():
         title='Study',
         notes='My studying habit',
         type='positive',
+        pos_count=0,
+        neg_count=0,
+        status="regular",
         difficulty='medium',
         tags='School')
 
@@ -203,6 +230,9 @@ def seed_users():
         notes='My creative writing habit',
         type='positive',
         difficulty='easy',
+        pos_count=0,
+        neg_count=0,
+        status="regular",
         tags='Creativity')
 
     habit6 = Habit(
@@ -211,6 +241,9 @@ def seed_users():
         notes='My tidying and organization habit',
         type='positive',
         difficulty='medium',
+        pos_count=0,
+        neg_count=0,
+        status="regular",
         tags='Chores')
 
     habit7 = Habit(
@@ -219,6 +252,9 @@ def seed_users():
         notes='My soccer practice habit',
         type='positive',
         difficulty='medium',
+        pos_count=0,
+        neg_count=0,
+        status="regular",
         tags='Exercise, Teams')
 
     habit8 = Habit(
@@ -227,6 +263,9 @@ def seed_users():
         notes='My habit for no longer showing up late',
         type='negative',
         difficulty='medium',
+        pos_count=0,
+        neg_count=0,
+        status="regular",
         tags='Work, School')
 
     habit9 = Habit(
@@ -235,6 +274,9 @@ def seed_users():
         notes='My productivity habit',
         type='positive',
         difficulty='hard',
+        pos_count=0,
+        neg_count=0,
+        status="regular",
         tags='Work, School, Chores')
 
     habit10 = Habit(
@@ -243,6 +285,9 @@ def seed_users():
         notes='My gratitude habit',
         type='positive',
         difficulty='easy',
+        pos_count=0,
+        neg_count=0,
+        status="regular",
         tags='Health + Wellness')
 
     habit11 = Habit(
@@ -251,6 +296,9 @@ def seed_users():
         notes='My meditation habit',
         type='positive',
         difficulty='easy',
+        pos_count=0,
+        neg_count=0,
+        status="regular",
         tags='Health + Wellness')
 
     habit12 = Habit(
@@ -259,6 +307,9 @@ def seed_users():
         notes='My meal prep habit',
         type='positive',
         difficulty='medium',
+        pos_count=0,
+        neg_count=0,
+        status="regular",
         tags='Health + Wellness')
 
     db.session.add_all([habit1, habit2, habit3, habit4, habit5, habit6, habit7, habit8, habit9, habit10, habit11, habit12])
@@ -273,7 +324,8 @@ def seed_users():
         repeats="daily",
         num_repeats=1,
         day_of_repeat='all',
-        tags='Chores'
+        tags='Chores',
+        count=0
     )
 
     daily2 = Daily(
@@ -286,7 +338,8 @@ def seed_users():
         repeats="daily",
         num_repeats=1,
         day_of_repeat='all',
-        tags='Chores'
+        tags='Chores',
+        count=0
     )
 
     daily3 = Daily(
@@ -299,7 +352,8 @@ def seed_users():
         repeats="weekly",
         num_repeats=1,
         day_of_repeat='Thursday',
-        tags='Exercise, Health + Wellness'
+        tags='Exercise, Health + Wellness',
+        count=0
     )
 
     daily4 = Daily(
@@ -312,7 +366,8 @@ def seed_users():
         repeats="daily",
         num_repeats=1,
         day_of_repeat='all',
-        tags='Chores'
+        tags='Chores',
+        count=0
     )
 
     daily5 = Daily(
@@ -325,7 +380,8 @@ def seed_users():
         repeats="weekly",
         num_repeats=1,
         day_of_repeat='Wednesday',
-        tags='Teams, Work'
+        tags='Teams, Work',
+        count=0
     )
 
     daily6 = Daily(
@@ -338,7 +394,8 @@ def seed_users():
         repeats="daily",
         num_repeats=1,
         day_of_repeat='all',
-        tags='School'
+        tags='School',
+        count=0
     )
 
     daily7 = Daily(
@@ -351,7 +408,8 @@ def seed_users():
         repeats="weekly",
         num_repeats=1,
         day_of_repeat='Friday',
-        tags='Creativity, Work'
+        tags='Creativity, Work',
+        count=0
     )
 
     daily8 = Daily(
@@ -364,7 +422,8 @@ def seed_users():
         repeats="weekly",
         num_repeats=1,
         day_of_repeat='all',
-        tags='Chores'
+        tags='Chores',
+        count=0
     )
 
     daily9 = Daily(
@@ -377,7 +436,8 @@ def seed_users():
         repeats="weekly",
         num_repeats=1,
         day_of_repeat='Monday',
-        tags='Chores'
+        tags='Chores',
+        count=0
     )
 
     daily10 = Daily(
@@ -390,7 +450,8 @@ def seed_users():
         repeats="weekly",
         num_repeats=1,
         day_of_repeat='Tuesday',
-        tags='Health + Wellness'
+        tags='Health + Wellness',
+        count=0
     )
 
     daily11 = Daily(
@@ -403,7 +464,8 @@ def seed_users():
         repeats="monthly",
         num_repeats=1,
         day_of_repeat='all',
-        tags='Teams'
+        tags='Teams',
+        count=0
     )
 
     daily12 = Daily(
@@ -416,7 +478,8 @@ def seed_users():
         repeats="daily",
         num_repeats=1,
         day_of_repeat='all',
-        tags='Chores'
+        tags='Chores',
+        count=0
     )
 
     db.session.add_all([daily1, daily2, daily3, daily4, daily5, daily6, daily7, daily8, daily9, daily10, daily11, daily12])

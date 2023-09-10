@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { createNewDaily, getUserDailies } from '../../store/dailies'
 import UpdateDeleteDaily from './UpdateDeleteDaily'
 import UpdateDeleteDailyModal from './UpdateDeleteDailyModal'
+import IndividualDaily from './IndividualDaily'
 
 const DailiesComponent = () => {
     const dispatch = useDispatch()
@@ -34,62 +35,35 @@ const DailiesComponent = () => {
         })
     }
 
-    // Handles opening the modal for deleting/updating
-    const handleUpdateDeleteClick = async (daily) => {
-        setSelectedDaily(daily)
-        setShowModal(true)
-        return <Redirect to='/my-dashboard' />
-    }
-
     return (
-        <div>
-        <div>
-            <h2>Dailies</h2>
-            <form>
-                <input
-                name='new-daily'
-                id='new-daily-title-input'
-                value={dailyTitle}
-                onChange={(e) => setDailyTitle(e.target.value)}
-                placeholder='Add a Habit'
-                onKeyPress={(e) => {
-                    if (e.key === 'Enter') {
-                        handleNewDailyEnter()
-                    } else {
-                        setDailyTitle(e.target.value)
-                    }
-                }}
-                />
-            </form>
-            <div>
-                {dailiesToMap && dailiesToMap.map(daily => (
-                    <>
-                        <div onClick={() => {
-                            // console.log(showModal)
-                            return handleUpdateDeleteClick(daily)}}>
-                            <h5>{daily.title}</h5>
-                            <p>{daily.notes}</p>
+        <div id='dailies-column-wrapper'>
+            <h2 className='column-h2'>Dailies</h2>
+            <div id='dailies-column'>
+                <form>
+                    <input
+                    name='new-daily'
+                    id='new-daily-title-input'
+                    value={dailyTitle}
+                    onChange={(e) => setDailyTitle(e.target.value)}
+                    placeholder='Add a Daily'
+                    onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                            handleNewDailyEnter()
+                        } else {
+                            setDailyTitle(e.target.value)
+                        }
+                    }}
+                    />
+                </form>
+                <div>
+                    {dailiesToMap && dailiesToMap.map(daily => (
+                        <div>
+                            <IndividualDaily dailyData={daily} key={daily.id} />
                         </div>
-                        <UpdateDeleteDaily habitId={daily.id} />
-                    </>
-                ))}
+                    ))}
+                </div>
             </div>
-            {showModal && (
-                <UpdateDeleteDailyModal
-                    dailyId={selectedDaily.id}
-                    dailyData={selectedDaily}
-                    onSubmit={() => {
-                        setShowModal(false)
-                        setSelectedDaily(null)
-                    }}
-                    onClose={() => {
-                        setShowModal(false)
-                        setSelectedDaily(null)
-                    }}
-                />
-            )}
         </div>
-    </div>
     )
 }
 

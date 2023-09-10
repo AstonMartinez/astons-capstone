@@ -16,6 +16,7 @@ class Daily(db.Model):
     repeats = db.Column(db.String, nullable=False)
     num_repeats = db.Column(db.Integer, nullable=False)
     day_of_repeat = db.Column(db.String)
+    count = db.Column(db.Integer)
     tags = db.Column(db.String(255))
 
     user = db.relationship('User', back_populates='dailies')
@@ -32,5 +33,6 @@ class Daily(db.Model):
             'repeats': self.repeats,
             'num_repeats': self.num_repeats,
             'day_of_repeat': self.day_of_repeat,
+            'count': self.count,
             'tags': self.tags
         }

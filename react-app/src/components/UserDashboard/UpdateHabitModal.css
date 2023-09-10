@@ -1,0 +1,223 @@
+.habit-update-modal-backdrop {
+    backdrop-filter: blur(2px);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.update-habit-modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 40%;
+    width: 350px;
+    height: 600px;
+    left: 40%;
+    z-index: 2000;
+}
+
+#edit-habit-button-container {
+    display: flex;
+    /* border: 1px solid black; */
+    width: 330px;
+    margin: 0 10px;
+    justify-content: space-between;
+}
+
+#update-habit-modal-colored-green {
+    background-color: #24cc84;
+    color: rgb(0, 87, 55);
+    height: 200px;
+}
+
+#update-habit-modal-colored-orange {
+    background-color: #ffbe5d;
+    color: rgb(121, 75, 0);
+}
+
+#update-habit-modal-colored-dark-orange {
+    background-color: #ff944c;
+    color: rgb(127, 51, 0);
+}
+
+#habit-update-cancel-button {
+    background-color: transparent;
+    border: none;
+}
+
+#habit-update-cancel-button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#habit-update-save-button-green {
+    box-shadow: 2px 2px 1px #21a576;
+    background-color: #ffffff;
+    border: none;
+    height: 32px;
+    border-radius: 2px;
+    width: 55px;
+    margin-top: 10px;
+}
+
+#habit-update-save-button-orange {
+    background-color: #ffffff;
+    border: none;
+    height: 40px;
+    width: 55px;
+    margin-top: 10px;
+}
+
+#habit-update-save-button-dark-orange {
+    background-color: #ffffff;
+    border: none;
+    height: 40px;
+    width: 55px;
+    margin-top: 10px;
+}
+
+#habit-update-save-button:hover {
+    cursor: pointer;
+}
+
+
+/* !!!POS BUTTON EMPTY */
+.habit-pos-button-empty-green {
+    border: 1px solid #a09ba7;
+    color: #a09ba7;
+    background-color: white;
+}
+
+.habit-pos-button-empty-orange {
+    border: 1px solid #a09ba7;
+    color: #a09ba7;
+    background-color: white;
+}
+
+.habit-pos-button-empty-dark-orange {
+    border: 1px solid #a09ba7;
+    background-color: #a09ba7;
+    color: white;
+}
+
+/* !!!POS BUTTON FILLED */
+.habit-pos-button-filled-green {
+    border: none;
+    background-color: #24cc8f;
+    color: white;
+}
+
+.habit-pos-button-filled-orange {
+    border: none;
+    background-color: #ffbe5d;
+    color: white;
+}
+
+.habit-pos-button-filled-dark-orange {
+    border: none;
+    background-color: #ff944c;
+    color: white;
+}
+
+/* !!!NEG BUTTON EMPTY */
+.habit-neg-button-empty-green {
+    border: 1px solid #a09ba7;
+    color: #a09ba7;
+    background-color: white;
+}
+
+.habit-neg-button-empty-orange {
+    border: 1px solid #a09ba7;
+    color: #a09ba7;
+    background-color: white;
+}
+
+.habit-neg-button-empty-dark-orange {
+    border: 1px solid #a09ba7;
+    background-color: #a09ba7;
+    color: white;
+}
+
+/* !!!NEG BUTTON FILLED */
+.habit-neg-button-filled-green {
+    border: none;
+    background-color: #24cc8f;
+    color: white;
+}
+
+.habit-neg-button-filled-orange {
+    border: none;
+    background-color: #ffbe5d;
+    color: white;
+}
+
+.habit-neg-button-filled-dark-orange {
+    border: none;
+    background-color: #ff944c;
+    color: white;
+}
+
+#pos-neg-button-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#positive-button-and-label, #negative-button-and-label {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+#habit-title-container {
+    display: flex;
+    flex-direction: column;
+    width: 330px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+#habit-notes-container {
+    display: flex;
+    flex-direction: column;
+    width: 330px;
+    /* height: 60px; */
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+/* !!!TITLE INPUT */
+#habit-title-input-field-green {
+    background-color: #99e7ca;
+}
+
+#habit-title-input-field-orange {
+    background-color: #ffdeae;
+}
+
+#habit-title-input-field-dark-orange {
+    background-color: #ffc9a6;
+}
+
+/* !!!NOTES INPUT */
+#habit-notes-input-field-green {
+    background-color: #99e7ca;
+    height: 50px;
+}
+
+#habit-notes-input-field-orange {
+    background-color: #ffdeae;
+}
+
+#habit-notes-input-field-dark-orange {
+    background-color: #ffc9a6;
+}

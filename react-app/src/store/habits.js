@@ -2,6 +2,7 @@ const GET_USER_HABITS = '/habits/getHabits'
 const CREATE_HABIT = '/habits/createNew'
 const UPDATE_HABIT = '/habits/updateHabit'
 const DELETE_HABIT = '/habits/deleteHabit'
+const GET_SINGLE_HABIT = '/habits/getOne'
 
 const getHabits = (data) => {
     return {
@@ -28,6 +29,30 @@ const deleteHabit = (data) => {
     return {
         type: DELETE_HABIT,
         payload: data,
+    }
+}
+
+const getOne = (data) => {
+    return {
+        type: GET_SINGLE_HABIT,
+        payload: data,
+    }
+}
+
+export const getOneHabit = (id) => async (dispatch) => {
+    try {
+        const response = await fetch(`/api/habits/${id}`)
+        if(response.ok) {
+            const data = await response.json()
+            dispatch(getOne(data))
+            return data
+        } else {
+            const errors = await response.json();
+            return errors;
+        }
+    } catch (error) {
+        const errors = (error && error.json) ? await error.json() : { message: error.toString() }
+        return errors
     }
 }
 
@@ -122,6 +147,10 @@ const habitsReducer = (state = initialState, action) => {
         case DELETE_HABIT:
             newState = Object.assign({ ...state })
             delete newState.allHabits[action.payload]
+            return newState
+        case GET_SINGLE_HABIT:
+            newState = Object.assign({ ...state })
+            newState.singleHabit = action.payload
             return newState
         default:
             return state

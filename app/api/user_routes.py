@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import User
+from flask import Blueprint, jsonify, request
+from flask_login import login_required, current_user
+from app.models import User, db
 
 user_routes = Blueprint('users', __name__)
 
@@ -23,3 +23,25 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+@user_routes.route('/update-user-stats', methods=["PUT"])
+def update_user_stats():
+    user_id = current_user.id
+    curr_user = User.query.get(user_id)
+    print(request.json)
+    if request.json["gold"]:
+        curr_user.gold = request.json["gold"]
+
+    if request.json["health"]:
+        curr_user.health = request.json["health"]
+
+    if request.json["experience_points"]:
+        curr_user.experience_points = request.json["experience_points"]
+
+    if request.json["level"]:
+        curr_user.level = request.json["level"]
+
+    db.session.commit()
+    updated_user = curr_user
+    return updated_user.to_dict()

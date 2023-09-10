@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { updateUserHabit, getUserHabits, deleteUserHabit } from '../../store/habits'
 import { useDispatch } from 'react-redux'
 // import { useHistory } from 'react-router-dom'
+import './UpdateHabitModal.css'
 
 const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData }) => {
     const dispatch = useDispatch()
@@ -12,12 +13,51 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData }) => {
     const [difficulty, setDifficulty] = useState(habitData.difficulty)
     const [tags, setTags] = useState(habitData.tags)
     const [errors, setErrors] = useState([])
-    // const [positiveFill, setPositiveFill] = useState(false)
-    // const [negativeFill, setNegativeFill] = useState(false)
+
+    const determineTopFill = () => {
+        if(habitData.status === "strong") {
+            return "green"
+        } else if(habitData.status === "regular") {
+            return "orange"
+        } else {
+            return "dark-orange"
+        }
+    }
+
+    const initFill = determineTopFill()
+
+
+    const [topFill, setTopFill] = useState(initFill)
+
+    const determinePosFill = () => {
+        if(habitData.type === "positive" || habitData.type === "positive, negative") {
+            return "filled"
+        } else {
+            return "empty"
+        }
+    }
+
+    const determineNegFill = () => {
+        if(habitData.type === "negative" || habitData.type === "positive, negative") {
+            return "filled"
+        } else {
+            return "empty"
+        }
+    }
+
+    const initialPosButtonFill = determinePosFill()
+    const initialNegButtonFill = determineNegFill()
+
+    // const [posButtonFill, setPosButtonFill] = useState()
+    const [positiveFill, setPositiveFill] = useState(initialPosButtonFill)
+    const [negativeFill, setNegativeFill] = useState(initialNegButtonFill)
 
     // const handleClickOutside = useCallback((e) => {
+    //     e.preventDefault()
     //     if (modalOverlayRef.current === e.target) {
-    //         onClose();
+    //         onClose()
+    //     } else {
+    //         return
     //     }
     // }, [onClose]);
 
@@ -44,6 +84,20 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData }) => {
         }
     }
 
+    const processAddTags = (value) => {
+        const tagsArr = tags.split(", ")
+        const checker = tagsArr.filter((tag) => tag.toLowerCase() === value.toLowerCase())
+        // console.log(checker)
+        if(checker.length === 1) {
+            return
+        } else {
+            tagsArr.push(value)
+            const result = tagsArr.join(", ")
+            setTags(result)
+            return
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         // console.log("submitting")
@@ -52,6 +106,9 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData }) => {
             notes: notes,
             type: type,
             difficulty: difficulty,
+            pos_count: habitData.pos_count,
+            neg_count: habitData.neg_count,
+            status: habitData.status,
             tags: tags
         }
         // console.log("UPDATED HABIT: ", updatedHabit)
@@ -72,80 +129,137 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData }) => {
         return onClose()
     }
 
+    const handlePosButtonClick = () => {
+        if(positiveFill === "filled") {
+            if(type === "positive") {
+                setType("")
+                setPositiveFill("empty")
+                return
+            } else if(type === "positive, negative") {
+                setType("negative")
+                setPositiveFill("empty")
+                return
+            }
+        } else {
+            if(type === "negative") {
+                setType("positive, negative")
+                setPositiveFill("filled")
+                return
+            } else if(type === "") {
+                setType("positive")
+                setPositiveFill("filled")
+                return
+            }
+        }
+    }
+
+    const handleNegButtonClick = () => {
+        if(negativeFill === "filled") {
+            if(type === "negative") {
+                console.log("type is neg")
+                setType("")
+                setNegativeFill("empty")
+                return
+            } else if(type === "positive, negative") {
+                console.log("type is pos,neg")
+                setType("positive")
+                setNegativeFill("empty")
+                return
+            }
+        } else {
+            if(type === "positive") {
+                setType("positive, negative")
+                setNegativeFill("filled")
+                return
+            } else if(type === "") {
+                setType("negative")
+                setNegativeFill("filled")
+                return
+            }
+        }
+    }
+
     return (
         <>
-            <div className='habit-update-modal-backdrop'></div>
-            <div className='update-habit-modal-wrapper' ref={modalOverlayRef}>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <h3>Edit Habit</h3>
-                        <button>Cancel</button>
-                        <button type='submit'>Save</button>
-                    </div>
-                    <div>
-                        <label htmlFor='title'>Title*</label>
-                        <input
-                            type='text'
-                            name='title'
-                            id='habit-title-input-field'
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor='notes'>Notes</label>
-                        <input
-                            type='textarea'
-                            name='notes'
-                            id='habit-notes-input-field'
-                            value={notes}
-                            onChange={(e) => setNotes(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <div>
-                            <button className={`habit-pos-button`}>+</button>
-                            <p>Positive</p>
-                        </div>
-                        <div>
-                            <button className={`habit-neg-button`}>-</button>
-                            <p>Negative</p>
-                        </div>
-                    </div>
-                    <div>
-                        <label htmlFor='difficulty'>Difficulty</label>
-                        <select
-                            className='habit-difficulty-select'
-                            value={difficulty}
-                            onChange={(e) => setDifficulty(e.target.value)}
-                        >
-                            <option value="trivial">Trivial</option>
-                            <option value="easy">Easy</option>
-                            <option value="medium">Medium</option>
-                            <option value="hard">Hard</option>
-                        </select>
-                    </div>
-                    <div>
-                        <div>
+            <div className='habit-update-modal-backdrop'  ref={modalOverlayRef}></div>
+                <div className='update-habit-modal-wrapper'>
+                    <div id={`update-habit-modal-colored-${topFill}`}>
+                        <div id='edit-habit-button-container'>
                             <div>
-                                {tags.length ? tags.split(", ").map(tag => (
-                                    <div>{tag}<button onClick={() => processDeleteTags(tag)}>x</button></div>
-                                )) : <div>Add tags here...</div>}
+                                <h3>Edit Habit</h3>
                             </div>
-                            <select multiple={true} value={[...tags]} onChange={(e) => setTags(tags + ", " + e.target.value)}>
-                                <option value="Work">Work</option>
-                                <option value="Exercise">Exercise</option>
-                                <option value="Health + Wellness">Health + Wellness</option>
-                                <option value="School">School</option>
-                                <option value="Teams">Teams</option>
-                                <option value="Chores">Chores</option>
-                                <option value="Creativity">Creativity</option>
+                            <div>
+                                <button id={`habit-update-cancel-button`} onClick={onClose}>Cancel</button>
+                                <button id={`habit-update-save-button-${topFill}`} onClick={handleSubmit}>Save</button>
+                            </div>
+                        </div>
+                            <div id={`habit-title-container`}>
+                                <label htmlFor='title'>Title*</label>
+                                <input
+                                    type='text'
+                                    name='title'
+                                    id={`habit-title-input-field-${topFill}`}
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                />
+                            </div>
+                            <div id={`habit-notes-container`}>
+                                <label htmlFor='notes'>Notes</label>
+                                <input
+                                    type='textarea'
+                                    name='notes'
+                                    id={`habit-notes-input-field-${topFill}`}
+                                    value={notes}
+                                    onChange={(e) => setNotes(e.target.value)}
+                                    placeholder="Add notes"
+                                />
+                            </div>
+                    </div>
+                        <div id='pos-neg-button-container'>
+                            <div id='positive-button-and-label'>
+                                <button className={`habit-pos-button-${positiveFill}-${topFill}`} onClick={handlePosButtonClick}>+</button>
+                                <p>Positive</p>
+                            </div>
+                            <div id='negative-button-and-label'>
+                                <button className={`habit-neg-button-${negativeFill}-${topFill}`} onClick={handleNegButtonClick}>-</button>
+                                <p>Negative</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor='difficulty'>Difficulty</label>
+                            <select
+                                className='habit-difficulty-select'
+                                value={difficulty}
+                                onChange={(e) => setDifficulty(e.target.value)}
+                            >
+                                <option value="trivial">Trivial</option>
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
                             </select>
                         </div>
-                    </div>
-                </form>
-                <button onClick={handleDeleteHabit}>Delete this Habit</button>
-            </div>
+                        <div>
+                            <div>
+                                <div>
+                                    {tags.length ? tags.split(", ").map(tag => (
+                                        <div>{tag}<button onClick={() => processDeleteTags(tag)}>x</button></div>
+                                    )) : <div>Add tags here...</div>}
+                                </div>
+                                <select multiple={true} value={[...tags]} onChange={(e) => processAddTags(e.target.value)}>
+                                    <option value="Work">Work</option>
+                                    <option value="Exercise">Exercise</option>
+                                    <option value="Health + Wellness">Health + Wellness</option>
+                                    <option value="School">School</option>
+                                    <option value="Teams">Teams</option>
+                                    <option value="Chores">Chores</option>
+                                    <option value="Creativity">Creativity</option>
+                                </select>
+                            </div>
+                        </div>
+                    <button onClick={handleDeleteHabit}>Delete this Habit</button>
+                </div>
+
+            {/* </div> */}
         </>
     )
 }

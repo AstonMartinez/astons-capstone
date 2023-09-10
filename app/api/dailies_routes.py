@@ -110,3 +110,8 @@ def delete_daily(id):
     db.session.delete(curr_daily)
     db.session.commit()
     return curr_daily.to_dict()
+
+@dailies_routes.route('/<int:id>')
+def get_one_daily(id):
+    daily = Daily.query.get(id)
+    return daily.to_dict()

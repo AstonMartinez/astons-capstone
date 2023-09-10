@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: f68b601117a0
+Revision ID: 547d5bb1e4ce
 Revises: 
-Create Date: 2023-09-08 18:15:10.386447
+Create Date: 2023-09-09 19:48:42.258815
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f68b601117a0'
+revision = '547d5bb1e4ce'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -53,6 +53,7 @@ def upgrade():
     sa.Column('level', sa.Integer(), nullable=False),
     sa.Column('date_joined', sa.DateTime(), nullable=False),
     sa.Column('gold', sa.Integer(), nullable=False),
+    sa.Column('health', sa.Integer(), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
@@ -69,6 +70,7 @@ def upgrade():
     sa.Column('repeats', sa.String(), nullable=False),
     sa.Column('num_repeats', sa.Integer(), nullable=False),
     sa.Column('day_of_repeat', sa.String(), nullable=True),
+    sa.Column('count', sa.Integer(), nullable=True),
     sa.Column('tags', sa.String(length=255), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -81,6 +83,9 @@ def upgrade():
     sa.Column('type', sa.String(length=255), nullable=False),
     sa.Column('difficulty', sa.String(length=255), nullable=False),
     sa.Column('tags', sa.String(length=255), nullable=True),
+    sa.Column('pos_count', sa.Integer(), nullable=True),
+    sa.Column('neg_count', sa.Integer(), nullable=True),
+    sa.Column('status', sa.String(length=255), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

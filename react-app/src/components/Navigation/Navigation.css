@@ -2,6 +2,45 @@
   position: absolute;
 }
 
+.questforge-h1 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 25px;
+}
+
+#questforge-h1-wrapper {
+  align-self: center;
+}
+
+.logged-in-nav-section {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 16px;
+  color: white;
+}
+
+.nav-section-wrapper {
+  margin: 0 10px;
+}
+
+#nav-bar-wrapper {
+  height: 60px;
+  display: flex;
+}
+
+#logged-in-nav-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#logged-in-left-nav {
+  display: flex;
+  align-items: center;
+}
+
+#logged-in-right-nav {
+  display: flex;
+}
+
 .hidden {
   display: none;
 }

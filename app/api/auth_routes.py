@@ -71,7 +71,8 @@ def sign_up():
             experience_points=0,
             level=1,
             date_joined=datetime.now(),
-            gold=0
+            gold=0,
+            health=100
         )
         db.session.add(user)
         db.session.commit()

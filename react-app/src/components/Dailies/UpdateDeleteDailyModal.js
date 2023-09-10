@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
-// import { updateUserHabit, getUserHabits, deleteUserHabit } from '../../store/habits'
+import React, { useState, useRef, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { deleteUserDaily, getUserDailies, updateUserDaily } from '../../store/dailies'
-// import { useHistory } from 'react-router-dom'
 import Calendar from 'react-calendar'
 import { stringToInt, stringToInt2 } from './DateFunctions'
 import { checkWeekdayOne, checkWeekdayTwo, checkWeekdayThree, checkWeekdayFour, checkWeekdayFive, checkWeekdaySix, checkWeekdaySeven } from './weekdayFills'
@@ -13,7 +11,6 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
     const modalOverlayRef = useRef()
     const [title, setTitle] = useState(dailyData.title)
     const [notes, setNotes] = useState(dailyData.notes)
-    const [type, setType] = useState(dailyData.type)
     const [difficulty, setDifficulty] = useState(dailyData.difficulty)
     const [tags, setTags] = useState(dailyData.tags)
     const [startDate, setStartDate] = useState(dailyData.start_date)
@@ -364,8 +361,8 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
 
     return (
         <>
-            <div className='habit-update-modal-backdrop'></div>
-            <div className='update-habit-modal-wrapper' ref={modalOverlayRef}>
+            <div className='habit-update-modal-backdrop' ref={modalOverlayRef}></div>
+            <div className='update-habit-modal-wrapper'>
                 <h3>Edit Daily</h3><button onClick={onClose}>Cancel</button><button type='submit' onClick={handleSubmit}>Save</button>
                 <input
                         type='text'

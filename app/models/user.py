@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     level = db.Column(db.Integer, nullable=False)
     date_joined = db.Column(db.DateTime, nullable=False)
     gold = db.Column(db.Integer, nullable=False)
+    health = db.Column(db.Integer, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
 
@@ -44,5 +45,6 @@ class User(db.Model, UserMixin):
             'experience_points': self.experience_points,
             'level': self.level,
             'date_joined': self.date_joined,
-            "gold": self.gold
+            "gold": self.gold,
+            "health": self.health
         }

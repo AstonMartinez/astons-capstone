@@ -11,21 +11,24 @@ function Navigation({ isLoaded }){
 	if(sessionUser) {
 		navbar = (
 			<div id='logged-in-nav-bar'>
-				<div>
+				<div id='logged-in-left-nav'>
 					<div>
-						<h1>QuestForge</h1>
+						<NavLink exact to="/">Home</NavLink>
 					</div>
-					<div>
-						<h2>Tasks</h2>
+					<div className='nav-section-wrapper' id='questforge-h1-wrapper'>
+						<h1 className='questforge-h1'>QuestForge</h1>
 					</div>
-					<div>
-						<h2>Inventory</h2>
+					<div className='nav-section-wrapper'>
+						<h2 className='logged-in-nav-section'>Tasks</h2>
 					</div>
-					<div>
-						<h2>Shops</h2>
+					<div className='nav-section-wrapper'>
+						<h2 className='logged-in-nav-section'>Inventory</h2>
+					</div>
+					<div className='nav-section-wrapper'>
+						<h2 className='logged-in-nav-section'>Shops</h2>
 					</div>
 				</div>
-				<div>
+				<div id='logged-in-right-nav'>
 					<p>{sessionUser.gold}</p>
 					<ProfileButton user={sessionUser} />
 				</div>
@@ -37,6 +40,7 @@ function Navigation({ isLoaded }){
 		navbar = (
 			<div id='logged-out-nav-bar'>
 				<div>
+				<NavLink exact to="/">Home</NavLink>
 					<div>
 						<h1>QuestForge</h1>
 					</div>
@@ -53,12 +57,9 @@ function Navigation({ isLoaded }){
 	}
 
 	return (
-		<ul>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
-			</li>
+		<div id='nav-bar-wrapper'>
 			{isLoaded && navbar}
-		</ul>
+		</div>
 	);
 }
 

@@ -13,6 +13,9 @@ class Habit(db.Model):
     type = db.Column(db.String(255), nullable=False)
     difficulty = db.Column(db.String(255), nullable=False)
     tags = db.Column(db.String(255))
+    pos_count = db.Column(db.Integer)
+    neg_count = db.Column(db.Integer)
+    status = db.Column(db.String(255))
 
     user = db.relationship('User', back_populates='habits')
 
@@ -24,5 +27,8 @@ class Habit(db.Model):
             'notes': self.notes,
             'type': self.type,
             'difficulty': self.difficulty,
-            'tags': self.tags
+            'tags': self.tags,
+            'pos_count': self.pos_count,
+            'neg_count': self.neg_count,
+            'status': self.status
         }
