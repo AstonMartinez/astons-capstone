@@ -3,6 +3,14 @@ const CREATE_DAILY = '/dailies/createNew'
 const UPDATE_DAILY = '/dailies/updateDaily'
 const DELETE_DAILY = '/dailies/deleteDaily'
 const GET_SINGLE_DAILY = '/dailies/getOne'
+const UPDATE_DAILY_COUNT = '/dailies/count'
+
+const count = (data) => {
+    return {
+        type: UPDATE_DAILY_COUNT,
+        payload: data,
+    }
+}
 
 const getOne = (data) => {
     return {
@@ -36,6 +44,26 @@ const deleteDaily = (data) => {
     return {
         type: DELETE_DAILY,
         payload: data,
+    }
+}
+
+export const updateCount = (id, count) => async (dispatch) => {
+    try {
+        const request = await fetch(`/api/dailies/${id}/update-count`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(count)
+        })
+
+        const data = await request.json()
+        const updatedVersion = data
+        dispatch(updateDaily(updatedVersion))
+        return updatedVersion
+    } catch (error) {
+        const errors = (error && error.json) ? await error.json() : { message: error.toString() }
+        return errors
     }
 }
 
@@ -149,6 +177,10 @@ const dailiesReducer = (state = initialState, action) => {
             delete newState.allDailies[action.payload]
             return newState
         case GET_SINGLE_DAILY:
+            newState = Object.assign({ ...state })
+            newState.singleDaily = action.payload
+            return newState
+        case UPDATE_DAILY_COUNT:
             newState = Object.assign({ ...state })
             newState.singleDaily = action.payload
             return newState

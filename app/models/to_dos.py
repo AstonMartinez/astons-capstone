@@ -11,7 +11,7 @@ class ToDo(db.Model):
     title = db.Column(db.String(255), nullable=False)
     notes = db.Column(db.String(500), nullable=False)
     difficulty = db.Column(db.String(255), nullable=False)
-    due_date = db.Column(db.DateTime, nullable=False)
+    due_date = db.Column(db.DateTime)
     tags = db.Column(db.String(255))
 
     user = db.relationship('User', back_populates='to_dos')

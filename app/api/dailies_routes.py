@@ -68,6 +68,7 @@ def update_daily(id):
     repeats = request.json["repeats"]
     num_repeats = request.json["num_repeats"]
     day_of_repeat = request.json["day_of_repeat"]
+    count = request.json["count"]
     tags = request.json["tags"]
 
     current_start_date = curr_daily.start_date.strftime("%d %m %Y").split()
@@ -88,7 +89,7 @@ def update_daily(id):
         curr_daily.notes = notes
         curr_daily.checklist = checklist
         curr_daily.difficulty = difficulty
-
+        curr_daily.count = count
         curr_daily.repeats = repeats
         curr_daily.num_repeats = num_repeats
         curr_daily.day_of_repeat = day_of_repeat
@@ -114,4 +115,12 @@ def delete_daily(id):
 @dailies_routes.route('/<int:id>')
 def get_one_daily(id):
     daily = Daily.query.get(id)
+    return daily.to_dict()
+
+@dailies_routes.route('/<int:id>/update-count', methods=["PUT"])
+def update_daily_count(id):
+    daily = Daily.query.get(id)
+
+    daily.count = request.json["count"]
+    db.session.commit()
     return daily.to_dict()

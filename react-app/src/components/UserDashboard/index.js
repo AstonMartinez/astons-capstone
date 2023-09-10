@@ -2,6 +2,7 @@ import './UserDashboard.css'
 import { useSelector, useDispatch } from 'react-redux'
 import DailiesComponent from '../Dailies';
 import HabitComponent from '../Habits';
+import ToDosComponent from '../ToDos';
 
 const UserDashboard = () => {
     const dispatch = useDispatch()
@@ -14,6 +15,9 @@ const UserDashboard = () => {
             </div>
             <div>
                 <DailiesComponent />
+            </div>
+            <div>
+                <ToDosComponent />
             </div>
         </div>
     )

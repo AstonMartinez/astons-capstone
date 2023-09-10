@@ -2,8 +2,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import { createNewDaily, getUserDailies } from '../../store/dailies'
-import UpdateDeleteDaily from './UpdateDeleteDaily'
-import UpdateDeleteDailyModal from './UpdateDeleteDailyModal'
 import IndividualDaily from './IndividualDaily'
 
 const DailiesComponent = () => {
@@ -11,8 +9,6 @@ const DailiesComponent = () => {
     const allUserDailies = useSelector(state => state.dailies.allDailies)
     const sessionUser = useSelector(state => state.session.user)
     const [dailyTitle, setDailyTitle] = useState('')
-    const [showModal, setShowModal] = useState(false)
-    const [selectedDaily, setSelectedDaily] = useState(null)
 
     const dailiesToMap = Object.values(allUserDailies)
 

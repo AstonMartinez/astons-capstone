@@ -141,13 +141,22 @@
     width: 200px;
 }
 
-.daily-left-sidebar {
+.daily-left-sidebar-orange {
     /* border: 1px solid black; */
     width: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #ffbe5d;
+}
+
+.daily-left-sidebar-gray {
+    /* border: 1px solid black; */
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #878190;
 }
 
 #daily-title-text {
@@ -167,9 +176,45 @@
     text-align: right;
 }
 
-#daily-sidebar-checkbox {
+#daily-sidebar-checkbox-orange {
     /* border: 1px solid red; */
-    width: 25px;
-    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
     background-color: #ffdeae;
+}
+
+#daily-sidebar-checkbox-gray {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background-color: #c3c0c7;
+}
+
+#daily-sidebar-checkbox-gray:hover {
+    cursor: pointer;
+    visibility: hidden;
+}
+
+#daily-sidebar-checkbox-orange:hover {
+    cursor: pointer;
+    visibility: visible;
+}
+
+/* !!!CHECKBOX ICON TRUE */
+#checkbox-icon-false {
+   display: none;
+    cursor: pointer;
+}
+
+
+/* !!!CHECKBOX ICON FALSE */
+#checkbox-icon-true {
+    visibility: visible;
+    cursor: pointer;
 }
