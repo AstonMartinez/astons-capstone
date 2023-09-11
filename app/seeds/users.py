@@ -6,6 +6,8 @@ from app.models.equipment import EquipmentItem
 from app.models.user_equipment import UserEquipment
 from app.models.achievements import Achievement
 from app.models.user_achievements import UserAchievement
+from app.models.reward import Reward
+from app.models.user_rewards import UserReward
 from sqlalchemy.sql import text
 from datetime import datetime
 
@@ -325,7 +327,8 @@ def seed_users():
         num_repeats=1,
         day_of_repeat='all',
         tags='Chores',
-        count=0
+        count=0,
+        status='due'
     )
 
     daily2 = Daily(
@@ -339,7 +342,8 @@ def seed_users():
         num_repeats=1,
         day_of_repeat='all',
         tags='Chores',
-        count=0
+        count=0,
+        status='due'
     )
 
     daily3 = Daily(
@@ -353,7 +357,8 @@ def seed_users():
         num_repeats=1,
         day_of_repeat='Thursday',
         tags='Exercise, Health + Wellness',
-        count=0
+        count=0,
+        status='due'
     )
 
     daily4 = Daily(
@@ -367,7 +372,8 @@ def seed_users():
         num_repeats=1,
         day_of_repeat='all',
         tags='Chores',
-        count=0
+        count=0,
+        status='due'
     )
 
     daily5 = Daily(
@@ -381,7 +387,8 @@ def seed_users():
         num_repeats=1,
         day_of_repeat='Wednesday',
         tags='Teams, Work',
-        count=0
+        count=0,
+        status='due'
     )
 
     daily6 = Daily(
@@ -395,7 +402,8 @@ def seed_users():
         num_repeats=1,
         day_of_repeat='all',
         tags='School',
-        count=0
+        count=0,
+        status='due'
     )
 
     daily7 = Daily(
@@ -409,7 +417,8 @@ def seed_users():
         num_repeats=1,
         day_of_repeat='Friday',
         tags='Creativity, Work',
-        count=0
+        count=0,
+        status='due'
     )
 
     daily8 = Daily(
@@ -423,7 +432,8 @@ def seed_users():
         num_repeats=1,
         day_of_repeat='all',
         tags='Chores',
-        count=0
+        count=0,
+        status='due'
     )
 
     daily9 = Daily(
@@ -437,7 +447,8 @@ def seed_users():
         num_repeats=1,
         day_of_repeat='Monday',
         tags='Chores',
-        count=0
+        count=0,
+        status='due'
     )
 
     daily10 = Daily(
@@ -451,7 +462,8 @@ def seed_users():
         num_repeats=1,
         day_of_repeat='Tuesday',
         tags='Health + Wellness',
-        count=0
+        count=0,
+        status='due'
     )
 
     daily11 = Daily(
@@ -465,7 +477,8 @@ def seed_users():
         num_repeats=1,
         day_of_repeat='all',
         tags='Teams',
-        count=0
+        count=0,
+        status='due'
     )
 
     daily12 = Daily(
@@ -479,7 +492,8 @@ def seed_users():
         num_repeats=1,
         day_of_repeat='all',
         tags='Chores',
-        count=0
+        count=0,
+        status='due'
     )
 
     db.session.add_all([daily1, daily2, daily3, daily4, daily5, daily6, daily7, daily8, daily9, daily10, daily11, daily12])
@@ -490,7 +504,9 @@ def seed_users():
         notes='No matter how weird your dentist is.',
         difficulty='easy',
         due_date=datetime(2023, 9, 10),
-        tags='Health + Wellness'
+        tags='Health + Wellness',
+        checklist='',
+        status="incomplete"
     )
 
     todo2 = ToDo(
@@ -499,7 +515,9 @@ def seed_users():
         notes='From Taco Bell. Duh.',
         difficulty='easy',
         due_date=datetime(2023, 9, 10),
-        tags='Chores'
+        tags='Chores',
+        checklist='',
+        status="incomplete"
     )
 
     todo3 = ToDo(
@@ -508,7 +526,9 @@ def seed_users():
         notes='Code, code, code.',
         difficulty='medium',
         due_date=datetime(2023, 9, 10),
-        tags='Work, School'
+        tags='Work, School',
+        checklist='',
+        status="incomplete"
     )
 
     todo4 = ToDo(
@@ -517,7 +537,9 @@ def seed_users():
         notes='With Adam Gilbert of Starset',
         difficulty='medium',
         due_date=datetime(2023, 9, 10),
-        tags='Creativity'
+        tags='Creativity',
+        checklist='',
+        status="incomplete"
     )
 
     todo5 = ToDo(
@@ -526,7 +548,9 @@ def seed_users():
         notes='Lets get this bread.',
         difficulty='hard',
         due_date=datetime(2023, 9, 10),
-        tags='Work, Teams'
+        tags='Work, Teams',
+        checklist='',
+        status="incomplete"
     )
 
     todo6 = ToDo(
@@ -535,7 +559,9 @@ def seed_users():
         notes='JUST DO IT.',
         difficulty='hard',
         due_date=datetime(2023, 9, 10),
-        tags='Exercise'
+        tags='Exercise',
+        checklist='',
+        status="incomplete"
     )
 
     todo7 = ToDo(
@@ -544,7 +570,9 @@ def seed_users():
         notes='Dont want to get a strike',
         difficulty='easy',
         due_date=datetime(2023, 9, 10),
-        tags='School'
+        tags='School',
+        checklist='',
+        status="incomplete"
     )
 
     todo8 = ToDo(
@@ -553,7 +581,9 @@ def seed_users():
         notes='For his routine checkup.',
         difficulty='medium',
         due_date=datetime(2023, 9, 10),
-        tags='Chores, Health + Wellness'
+        tags='Chores, Health + Wellness',
+        checklist='',
+        status="incomplete"
     )
 
     todo9 = ToDo(
@@ -562,7 +592,9 @@ def seed_users():
         notes='If you dare.',
         difficulty='hard',
         due_date=datetime(2023, 9, 10),
-        tags='Chores'
+        tags='Chores',
+        checklist='',
+        status="incomplete"
     )
 
     todo10 = ToDo(
@@ -571,7 +603,9 @@ def seed_users():
         notes='Before a molehill becomes a mountain.',
         difficulty='easy',
         due_date=datetime(2023, 9, 10),
-        tags='Chores'
+        tags='Chores',
+        checklist='',
+        status="incomplete"
     )
 
     db.session.add_all([todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9, todo10])
@@ -679,6 +713,171 @@ def seed_users():
     )
 
     db.session.add_all([ach1, ach2, ach3, ach4, ach5, ach6, ach7, ach8, ach9, ach10, ach11, ach12, ach13, ach14, ach15, ach16, ach17])
+
+    reward1 = Reward(
+        id=1,
+        title="Reward yourself",
+        user_id=1,
+        notes="Watch TV, play a game, eat a treat, it's up to you!",
+        cost=10,
+        tags=""
+    )
+
+    reward2 = Reward(
+        user_id=1,
+        title="Play Starfield",
+        notes="You deserve it",
+        cost=10,
+        tags=""
+    )
+
+    reward3 = Reward(
+        user_id=1,
+        title="Eat Taco Bell",
+        notes="Don't go broke on it.",
+        cost=10,
+        tags=""
+    )
+
+    db.session.add_all([reward1, reward2, reward3])
+
+    equip1 = EquipmentItem(
+        name="Training Sword",
+        description="Practice item. Confers no benefit.",
+        strength=0,
+        str_gear_num=0,
+        str_class_bonus=0,
+        constitution=0,
+        const_gear_num=0,
+        const_class_bonus=0,
+        intelligence=0,
+        int_gear_num=0,
+        int_class_bonus=0,
+        perception=0,
+        perc_gear_num=0,
+        perc_class_bonus=0,
+        cost=1,
+        image="https://habitica-assets.s3.amazonaws.com/mobileApp/images/shop_weapon_warrior_0.png"
+    )
+
+    equip2 = EquipmentItem(
+        name="Leather Armor",
+        description="Jerkin of sturdy boiled hide. Increases Constitution by 3.",
+        strength=0,
+        str_gear_num=0,
+        str_class_bonus=0,
+        constitution=4,
+        const_gear_num=3,
+        const_class_bonus=1,
+        intelligence=0,
+        int_gear_num=0,
+        int_class_bonus=0,
+        perception=0,
+        perc_gear_num=0,
+        perc_class_bonus=0,
+        cost=30,
+        image="https://habitica-assets.s3.amazonaws.com/mobileApp/images/shop_armor_warrior_1.png"
+    )
+
+    equip3 = EquipmentItem(
+        name="Wooden Shield",
+        description="Round shield of thick wood. Increases Constitution by 2.",
+        strength=0,
+        str_gear_num=0,
+        str_class_bonus=0,
+        constitution=3,
+        const_gear_num=2,
+        const_class_bonus=1,
+        intelligence=0,
+        int_gear_num=0,
+        int_class_bonus=0,
+        perception=0,
+        perc_gear_num=0,
+        perc_class_bonus=0,
+        cost=20,
+        image="https://habitica-assets.s3.amazonaws.com/mobileApp/images/shop_shield_warrior_1.png"
+    )
+
+    equip4 = EquipmentItem(
+        name="Leather Helm",
+        description="Cap of sturdy boiled hide. Increases Strength by 2.",
+        strength=3,
+        str_gear_num=2,
+        str_class_bonus=1,
+        constitution=0,
+        const_gear_num=0,
+        const_class_bonus=0,
+        intelligence=0,
+        int_gear_num=0,
+        int_class_bonus=0,
+        perception=0,
+        perc_gear_num=0,
+        perc_class_bonus=0,
+        cost=15,
+        image="https://habitica-assets.s3.amazonaws.com/mobileApp/images/shop_head_warrior_1.png"
+        )
+
+    equip5 = EquipmentItem(
+        name="Health Potion",
+        description="Recover 15 health. (Instant Use)",
+        strength=0,
+        str_gear_num=0,
+        str_class_bonus=0,
+        constitution=0,
+        const_gear_num=0,
+        const_class_bonus=0,
+        intelligence=0,
+        int_gear_num=0,
+        int_class_bonus=0,
+        perception=0,
+        perc_gear_num=0,
+        perc_class_bonus=0,
+        cost=25,
+        image="https://habitica-assets.s3.amazonaws.com/mobileApp/images/shop_potion.png"
+        )
+
+    equip6 = EquipmentItem(
+        name="Enchanted Armoire",
+        description="Open the armoire to randomly receive special Equipment, Experience, or Food!",
+        strength=0,
+        str_gear_num=0,
+        str_class_bonus=0,
+        constitution=0,
+        const_gear_num=0,
+        const_class_bonus=0,
+        intelligence=0,
+        int_gear_num=0,
+        int_class_bonus=0,
+        perception=0,
+        perc_gear_num=0,
+        perc_class_bonus=0,
+        cost=100,
+        image="https://habitica-assets.s3.amazonaws.com/mobileApp/images/shop_armoire.png"
+        )
+
+    db.session.add_all([equip1, equip2, equip3, equip4, equip5, equip6])
+
+    user_equip1 = UserEquipment(
+        user_id = 1,
+        equipment_id = 1
+    )
+
+    user_equip2 = UserEquipment(
+        user_id = 1,
+        equipment_id = 2
+    )
+
+    user_equip3 = UserEquipment(
+        user_id = 1,
+        equipment_id = 3
+    )
+
+    user_equip4 = UserEquipment(
+        user_id = 1,
+        equipment_id = 4
+    )
+
+    db.session.add_all([user_equip1, user_equip2, user_equip3, user_equip4])
 
     db.session.commit()
 

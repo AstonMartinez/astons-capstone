@@ -1,0 +1,36 @@
+#footer-wrapper {
+    background-color: #e1e0e3;
+    position: absolute;
+    right: 0;
+    left: 0;
+    /* bottom: 0; */
+    display: flex;
+    flex-direction: column;
+}
+
+#upper-wrapper {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+}
+
+#first-third {
+    display: flex;
+}
+
+#second-third {
+    display: flex;
+}
+
+#lower-wrapper {
+    /* border: 1px solid red; */
+    display: flex;
+}
+
+#privacy-policy-and-tos {
+    display: flex;
+}
+
+#copyright-container {
+    display: flex;
+}

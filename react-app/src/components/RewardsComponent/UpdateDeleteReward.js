@@ -1,24 +1,24 @@
 import React, { useState } from 'react'
-import UpdateHabitModal from './UpdateHabitModal'
+import UpdateDeleteRewardModal from './UpdatedDeleteRewardModal'
 
-function UpdateHabit({habitId}) {
+function UpdateDeleteReward({rewardId}) {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
-    const [habitToDelete, setHabitToDelete] = useState(null)
+    const [rewardToDelete, setRewardToDelete] = useState(null)
 
-    const handleOpenDeleteModal = (habit) => {
-        setHabitToDelete(habit)
+    const handleOpenDeleteModal = (reward) => {
+        setRewardToDelete(reward)
         setShowDeleteModal(true)
     }
 
     const handleCloseUpdateModal = () => {
         setShowDeleteModal(false)
-        setHabitToDelete(null)
+        setRewardToDelete(null)
     }
 
     return (
         <>
             {showDeleteModal && (
-                <UpdateHabitModal
+                <UpdateDeleteRewardModal
                     onClose={handleCloseUpdateModal}
                 />
             )}
@@ -26,4 +26,4 @@ function UpdateHabit({habitId}) {
     )
 }
 
-export default UpdateHabit;
+export default UpdateDeleteReward;

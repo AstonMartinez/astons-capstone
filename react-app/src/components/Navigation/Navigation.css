@@ -2,6 +2,10 @@
   position: absolute;
 }
 
+#questforge-logo {
+  height: 60px;
+}
+
 .questforge-h1 {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 25px;
@@ -30,6 +34,11 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  background-color: #432874;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
 }
 
 #logged-in-left-nav {

@@ -12,6 +12,7 @@ from .config import Config
 from .api.habit_routes import habit_routes
 from .api.dailies_routes import dailies_routes
 from .api.todos_routes import todos_routes
+from .api.rewards_routes import rewards_routes
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -34,6 +35,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(habit_routes, url_prefix='/api/habits')
 app.register_blueprint(dailies_routes, url_prefix='/api/dailies')
 app.register_blueprint(todos_routes, url_prefix='/api/todos')
+app.register_blueprint(rewards_routes, url_prefix='/api/rewards')
 db.init_app(app)
 Migrate(app, db)
 

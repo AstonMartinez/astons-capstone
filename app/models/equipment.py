@@ -7,6 +7,7 @@ class EquipmentItem(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(500), nullable=False)
     strength = db.Column(db.Integer, nullable=False)
     str_gear_num = db.Column(db.Integer, nullable=False)
@@ -26,6 +27,7 @@ class EquipmentItem(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
+            'name': self.name,
             'description': self.description,
             'strength': self.strength,
             'str_gear_num': self.str_gear_num,

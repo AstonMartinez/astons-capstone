@@ -11,8 +11,10 @@ class ToDo(db.Model):
     title = db.Column(db.String(255), nullable=False)
     notes = db.Column(db.String(500), nullable=False)
     difficulty = db.Column(db.String(255), nullable=False)
+    checklist = db.Column(db.String(1000))
     due_date = db.Column(db.DateTime)
     tags = db.Column(db.String(255))
+    status = db.Column(db.String(255), nullable=False)
 
     user = db.relationship('User', back_populates='to_dos')
 
@@ -23,6 +25,8 @@ class ToDo(db.Model):
             'title': self.title,
             'notes': self.notes,
             'difficulty': self.difficulty,
+            "checklist": self.checklist,
             'due_date': self.due_date,
-            'tags': self.tags
+            'tags': self.tags,
+            "status": self.status
         }

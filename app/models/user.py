@@ -24,6 +24,7 @@ class User(db.Model, UserMixin):
     habits = db.relationship('Habit', back_populates='user', cascade='all, delete-orphan')
     dailies = db.relationship('Daily', back_populates='user', cascade='all, delete-orphan')
     to_dos = db.relationship('ToDo', back_populates='user', cascade='all, delete-orphan')
+    rewards = db.relationship('Reward', back_populates='user', cascade='all, delete-orphan')
 
     @property
     def password(self):

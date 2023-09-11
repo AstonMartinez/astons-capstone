@@ -19,9 +19,9 @@ const IndividualHabit = ({habitData}) => {
 
     let countDisplay
 
-    useEffect(() => {
-        dispatch(getOneHabit(habitData.id))
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getOneHabit(habitData.id))
+    // }, [dispatch])
 
 
     const initialPosFill = () => {

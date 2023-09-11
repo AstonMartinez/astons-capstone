@@ -31,7 +31,7 @@ def create_habit():
         user_id = current_user.id
         title = request.json["title"]
         notes = ''
-        type = ''
+        type = 'positive'
         difficulty = 'easy'
         tags = ''
 

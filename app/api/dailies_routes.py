@@ -36,6 +36,7 @@ def create_daily():
         day_of_repeat = start_date.strftime("%A")
         difficulty = 'easy'
         tags = ''
+        status = 'due'
 
         new_daily = Daily(
             user_id=user_id,
@@ -47,7 +48,8 @@ def create_daily():
             repeats=repeats,
             num_repeats=num_repeats,
             day_of_repeat=day_of_repeat,
-            tags=tags)
+            tags=tags,
+            status=status)
 
         db.session.add(new_daily)
         db.session.commit()
@@ -70,6 +72,7 @@ def update_daily(id):
     day_of_repeat = request.json["day_of_repeat"]
     count = request.json["count"]
     tags = request.json["tags"]
+    status = request.json["status"]
 
     current_start_date = curr_daily.start_date.strftime("%d %m %Y").split()
     new_start_date = start_date.split()
@@ -94,6 +97,7 @@ def update_daily(id):
         curr_daily.num_repeats = num_repeats
         curr_daily.day_of_repeat = day_of_repeat
         curr_daily.tags = tags
+        curr_daily.status = status
 
         updated_daily = curr_daily
         updated_daily_dict = updated_daily.to_dict()

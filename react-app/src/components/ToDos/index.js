@@ -17,17 +17,17 @@ const ToDosComponent = () => {
         dispatch(getUserToDos())
     }, [dispatch])
 
-    const dailyTitleReset = () => {
+    const toDoTitleReset = () => {
         setToDoTitle('')
     }
 
-    // Handles adding a new daily when the user presses Enter
+    // Handles adding a new todo when the user presses Enter
     const handleNewToDo = () => {
         const newToDo = {
             title: toDoTitle
         }
         dispatch(createNewToDo(newToDo)).then(() => {
-            dailyTitleReset()
+            toDoTitleReset()
             return <Redirect to='/my-dashboard' />
         })
     }

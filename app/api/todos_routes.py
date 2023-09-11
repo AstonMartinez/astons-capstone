@@ -29,17 +29,21 @@ def create_todo():
         user_id = current_user.id
         title = request.json["title"]
         notes = ''
+        difficulty = "easy"
         checklist = ''
         due_date = None
         tags = ''
+        status = "incomplete"
 
         new_todo = ToDo(
             user_id=user_id,
             title=title,
             notes=notes,
+            difficulty=difficulty,
             checklist=checklist,
             due_date=due_date,
-            tags=tags)
+            tags=tags,
+            status=status)
 
         db.session.add(new_todo)
         db.session.commit()
@@ -61,6 +65,7 @@ def update_todo(id):
     checklist = request.json["checklist"]
     due_date = request.json["due_date"]
     tags = request.json["tags"]
+    status = request.json["status"]
 
     if not due_date:
         due_date = None
@@ -84,6 +89,7 @@ def update_todo(id):
         curr_todo.checklist = checklist
         curr_todo.due_date = due_date
         curr_todo.tags = tags
+        curr_todo.status = status
 
         updated_todo = curr_todo
         updated_todo_dict = updated_todo.to_dict()
@@ -104,5 +110,13 @@ def delete_todo(id):
 
 @todos_routes.route('/<int:id>')
 def get_one_todo(id):
-    daily = ToDo.query.get(id)
-    return daily.to_dict()
+    to_do = ToDo.query.get(id)
+    return to_do.to_dict()
+
+@todos_routes.route('/<int:id>/update-status', methods=["PUT"])
+def update_todo_stat(id):
+    to_do = ToDo.query.get(id)
+    status = request.json["status"]
+    to_do.status = status
+    db.session.commit()
+    return to_do.to_dict()

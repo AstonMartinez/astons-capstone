@@ -1,0 +1,9 @@
+#user-overview-wrapper {
+    background-color: #6133b4;
+    position: absolute;
+    height: 180px;
+    right: 0;
+    left: 0;
+    top: 64px;
+    display: flex;
+}

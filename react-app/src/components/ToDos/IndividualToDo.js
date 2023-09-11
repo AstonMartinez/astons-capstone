@@ -17,47 +17,92 @@ const IndividualToDo = ({toDoData}) => {
     const [gold, setGold] = useState(sessionUser.gold)
     const [exp, setExp] = useState(sessionUser.experience_points)
     const [finished, setFinished] = useState(true)
+    const [status, setStatus] = useState(toDoData.status)
 
-    useEffect(() => {
-        dispatch(getOneToDo(toDoData.id))
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getOneToDo(toDoData.id))
+    // }, [dispatch])
 
     const handleUpdateDeleteClick = async () => {
-        selectedToDo(toDoData)
+        setSelectedToDo(toDoData)
         setShowModal(true)
         return <Redirect to='/my-dashboard' />
     }
 
     const checkBox = async () => {
-        setIsChecked(true)
-        setSidebarFill("gray")
-        setGold(gold+1)
-        setFinished(true)
 
-        const updatedData = {
-            gold: gold,
-            health: sessionUser.health,
-            experience_points: exp,
-            level: sessionUser.level
+        if(status === "incomplete") {
+            setIsChecked(true)
+            setSidebarFill("gray")
+            setStatus("complete")
+            setGold(gold+1)
+            setFinished(true)
+            setExp(exp+5)
+
+            const updatedToDo = {
+                title: toDoData.title,
+                notes: toDoData.notes,
+                checklist: toDoData.checklist,
+                due_date: toDoData.due_date,
+                tags: toDoData.tags,
+                status: status
+            }
+
+            const updatedData = {
+                gold: gold,
+                health: sessionUser.health,
+                experience_points: exp,
+                level: sessionUser.level
+            }
+
+            await dispatch(updateUserToDo(toDoData.id, updatedToDo))
+            await dispatch(updateUserInfo(updatedData)).then(() => {
+                return <Redirect to='/my-dashboard' />
+            })
+        } else {
+            setIsChecked(false)
+            setSidebarFill("orange")
+            setStatus("incomplete")
+            setGold(gold-1)
+            setFinished(false)
+            setExp(exp-5)
+
+            const updatedToDo = {
+                title: toDoData.title,
+                notes: toDoData.notes,
+                checklist: toDoData.checklist,
+                due_date: toDoData.due_date,
+                tags: toDoData.tags,
+                status: status
+            }
+
+            const updatedData = {
+                gold: gold,
+                health: sessionUser.health,
+                experience_points: exp,
+                level: sessionUser.level
+            }
+
+            await dispatch(updateUserToDo(toDoData.id, updatedToDo))
+            await dispatch(updateUserInfo(updatedData)).then(() => {
+                return <Redirect to='/my-dashboard' />
+            })
         }
-
-        await dispatch(getOneToDo(toDoData.id))
-        await dispatch(updateUserInfo(updatedData)).then(() => {
-            return <Redirect to='/my-dashboard' />
-        })
     }
     return (
         <>
         <div id='single-todo-container'>
             <div className={`todo-left-sidebar-${sidebarFill}`}>
-                <div disabled={finished ? true : false} id={`daily-todo-checkbox-${sidebarFill}`} onMouseEnter={() => {
+                <div id={`todo-checkbox-${sidebarFill}`} onMouseEnter={() => {
                     // if(isChecked) {
                     //     return
                     // }
                     setIsChecked(true)
                     return
                     }} onMouseLeave={() => {
-                        setIsChecked(false)
+                        if(status === "incomplete") {
+                            setIsChecked(false)
+                        }
                         return
                     }} onClick={checkBox}>
                 <i id={`checkbox-icon-${isChecked}`} className="fa-solid fa-check" style={{"color": "#7c7e7f"}}></i>
@@ -66,16 +111,16 @@ const IndividualToDo = ({toDoData}) => {
             <div id='single-daily-text-div' onClick={() => handleUpdateDeleteClick()}>
                 <p id='daily-title-text'>{toDoData.title}</p>
                 <p id='daily-notes-text'>{toDoData.notes}</p>
-                <div>
+                {/* <div>
                     <span id='daily-count-span'>{toDoData.count}</span>
-                </div>
+                </div> */}
             </div>
-            {/* <UpdateToDoFunc dailyId={toDoData.id} /> */}
+            <UpdateToDoFunc toDoId={toDoData.id} />
         </div>
-        {/* {showModal && (
+        {showModal && (
             <ToDoUpdateDeleteModal
-                dailyId={selectedToDo.id}
-                dailyData={selectedToDo}
+                toDoId={selectedToDo.id}
+                toDoData={selectedToDo}
                 onSubmit={() => {
                     setShowModal(false)
                     setSelectedToDo(null)
@@ -85,7 +130,7 @@ const IndividualToDo = ({toDoData}) => {
                     setSelectedToDo(null)
                 }}
             />
-        )} */}
+        )}
     </>
     )
 }

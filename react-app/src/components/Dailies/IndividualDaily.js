@@ -3,7 +3,7 @@ import UpdateDeleteDailyModal from "./UpdateDeleteDailyModal";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { Redirect } from 'react-router-dom'
-import { updateUserDaily, getOneDaily, updateCount } from "../../store/dailies";
+import { updateUserDaily, getOneDaily } from "../../store/dailies";
 import { updateUserInfo } from "../../store/session";
 import './Dailies.css'
 
@@ -18,6 +18,7 @@ const IndividualDaily = ({dailyData}) => {
     const [gold, setGold] = useState(sessionUser.gold)
     const [exp, setExp] = useState(sessionUser.experience_points)
     const [finished, setFinished] = useState(false)
+    const [status, setStatus] = useState(dailyData.status)
 
     useEffect(() => {
         dispatch(getOneDaily(dailyData.id))
@@ -31,28 +32,75 @@ const IndividualDaily = ({dailyData}) => {
     }
 
     const checkBox = async () => {
-        setIsChecked(true)
-        setSidebarFill("gray")
-        setCount(count+1)
-        setGold(gold+1)
-        setFinished(true)
-        console.log(finished)
+        if(status === 'due') {
+            setIsChecked(true)
+            setSidebarFill("gray")
+            setCount(count+1)
+            setGold(gold+1)
+            setFinished(true)
+            setStatus("not due")
+            setExp(exp+5)
 
-        const updatedCount = {
-            count: count
+            const updatedDaily = {
+                title: dailyData.title,
+                notes: dailyData.notes,
+                checklist: dailyData.checklist,
+                difficulty: dailyData.difficulty,
+                count: count,
+                repeats: dailyData.repeats,
+                num_repeats: dailyData.num_repeats,
+                day_of_repeat: dailyData.day_of_repeat,
+                tags: dailyData.tags,
+                status: status
+            }
+
+            const updatedData = {
+                gold: gold,
+                health: sessionUser.health,
+                experience_points: exp,
+                level: sessionUser.level
+            }
+
+            await(dispatch(updateUserDaily(dailyData.id, updatedDaily)))
+            await dispatch(updateUserInfo(updatedData)).then(() => {
+                return <Redirect to='/my-dashboard' />
+            })
+
+        } else {
+            setIsChecked(false)
+            setSidebarFill("orange")
+            setCount(count-1)
+            setGold(gold-1)
+            setFinished(false)
+            setStatus("due")
+            setExp(exp-5)
+
+            const updatedDaily = {
+                title: dailyData.title,
+                notes: dailyData.notes,
+                checklist: dailyData.checklist,
+                difficulty: dailyData.difficulty,
+                count: count,
+                repeats: dailyData.repeats,
+                num_repeats: dailyData.num_repeats,
+                day_of_repeat: dailyData.day_of_repeat,
+                tags: dailyData.tags,
+                status: status
+            }
+
+            const updatedData = {
+                gold: gold,
+                health: sessionUser.health,
+                experience_points: exp,
+                level: sessionUser.level
+            }
+
+            await(dispatch(updateUserDaily(dailyData.id, updatedDaily)))
+            await dispatch(updateUserInfo(updatedData)).then(() => {
+                return <Redirect to='/my-dashboard' />
+            })
         }
 
-        const updatedData = {
-            gold: gold,
-            health: sessionUser.health,
-            experience_points: exp,
-            level: sessionUser.level
-        }
-
-        await(dispatch(updateCount(dailyData.id, updatedCount)))
-        await dispatch(updateUserInfo(updatedData)).then(() => {
-            return <Redirect to='/my-dashboard' />
-        })
     }
 
     return (
@@ -66,7 +114,9 @@ const IndividualDaily = ({dailyData}) => {
                         setIsChecked(true)
                         return
                         }} onMouseLeave={() => {
-                            setIsChecked(false)
+                            if(status === "due") {
+                                setIsChecked(false)
+                            }
                             return
                         }} onClick={checkBox}>
                     <i id={`checkbox-icon-${isChecked}`} className="fa-solid fa-check" style={{"color": "#7c7e7f"}}></i>
