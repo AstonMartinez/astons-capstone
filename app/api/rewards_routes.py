@@ -10,6 +10,7 @@ from .auth_routes import validation_errors_to_error_messages
 rewards_routes = Blueprint('rewards', __name__)
 # session = db.session
 
+@login_required
 @rewards_routes.route('/user-rewards')
 def get_user_rewards():
     user_rewards = Reward.query.filter(Reward.user_id == current_user.id)
@@ -20,6 +21,7 @@ def get_user_rewards():
             result[reward.id] = reward_dict
     return result
 
+@login_required
 @rewards_routes.route('/new', methods=["POST"])
 def create_reward():
     form = CreateRewardForm()
@@ -44,6 +46,7 @@ def create_reward():
         return new_reward.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
+@login_required
 @rewards_routes.route('/<int:id>/update', methods=["PUT"])
 def update_reward(id):
     curr_reward = Reward.query.get(id)
@@ -71,7 +74,7 @@ def update_reward(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
-
+@login_required
 @rewards_routes.route('/<int:id>/delete', methods=["DELETE"])
 def delete_reward(id):
     curr_reward = Reward.query.get(id)
@@ -79,6 +82,7 @@ def delete_reward(id):
     db.session.commit()
     return curr_reward.to_dict()
 
+@login_required
 @rewards_routes.route('/<int:id>')
 def get_one_reward(id):
     reward = Reward.query.get(id)

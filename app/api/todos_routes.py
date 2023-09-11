@@ -10,6 +10,7 @@ from .auth_routes import validation_errors_to_error_messages
 todos_routes = Blueprint('todos', __name__)
 # session = db.session
 
+@login_required
 @todos_routes.route('/user-to-dos')
 def get_user_todos():
     user_todos = ToDo.query.filter(ToDo.user_id == current_user.id)
@@ -20,6 +21,7 @@ def get_user_todos():
             result[todo.id] = todo_dict
     return result
 
+@login_required
 @todos_routes.route('/new', methods=["POST"])
 def create_todo():
     form = CreateToDoForm()
@@ -53,6 +55,7 @@ def create_todo():
     #       """, form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
+@login_required
 @todos_routes.route('/<int:id>/update', methods=["PUT"])
 def update_todo(id):
     curr_todo = ToDo.query.get(id)
@@ -97,7 +100,7 @@ def update_todo(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
-
+@login_required
 @todos_routes.route('/<int:id>/delete', methods=["DELETE"])
 def delete_todo(id):
     curr_todo = ToDo.query.get(id)
@@ -105,11 +108,13 @@ def delete_todo(id):
     db.session.commit()
     return curr_todo.to_dict()
 
+@login_required
 @todos_routes.route('/<int:id>')
 def get_one_todo(id):
     to_do = ToDo.query.get(id)
     return to_do.to_dict()
 
+@login_required
 @todos_routes.route('/<int:id>/update-status', methods=["PUT"])
 def update_todo_stat(id):
     to_do = ToDo.query.get(id)

@@ -6,6 +6,7 @@ import ToDosComponent from '../ToDos';
 import UserOverview from '../UserOverview';
 import RewardsComponent from '../RewardsComponent';
 import { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 
 const UserDashboard = () => {
     const dispatch = useDispatch()
@@ -17,6 +18,10 @@ const UserDashboard = () => {
 
     const [showTaskDropdown, setShowTaskDropdown] = useState(false)
     const [taskDropdownDisplay, setTaskDropdownDisplay] = useState("hidden")
+
+    if(!sessionUser) {
+        return <Redirect to='/login' />
+    }
 
     const processDeleteTags = (item) => {
         const allTags = searchTags.split(", ")

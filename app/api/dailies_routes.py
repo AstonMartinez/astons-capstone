@@ -10,6 +10,7 @@ from .auth_routes import validation_errors_to_error_messages
 dailies_routes = Blueprint('dailies', __name__)
 # session = db.session
 
+@login_required
 @dailies_routes.route('/user-dailies')
 def get_user_dailies():
     user_dailies = Daily.query.filter(Daily.user_id == current_user.id)
@@ -20,6 +21,7 @@ def get_user_dailies():
             result[daily.id] = daily_dict
     return result
 
+@login_required
 @dailies_routes.route('/new', methods=["POST"])
 def create_daily():
     form = CreateDailyForm()
@@ -56,6 +58,7 @@ def create_daily():
         return new_daily.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
+@login_required
 @dailies_routes.route('/<int:id>/update', methods=["PUT"])
 def update_daily(id):
     curr_daily = Daily.query.get(id)
@@ -111,7 +114,7 @@ def update_daily(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
-
+@login_required
 @dailies_routes.route('/<int:id>/delete', methods=["DELETE"])
 def delete_daily(id):
     curr_daily = Daily.query.get(id)
