@@ -14,6 +14,8 @@ import RequestFeature from "./components/RequestFeature";
 import WikiComponent from "./components/WikiComponent";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TOS from "./components/TOS";
+import UserInventory from "./components/UserInventory";
+import ShopsComponent from "./components/ShopsComponent";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +37,12 @@ function App() {
           </Route>
           <Route exact path='/faq'>
             <FAQComponent />
+          </Route>
+          <Route exact path='/inventory'>
+            <UserInventory />
+          </Route>
+          <Route exact path='/shops'>
+            <ShopsComponent />
           </Route>
           <Route exact path='/bug-report'>
             <BugReport />

@@ -7,6 +7,11 @@ import UserOverview from '../UserOverview';
 import RewardsComponent from '../RewardsComponent';
 import { useState } from 'react'
 import { Redirect } from 'react-router-dom'
+import CreateTask from '../CreateTaskModals/CreateTask';
+import CreateHabitModal from '../CreateTaskModals/CreateHabitModal';
+import CreateDailyModal from '../CreateTaskModals/CreateDailyModal';
+import CreateToDoModal from '../CreateTaskModals/CreateToDoModal';
+import CreateRewardModal from '../CreateTaskModals/CreateRewardModal';
 
 const UserDashboard = () => {
     const dispatch = useDispatch()
@@ -15,6 +20,8 @@ const UserDashboard = () => {
     const [searchTags, setSearchTags] = useState('')
     const [showTagDropdown, setShowTagDropdown] = useState(false)
     const [dropdownDisplay, setDropdownDisplay] = useState("hidden")
+    const [showCreateModal, setShowCreateModal] = useState(false)
+    const [modalType, setModalType] = useState(null)
 
     const [showTaskDropdown, setShowTaskDropdown] = useState(false)
     const [taskDropdownDisplay, setTaskDropdownDisplay] = useState("hidden")
@@ -53,10 +60,10 @@ const UserDashboard = () => {
     const showHideTaskDropdown = () => {
         if(showTaskDropdown) {
             setShowTaskDropdown(false)
-            setDropdownDisplay("hidden")
+            setTaskDropdownDisplay("hidden")
         } else {
             setShowTaskDropdown(true)
-            setDropdownDisplay("visible")
+            setTaskDropdownDisplay("visible")
         }
     }
 
@@ -78,7 +85,7 @@ const UserDashboard = () => {
 
                         {searchTags.length ? searchTags.split(", ").map(tag => (
                                     <div>{tag}<button onClick={() => processDeleteTags(tag)}>x</button></div>
-                                )) : <div onClick={() => showHideDropdown()}><p>Tags</p></div>}
+                                )) : <button onClick={() => showHideDropdown()}>Tags</button>}
                         <div className={`search-tags-dropdown-${dropdownDisplay}`}>
                             <select multiple={true} value={[...searchTags]} onChange={(e) => setSearchTags(searchTags + ", " + e.target.value)}>
                                 <option value="Work">Work</option>
@@ -94,14 +101,33 @@ const UserDashboard = () => {
                     <div id='add-task-wrapper'>
                         <button onClick={() => showHideTaskDropdown()}><span>+</span> Add Task</button>
                         <div className={`new-task-dropdown-${taskDropdownDisplay}`}>
-                            <div>
+                            <div onClick={() => {
+                                    setShowCreateModal(true)
+                                    setModalType("Habit")
+                                }}>
                                 <p>Habit</p>
+                                <CreateTask type={"Habit"} />
                             </div>
-                            <div>
+                            <div onClick={() => {
+                                    setShowCreateModal(true)
+                                    setModalType("Daily")
+                                }}>
                                 <p>Daily</p>
+                                <CreateTask type={"Daily"} />
                             </div>
-                            <div>
+                            <div onClick={() => {
+                                    setShowCreateModal(true)
+                                    setModalType("ToDo")
+                                }}>
                                 <p>To-Do</p>
+                                <CreateTask type={"ToDo"} />
+                            </div>
+                            <div onClick={() => {
+                                    setShowCreateModal(true)
+                                    setModalType("Reward")
+                                }}>
+                                <p>Reward</p>
+                                <CreateTask type={"Reward"} />
                             </div>
                         </div>
                     </div>
@@ -121,6 +147,57 @@ const UserDashboard = () => {
                     <RewardsComponent />
                 </div>
             </div>
+            {showCreateModal && modalType === "Habit" && (
+                <CreateHabitModal
+                    onClose={() => {
+                        setShowCreateModal(false)
+                        setModalType(null)
+                    }}
+                    onSubmit={() => {
+                        setShowCreateModal(false)
+                        setModalType(null)
+                    }}
+                />
+            )}
+
+            {showCreateModal && modalType === "Daily" && (
+                <CreateDailyModal
+                    onClose={() => {
+                        setShowCreateModal(false)
+                        setModalType(null)
+                    }}
+                    onSubmit={() => {
+                        setShowCreateModal(false)
+                        setModalType(null)
+                    }}
+                />
+            )}
+
+            {showCreateModal && modalType === "ToDo" && (
+                <CreateToDoModal
+                    onClose={() => {
+                        setShowCreateModal(false)
+                        setModalType(null)
+                    }}
+                    onSubmit={() => {
+                        setShowCreateModal(false)
+                        setModalType(null)
+                    }}
+                />
+            )}
+
+            {showCreateModal && modalType === "Reward" && (
+                <CreateRewardModal
+                    onClose={() => {
+                        setShowCreateModal(false)
+                        setModalType(null)
+                    }}
+                    onSubmit={() => {
+                        setShowCreateModal(false)
+                        setModalType(null)
+                    }}
+                />
+            )}
         </div>
     )
 }

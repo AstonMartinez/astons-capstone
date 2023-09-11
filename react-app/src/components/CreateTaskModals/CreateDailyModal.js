@@ -1,25 +1,26 @@
+import './CreateTaskModals.css'
 import React, { useState, useRef, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
-import { deleteUserDaily, getUserDailies, updateUserDaily } from '../../store/dailies'
+import { getUserDailies, createNewDaily } from '../../store/dailies'
 import Calendar from 'react-calendar'
-import { stringToInt, stringToInt2 } from './DateFunctions'
-import { checkWeekdayOne, checkWeekdayTwo, checkWeekdayThree, checkWeekdayFour, checkWeekdayFive, checkWeekdaySix, checkWeekdaySeven } from './weekdayFills'
-import './Dailies.css'
+import { stringToInt2 } from '../Dailies/DateFunctions'
+import { checkWeekdayOne, checkWeekdayTwo, checkWeekdayThree, checkWeekdayFour, checkWeekdayFive, checkWeekdaySix, checkWeekdaySeven } from '../Dailies/weekdayFills'
 
-const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
+const CreateDailyModal = ({ onSubmit, onClose }) => {
     const dispatch = useDispatch()
     const modalOverlayRef = useRef()
-    const [title, setTitle] = useState(dailyData.title)
-    const [notes, setNotes] = useState(dailyData.notes)
-    const [difficulty, setDifficulty] = useState(dailyData.difficulty)
-    const [tags, setTags] = useState(dailyData.tags)
-    const [startDate, setStartDate] = useState(dailyData.start_date)
+    const [title, setTitle] = useState('')
+    const [notes, setNotes] = useState('')
+    const [difficulty, setDifficulty] = useState('')
+    const [tags, setTags] = useState('')
+    const today = new Date()
+    const [startDate, setStartDate] = useState(today)
     const [errors, setErrors] = useState([])
     const [showCal, setShowCal] = useState(false)
-    const [repeats, setRepeats] = useState(dailyData.repeats)
-    const [numRepeats, setNumRepeats] = useState(dailyData.num_repeats)
-    const [dayOfRepeat, setDayOfRepeat] = useState(dailyData.day_of_repeat)
-    const [checklist, setChecklist] = useState(dailyData.checklist)
+    const [repeats, setRepeats] = useState('daily')
+    const [numRepeats, setNumRepeats] = useState(1)
+    const [dayOfRepeat, setDayOfRepeat] = useState('')
+    const [checklist, setChecklist] = useState('')
     const [newChecklistItem, setNewChecklistItem] = useState('')
 
 
@@ -152,31 +153,17 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // console.log("submitting")
         let dateInfo
-        // console.log(startDate.toDateString())
-        // console.log(dailyData.start_date)
 
-        if(startDate === dailyData.start_date) {
-            const dateArr = startDate.split(" ")
-            // console.log("START DATE SPLIT: ", dateArr)
-            const newMonth = stringToInt(dateArr)
-            dateArr.splice(2, 1, newMonth)
-            // console.log("FINAL: ", `${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`) // "23 09 2023"
-            dateInfo = `${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`
-            // console.log("START DATE === ")
-            // console.log(dateInfo)
+        const dateString = startDate.toDateString()
+        const splitDateString = dateString.split(" ")
+        const newMonth = stringToInt2(splitDateString)
+        splitDateString.splice(1, 1, newMonth)
+        // console.log("REACT DATE SPLIT: ", splitDateString)
+        dateInfo = `${splitDateString[2]} ${splitDateString[1]} ${splitDateString[3]}`
+        // console.log("REACT DATE SPLIT: ", dateInfo)
 
-        } else {
-            const dateString = startDate.toDateString()
-            const splitDateString = dateString.split(" ")
-            const newMonth = stringToInt2(splitDateString)
-            splitDateString.splice(1, 1, newMonth)
-            // console.log("REACT DATE SPLIT: ", splitDateString)
-            dateInfo = `${splitDateString[2]} ${splitDateString[1]} ${splitDateString[3]}`
-            // console.log("REACT DATE SPLIT: ", dateInfo)
-        }
-        const updatedDaily = {
+        const newDaily = {
             title: title,
             notes: notes,
             checklist: checklist,
@@ -186,37 +173,20 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
             num_repeats: numRepeats,
             day_of_repeat: dayOfRepeat,
             tags: tags,
-            count: dailyData.count,
-            status: dailyData.status
+            count: 0,
+            status: "due"
         }
         // console.log("UPDATED HABIT: ", updatedDaily)
 
-        dispatch(updateUserDaily(dailyId, updatedDaily))
+        dispatch(createNewDaily(newDaily))
         .then(() => dispatch(getUserDailies()))
         return onSubmit()
     }
 
-    const handleDeleteHabit = async () => {
-        dispatch(deleteUserDaily(dailyId)).then(async res => {
-            if(res.errors) {
-                setErrors(res.errors)
-                return
-            } else {
-                dispatch(getUserDailies())
-                return onClose()
-            }
-        })
-    }
 
-    if(startDate === dailyData.start_date) {
-        startDateDisplay = (
-            <p>{startDate}</p>
-        )
-    } else {
-        startDateDisplay = (
-            <p>{startDate.toDateString()}</p>
-        )
-    }
+    startDateDisplay = (
+        <p>{startDate.toDateString()}</p>
+    )
 
     if(showCal) {
         calDisplay = (
@@ -230,7 +200,7 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
         )
     }
 
-    if(repeats === "daily" || repeats === 'Daily') {
+    if(repeats.toLowerCase() === "daily") {
         repeatData = (
             <div>
                 <div>
@@ -253,7 +223,7 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
                 </div>
             </div>
         )
-    } else if(repeats === "weekly" || repeats === "Weekly") {
+    } else if(repeats.toLowerCase() === "weekly") {
         repeatData = (
             <div>
                 <div>
@@ -288,7 +258,7 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
                 </div>
             </div>
         )
-    } else if(repeats === "monthly" || repeats === "Monthly") {
+    } else if(repeats.toLowerCase() === "monthly") {
         repeatData = (
             <div>
                 <div>
@@ -356,7 +326,7 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
         <>
             <div className='habit-update-modal-backdrop' ref={modalOverlayRef}></div>
             <div className='update-habit-modal-wrapper'>
-                <h3>Edit Daily</h3><button onClick={onClose}>Cancel</button><button type='submit' onClick={handleSubmit}>Save</button>
+                <h3>Create Daily</h3><button onClick={onClose}>Cancel</button><button type='submit' onClick={handleSubmit}>Save</button>
                 <input
                         type='text'
                         placeholder="Add a checklist item"
@@ -389,7 +359,7 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
                         <input
                             type='text'
                             name='title'
-                            id='habit-title-input-field'
+                            id='create-habit-title-input-field'
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                         />
@@ -399,7 +369,7 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
                         <input
                             type='textarea'
                             name='notes'
-                            id='habit-notes-input-field'
+                            id='create-habit-notes-input-field'
                             value={notes}
                             onChange={(e) => setNotes(e.target.value)}
                         />
@@ -446,10 +416,9 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
                         </div>
                     </div>
                 </form>
-                <button onClick={handleDeleteHabit}>Delete this Daily</button>
             </div>
         </>
     )
 }
 
-export default UpdateDeleteDailyModal;
+export default CreateDailyModal;
