@@ -81,3 +81,33 @@
 .hidden {
   display: none;
 }
+
+#profile-dropdown-button {
+  /* position: absolute; */
+  border: none;
+  height: 50px;
+  width: 50px;
+  z-index: 4000;
+  background-color: transparent;
+}
+
+#profile-icon {
+  position: absolute;
+  z-index: 4000;
+  right: 20px;
+  top: 10px;
+  /* color: white; */
+  height: 30px;
+  background-color: transparent;
+}
+
+/* #user-profile-icon {
+  z-index: 1000;
+} */
+
+#nav-decor {
+  position: absolute;
+  right: 0;
+  z-index: 2000;
+  height: 63px;
+}

@@ -8,6 +8,12 @@ import Navigation from "./components/Navigation";
 import SignUpPage from "./components/SignUpPage";
 import UserDashboard from "./components/UserDashboard";
 import Footer from "./components/Footer";
+import FAQComponent from "./components/FAQComponent";
+import BugReport from "./components/BugReport";
+import RequestFeature from "./components/RequestFeature";
+import WikiComponent from "./components/WikiComponent";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import TOS from "./components/TOS";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +32,24 @@ function App() {
           </Route>
           <Route exact path='/my-dashboard'>
             <UserDashboard />
+          </Route>
+          <Route exact path='/faq'>
+            <FAQComponent />
+          </Route>
+          <Route exact path='/bug-report'>
+            <BugReport />
+          </Route>
+          <Route exact path='/feature-request'>
+            <RequestFeature />
+          </Route>
+          <Route exact path='/wiki'>
+            <WikiComponent />
+          </Route>
+          <Route exact path='/privacy-policy'>
+            <PrivacyPolicy />
+          </Route>
+          <Route exact path='/tos'>
+            <TOS />
           </Route>
           <Route path='/'>
             <SignUpPage />

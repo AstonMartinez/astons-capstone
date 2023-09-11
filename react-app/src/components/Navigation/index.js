@@ -33,6 +33,9 @@ function Navigation({ isLoaded }){
 				<div id='logged-in-right-nav'>
 					<p>{sessionUser.gold}</p>
 					<ProfileButton user={sessionUser} />
+					<div id='nav-decor-container'>
+						<img id='nav-decor' src="https://i.ibb.co/Msbgjcg/trying-again.png" alt="trying-again" border="0" />
+					</div>
 				</div>
 			</div>
 

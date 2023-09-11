@@ -42,8 +42,9 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button id='profile-dropdown-button' onClick={openMenu}>
+        <img id='profile-icon' src="https://i.ibb.co/Wg6yLBy/user-icon.png" alt="user-icon" border="0" />
+
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
