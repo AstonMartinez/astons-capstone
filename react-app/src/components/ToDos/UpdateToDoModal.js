@@ -16,9 +16,12 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
     const [showCal, setShowCal] = useState(false)
     const [checklist, setChecklist] = useState(toDoData.checklist)
     const [newChecklistItem, setNewChecklistItem] = useState('')
+    const [status, setStatus] = useState(toDoData.status)
 
     let calDisplay
     let dueDateDisplay
+
+    // console.log("DUE DATE: ", dueDate)
 
     // const handleClickOutside = useCallback((e) => {
     //     if (modalOverlayRef.current === e.target) {
@@ -78,15 +81,15 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
         // console.log(startDate.toDateString())
         // console.log(dailyData.start_date)
 
-        if(dueDate === dueDate.start_date) {
+        if(dueDate === toDoData.due_date) {
             const dateArr = dueDate.split(" ")
             // console.log("START DATE SPLIT: ", dateArr)
             const newMonth = stringToInt(dateArr)
             dateArr.splice(2, 1, newMonth)
             // console.log("FINAL: ", `${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`) // "23 09 2023"
             dateInfo = `${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`
-            console.log("START DATE === ")
-            console.log(dateInfo)
+            // console.log("START DATE === ")
+            // console.log(dateInfo)
 
         } else {
             const dateString = dueDate.toDateString()
@@ -103,7 +106,8 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
             checklist: checklist,
             difficulty: difficulty,
             due_date: dateInfo,
-            tags: tags
+            tags: tags,
+            status: status
         }
         // console.log("UPDATED HABIT: ", updatedDaily)
 

@@ -13,6 +13,8 @@ const ToDosComponent = () => {
 
     const toDosToMap = Object.values(allUserToDos)
 
+    toDosToMap.reverse()
+
     useEffect(() => {
         dispatch(getUserToDos())
     }, [dispatch])
@@ -28,7 +30,8 @@ const ToDosComponent = () => {
         }
         dispatch(createNewToDo(newToDo)).then(() => {
             toDoTitleReset()
-            return <Redirect to='/my-dashboard' />
+            dispatch(getUserToDos())
+            return
         })
     }
     return (

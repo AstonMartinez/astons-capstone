@@ -16,6 +16,8 @@ const HabitComponent = () => {
 
     const habitsToMap = Object.values(allUserHabits)
 
+    habitsToMap.reverse()
+
     useEffect(() => {
         dispatch(getUserHabits())
     }, [dispatch])

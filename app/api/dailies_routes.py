@@ -61,6 +61,9 @@ def update_daily(id):
     curr_daily = Daily.query.get(id)
     form = UpdateDailyForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    # print("""
+    #       LOOK HERE
+    #       """, request.json)
 
     title = request.json["title"]
     notes = request.json["notes"]

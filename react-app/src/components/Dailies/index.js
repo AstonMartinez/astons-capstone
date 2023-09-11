@@ -11,6 +11,7 @@ const DailiesComponent = () => {
     const [dailyTitle, setDailyTitle] = useState('')
 
     const dailiesToMap = Object.values(allUserDailies)
+    dailiesToMap.reverse()
 
     useEffect(() => {
         dispatch(getUserDailies())
@@ -25,9 +26,10 @@ const DailiesComponent = () => {
         const newDaily = {
             title: dailyTitle
         }
-        dispatch(createNewDaily(newDaily)).then(() => {
+        dispatch(createNewDaily(newDaily)).then(async () => {
             dailyTitleReset()
-            return <Redirect to='/my-dashboard' />
+            await dispatch(getUserDailies())
+            return
         })
     }
 

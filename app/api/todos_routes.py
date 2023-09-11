@@ -31,7 +31,7 @@ def create_todo():
         notes = ''
         difficulty = "easy"
         checklist = ''
-        due_date = None
+        due_date = datetime.now()
         tags = ''
         status = "incomplete"
 
@@ -48,9 +48,9 @@ def create_todo():
         db.session.add(new_todo)
         db.session.commit()
         return new_todo.to_dict()
-    print("""
-          LOOK HERE
-          """, form.errors)
+    # print("""
+    #       LOOK HERE
+    #       """, form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 @todos_routes.route('/<int:id>/update', methods=["PUT"])
@@ -67,27 +67,24 @@ def update_todo(id):
     tags = request.json["tags"]
     status = request.json["status"]
 
-    if not due_date:
-        due_date = None
-
-    current_start_date = curr_todo.start_date.strftime("%d %m %Y").split()
+    current_due_date = curr_todo.due_date.strftime("%d %m %Y").split()
     new_due_date = due_date.split()
 
-    # print("""
-    #       CURRENT START DATE + NEW START DATE
-    #       """, current_start_date, new_start_date)
+    print("""
+          CURRENT START DATE + NEW START DATE
+          """, current_due_date, new_due_date)
 
     if form.validate_on_submit():
-        if current_start_date != new_due_date:
+        if current_due_date != new_due_date:
             new_day = int(new_due_date[0])
             new_month = int(new_due_date)
             new_year = int(new_due_date[2])
-            curr_todo.start_date = datetime(new_year, new_month, new_day)
+            curr_todo.due_date = datetime(new_year, new_month, new_day)
 
         curr_todo.title = title
         curr_todo.notes = notes
         curr_todo.checklist = checklist
-        curr_todo.due_date = due_date
+        # curr_todo.due_date = datetime(new_due_date)
         curr_todo.tags = tags
         curr_todo.status = status
 

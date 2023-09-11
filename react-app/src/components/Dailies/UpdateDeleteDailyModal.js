@@ -177,17 +177,17 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
             dateArr.splice(2, 1, newMonth)
             // console.log("FINAL: ", `${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`) // "23 09 2023"
             dateInfo = `${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`
-            console.log("START DATE === ")
-            console.log(dateInfo)
+            // console.log("START DATE === ")
+            // console.log(dateInfo)
 
         } else {
             const dateString = startDate.toDateString()
             const splitDateString = dateString.split(" ")
             const newMonth = stringToInt2(splitDateString)
             splitDateString.splice(1, 1, newMonth)
-            console.log("REACT DATE SPLIT: ", splitDateString)
+            // console.log("REACT DATE SPLIT: ", splitDateString)
             dateInfo = `${splitDateString[2]} ${splitDateString[1]} ${splitDateString[3]}`
-            console.log("REACT DATE SPLIT: ", dateInfo)
+            // console.log("REACT DATE SPLIT: ", dateInfo)
         }
         const updatedDaily = {
             title: title,
@@ -199,7 +199,8 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
             num_repeats: numRepeats,
             day_of_repeat: dayOfRepeat,
             tags: tags,
-            count: dailyData.count
+            count: dailyData.count,
+            status: dailyData.status
         }
         // console.log("UPDATED HABIT: ", updatedDaily)
 
@@ -212,11 +213,12 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
         dispatch(deleteUserDaily(dailyId)).then(async res => {
             if(res.errors) {
                 setErrors(res.errors)
+                return
             } else {
                 dispatch(getUserDailies())
+                return onClose()
             }
         })
-        return onClose()
     }
 
     if(startDate === dailyData.start_date) {
