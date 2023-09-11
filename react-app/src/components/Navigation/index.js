@@ -1,11 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Redirect, useHistory, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
+
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
+	const history = useHistory()
 	let navbar
 
 	if(sessionUser) {
@@ -13,7 +15,7 @@ function Navigation({ isLoaded }){
 			<div id='logged-in-nav-bar'>
 				<div id='logged-in-left-nav'>
 					<div>
-					<img src="https://i.ibb.co/B6kVtcs/small-lion-logo.png" id='questforge-logo' alt="lion-logo" border="0" />
+					<NavLink to='/'><img src="https://i.ibb.co/B6kVtcs/small-lion-logo.png" id='questforge-logo' alt="lion-logo" border="0" /></NavLink>
 					</div>
 					<div className='nav-section-wrapper' id='questforge-h1-wrapper'>
 						<h1 className='questforge-h1'>QuestForge</h1>
@@ -39,8 +41,9 @@ function Navigation({ isLoaded }){
 	} else {
 		navbar = (
 			<div id='logged-out-nav-bar'>
-				<div>
-				<NavLink exact to="/">Home</NavLink>
+				<div id='logged-out-nav-left'>
+				{/* <NavLink exact to="/">Home</NavLink> */}
+				<img src="https://i.ibb.co/B6kVtcs/small-lion-logo.png" id='questforge-logo' alt="lion-logo" border="0" onClick={() => history.push('/')} />
 					<div>
 						<h1>QuestForge</h1>
 					</div>
@@ -49,8 +52,10 @@ function Navigation({ isLoaded }){
 						<button>Learn More</button>
 					</div>
 				</div>
-				<div>
-					<NavLink exact to='/login'>Log In</NavLink>
+				<div id='logged-out-nav-right'>
+					<button onClick={() => {
+						return history.push('/login')
+					}}>Log In</button>
 				</div>
 			</div>
 		)

@@ -2,7 +2,7 @@ import './SignUpPage.css'
 import { useState } from 'react'
 import { signUp } from '../../store/session.js'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 
 const SignUpPage = () => {
     const sessionUser = useSelector(state => state.session.user)
@@ -10,8 +10,9 @@ const SignUpPage = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState([])
     const [passwordMatchError, setPasswordMatchError] = useState('')
+    const history = useHistory()
 
     const dispatch = useDispatch()
 
@@ -50,15 +51,18 @@ const SignUpPage = () => {
                 <form id='signup-form' onSubmit={onSubmit}>
                     <div id='signup-form-username-container'>
                         <label htmlFor='username'>Username must be 1 to 20 characters, containing only letters a to z, numbers 0 to 9, hyphens, or underscores.</label>
-                        <input
-                        type='text'
-                        name='username'
-                        id='username-input-field'
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="Username"
-                        />
-                        {errors?.username && (<p>{errors.username}</p>)}
+                        <div>
+
+                            <input
+                            type='text'
+                            name='username'
+                            id='username-input-field'
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="Username"
+                            />
+                            {errors?.username && (<p>{errors.username}</p>)}
+                        </div>
                     </div>
                     <div>
                         <input
@@ -93,8 +97,11 @@ const SignUpPage = () => {
                         />
                         <p>{passwordMatchError}</p>
                     </div>
+                    {errors.length ? errors.map(error => (
+                        <p>{error}</p>
+                    )) : ''}
                     <div>
-                        <button type='submit'>Sign Up</button>
+                        <button type='submit' disabled={(!username.length || !email.length || !password.length || !passwordConfirm.length) ? true : false}>Sign Up</button>
                     </div>
                 </form>
             </div>

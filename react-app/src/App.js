@@ -27,9 +27,10 @@ function App() {
           <Route exact path='/my-dashboard'>
             <UserDashboard />
           </Route>
-          <Route exact path='/'>
+          <Route path='/'>
             <SignUpPage />
           </Route>
+
           {/* <Route path="/signup">
             <SignupFormPage />
           </Route> */}

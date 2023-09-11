@@ -69,6 +69,7 @@ def update_todo(id):
     due_date = request.json["due_date"]
     tags = request.json["tags"]
     status = request.json["status"]
+    difficulty = request.json["difficulty"]
 
     current_due_date = curr_todo.due_date.strftime("%d %m %Y").split()
     new_due_date = due_date.split()
@@ -80,7 +81,7 @@ def update_todo(id):
     if form.validate_on_submit():
         if current_due_date != new_due_date:
             new_day = int(new_due_date[0])
-            new_month = int(new_due_date)
+            new_month = int(new_due_date[1])
             new_year = int(new_due_date[2])
             curr_todo.due_date = datetime(new_year, new_month, new_day)
 
@@ -90,6 +91,7 @@ def update_todo(id):
         # curr_todo.due_date = datetime(new_due_date)
         curr_todo.tags = tags
         curr_todo.status = status
+        curr_todo.difficulty = difficulty
 
         updated_todo = curr_todo
         updated_todo_dict = updated_todo.to_dict()
