@@ -8,6 +8,12 @@
     flex-direction: column;
 }
 
+#photo-of-me {
+    height: 80px;
+    width: 80px;
+    border-radius: 80px;
+}
+
 #upper-wrapper {
     /* border: 1px solid black; */
     display: flex;
@@ -33,4 +39,13 @@
 
 #copyright-container {
     display: flex;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
 }

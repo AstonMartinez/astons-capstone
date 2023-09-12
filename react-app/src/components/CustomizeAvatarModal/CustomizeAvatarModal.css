@@ -1,0 +1,177 @@
+#avatar-customization-wrapper {
+    border: 1px solid black;
+    /* position: absolute; */
+    width: 80%;
+    margin: 0 auto;
+}
+
+#body-sizes-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+#customization-category-buttons {
+    display: flex;
+    /* border: 1px solid blue; */
+    justify-content: space-around;
+    margin-top: 120px;
+
+}
+
+#bottom-customization-container {
+    display: flex;
+}
+
+.customization-bottom-div {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+.subpages-container {
+    border: 1px solid orange;
+    display: flex;
+    justify-content: center;
+}
+
+#size-button {
+    margin-right: 30px;
+}
+
+.category-button {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    width: 100px;
+    justify-items: space-evenly;
+}
+
+.customization-item {
+    border: 1px solid black;
+    height: fit-content;
+    width: fit-content;
+}
+
+#item-options-container {
+    border: 1px solid purple;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#inner-shirt-options-top,
+#inner-shirt-options-bottom,
+#inner-skin-options-top,
+#inner-skin-options-middle,
+#inner-skin-options-bottom,
+#inner-hair-color-options-top,
+#inner-hair-color-options-bottom,
+#inner-hair-bangs-options-top,
+#inner-hair-bangs-options-bottom,
+#inner-background-options-top,
+#inner-background-options-bottom {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* .background {
+    border: 1px solid black;
+    width: 100px;
+    height: 80px;
+} */
+
+#background-violet {
+    width: 90px;
+    height: 75px;
+    border-top: 2px solid #a993ed;
+    border-right: 2px solid #a993ed;
+    border-left: 2px solid #a993ed;
+    border-bottom: 20px solid #a993ed;
+    background-color: #dcd3f7;
+}
+
+#background-blue {
+    width: 90px;
+    height: 75px;
+    border-top: 2px solid #92b6bd;
+    border-right: 2px solid #92b6bd;
+    border-left: 2px solid #92b6bd;
+    border-bottom: 20px solid #92b6bd;
+    background-color: #d3e1e4;
+}
+
+#background-green {
+    width: 90px;
+    height: 75px;
+    border-top: 2px solid #92bd94;
+    border-right: 2px solid #92bd94;
+    border-left: 2px solid #92bd94;
+    border-bottom: 20px solid #92bd94;
+    background-color: #d3e4d4;
+}
+
+#background-purple {
+    width: 90px;
+    height: 75px;
+    border-top: 2px solid #9397bd;
+    border-right: 2px solid #9397bd;
+    border-left: 2px solid #9397bd;
+    border-bottom: 20px solid #9397bd;
+    background-color: #d3d5e4;
+}
+
+#background-red {
+    width: 90px;
+    height: 75px;
+    border-top: 2px solid #b77e80;
+    border-right: 2px solid #b77e80;
+    border-left: 2px solid #b77e80;
+    border-bottom: 20px solid #b77e80;
+    background-color: #e2cbcc;
+}
+
+#background-yellow {
+    width: 90px;
+    height: 75px;
+    border-top: 2px solid #bcbb91;
+    border-right: 2px solid #bcbb91;
+    border-left: 2px solid #bcbb91;
+    border-bottom: 20px solid #bcbb91;
+    background-color: #e4e3d3;
+}
+
+.character-layer {
+    border: 1px solid black;
+    height: fit-content;
+    width: fit-content;
+    position: fixed;
+    top: 80px;
+    left: 42%;
+}
+
+#background-layer {
+    z-index: 0;
+}
+
+#body-layer {
+    z-index: 1;
+}
+
+#skin-layer {
+    z-index: 2;
+}
+
+#base-hair-layer {
+    z-index: 3;
+}
+
+#bangs-hair-layer {
+    z-index: 4;
+}

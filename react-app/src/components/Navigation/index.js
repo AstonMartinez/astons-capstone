@@ -21,13 +21,13 @@ function Navigation({ isLoaded }){
 						<h1 className='questforge-h1'>QuestForge</h1>
 					</div>
 					<div className='nav-section-wrapper'>
-						<h2 className='logged-in-nav-section'>Tasks</h2>
+						<NavLink exact to='/my-dashboard'><h2 className='logged-in-nav-section'>Tasks</h2></NavLink>
 					</div>
 					<div className='nav-section-wrapper'>
-						<h2 className='logged-in-nav-section'>Inventory</h2>
+						<NavLink exact to='/inventory'><h2 className='logged-in-nav-section'>Inventory</h2></NavLink>
 					</div>
 					<div className='nav-section-wrapper'>
-						<h2 className='logged-in-nav-section'>Shops</h2>
+						<NavLink exact to='/shops'><h2 className='logged-in-nav-section'>Shops</h2></NavLink>
 					</div>
 				</div>
 				<div id='logged-in-right-nav'>

@@ -16,6 +16,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import TOS from "./components/TOS";
 import UserInventory from "./components/UserInventory";
 import ShopsComponent from "./components/ShopsComponent";
+import CustomizeAvatarModal from "./components/CustomizeAvatarModal";
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +59,9 @@ function App() {
           </Route>
           <Route exact path='/tos'>
             <TOS />
+          </Route>
+          <Route exact path='/test'>
+            <CustomizeAvatarModal />
           </Route>
           <Route path='/'>
             <SignUpPage />

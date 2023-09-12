@@ -1,4 +1,5 @@
 import './Footer.css'
+import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
     return (
@@ -7,20 +8,20 @@ const Footer = () => {
                 <div id='first-third'>
                     <div>
                         <h5>Created By:</h5>
-                        <span>img...</span>
+                        <span><img id='photo-of-me' src="https://i.ibb.co/tx6PSKS/aston-about-photo.jpg" alt='Aston Martinez' border="0"></img></span>
                         <p>Aston Martinez</p>
                         <div id='my-socials'>
-                            <span>LinkedIn</span>
-                            <span>GitHub</span>
+                            <a href='https://www.linkedin.com/in/aston-martinez-0716/'><img id="linkedin-footer-logo" src="https://i.ibb.co/5j5Wn4H/linkedin-logo.png" alt="linkedin-logo" border="0" /></a>
+                            <a href='https://github.com/AstonMartinez'><img id="github-footer-logo" src="https://i.ibb.co/K0n6zXY/github-logo.png" alt="github-logo" border="0" /></a>
                         </div>
                     </div>
                     <div>
                         <h5>Support:</h5>
                         <ul>
-                            <li>FAQ</li>
-                            <li>Report a Bug</li>
-                            <li>Request a Feature</li>
-                            <li>Wiki</li>
+                            <li><NavLink exact to='/faq'>FAQ</NavLink></li>
+                            <li><NavLink exact to='/bug-report'>Report a Bug</NavLink></li>
+                            <li><NavLink exact to='/feature-request'>Request a Feature</NavLink></li>
+                            <li><NavLink exact to='/wiki'>Wiki</NavLink></li>
                         </ul>
                     </div>
                 </div>
