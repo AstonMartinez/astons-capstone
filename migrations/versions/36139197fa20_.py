@@ -1,10 +1,14 @@
 """empty message
 
 Revision ID: 36139197fa20
-Revises: 
+Revises:
 Create Date: 2023-09-13 00:18:34.697097
 
 """
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
+
 from alembic import op
 import sqlalchemy as sa
 
@@ -149,6 +153,19 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE achievements SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE equipment SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE dailies SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE habits SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE avatars SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE rewards SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE to_dos SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE user_achievements SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE user_equipment SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE user_rewards SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
