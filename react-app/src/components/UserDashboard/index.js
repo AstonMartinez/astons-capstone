@@ -5,7 +5,7 @@ import HabitComponent from '../Habits';
 import ToDosComponent from '../ToDos';
 import UserOverview from '../UserOverview';
 import RewardsComponent from '../RewardsComponent';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import CreateTask from '../CreateTaskModals/CreateTask';
 import CreateHabitModal from '../CreateTaskModals/CreateHabitModal';
@@ -16,14 +16,13 @@ import { getFilteredHabits, getSearchedHabits, getUserHabits } from '../../store
 import { getFilteredRewards, getSearchedRewards, getUserRewards } from '../../store/rewards';
 import { getFilteredDailies, getSearchedDailies, getUserDailies } from '../../store/dailies';
 import { getFilteredToDos, getSearchedToDos, getUserToDos } from '../../store/todos';
-import { getUserAvatar } from '../../store/avatars';
 import AvatarDisplay from '../AvatarDisplay';
+
 
 const UserDashboard = () => {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
-    const userAvatar = useSelector(state => state.avatar)
-    const [searchText, setSearchText] = useState('')
+    // const userAvatar = sessionUser.avatar
     const [searchTags, setSearchTags] = useState('')
     const [showTagDropdown, setShowTagDropdown] = useState(false)
     const [dropdownDisplay, setDropdownDisplay] = useState("hidden")
@@ -41,10 +40,6 @@ const UserDashboard = () => {
     const [choresChecked, setChoresChecked] = useState(false)
     const [creativityChecked, setCreativityChecked] = useState(false)
     const [searchBarVal, setSearchBarVal] = useState('')
-
-    useEffect(() => {
-        dispatch(getUserAvatar())
-    }, [dispatch])
 
     if(!sessionUser) {
         return <Redirect to='/login' />
@@ -66,8 +61,6 @@ const UserDashboard = () => {
     }
 
     const handleSearchEnter = async (val) => {
-        console.log("VALUE BEING SENT", val)
-        // setSearchBarVal(val)
         const searchArr = val.split(" ")
         const final = searchArr.join('/')
         await dispatch(getSearchedHabits(final))
@@ -75,7 +68,6 @@ const UserDashboard = () => {
         await dispatch(getSearchedToDos(final))
         await dispatch(getSearchedRewards(final))
         .then(() => {
-            // setSearchBarVal('')
             return <Redirect to='/my-dashboard' />
         })
 
@@ -98,7 +90,6 @@ const UserDashboard = () => {
     const processDeleteTags = (item) => {
         const allTags = searchTags.split(", ")
         const checkExist = allTags.filter((tag) => tag.toLowerCase() === item.toLowerCase())
-        // console.log(checkExist.length)
         if(checkExist.length !== 0) {
             const index = allTags.indexOf(item)
             allTags.splice(index, 1)
@@ -111,36 +102,16 @@ const UserDashboard = () => {
         }
     }
 
-    const isChecked = (item) => {
-        if(searchTags.length === 0) {
-            return false
-        } else {
-            const allTags = searchTags.split(", ")
-            const checker = allTags.filter(tag => tag.toLowerCase())
-            if(checker.length === 0) {
-                return false
-            } else {
-                return true
-            }
-        }
-    }
-
     const editSearchTags = (item) => {
 
         if(!searchTags.length) {
-            console.log("THIS SAYS THERE NO SEARCH TAGS ", searchTags)
             setSearchTags(`${item}`)
-            // console.log("ITEM PASSED IN: ", typeof item)
-            // console.log("AFTER SETTING STATE: ", searchTags)
             handleFilteredSearch(item)
             return
         } else {
-            console.log("ADDING TO EXISTING TAGS")
-            // console.log("SEARCH TAGS EQUALED: ", searchTags)
             const allTags = searchTags.split(", ")
             const checker = allTags.filter(tag => tag.toLowerCase() === item.toLowerCase())
             if(checker.length !== 0) {
-                // console.log("CHECKER CONTAINED ITEM")
                 processDeleteTags(item)
                 if(searchTags === '') {
                     removeSearchFilters()
@@ -155,24 +126,7 @@ const UserDashboard = () => {
                 handleFilteredSearch(tagsToSend)
                 return
             }
-            // console.log(searchTags)
         }
-        // console.log(item)
-        // if(searchTags !== '') {
-        //     // console.log("SEARCH TAGS EQUALED: ", searchTags)
-        //     const allTags = searchTags.split(", ")
-        //     const checker = allTags.filter(tag => tag.toLowerCase() === item.toLowerCase())
-        //     if(checker.length !== 0) {
-        //         // console.log("CHECKER CONTAINED ITEM")
-        //         processDeleteTags(item)
-
-        //     } else {
-        //         setSearchTags(searchTags + ", " + item)
-        //     }
-        // } else {
-        //     setSearchTags(item)
-
-        // }
     }
 
 
@@ -203,27 +157,16 @@ const UserDashboard = () => {
             <div id='avatar-display-container'>
                     <AvatarDisplay />
                 </div>
-                <UserOverview avatar={userAvatar} />
+                <UserOverview />
             </div>
             <div id='search-and-add-task'>
                 <div id='search-add-task-inner'>
-                    {/* <div id='left-placeholder-container'></div> */}
                     <div id='search-bar-wrapper'>
                         <input
                         id='dashboard-search-bar'
                         type="text"
                         placeholder='Search'
                         value={searchBarVal}
-                        // onKeyPress={(e) => {
-                        //     if(e.key === 'Enter') {
-                        //         setSearchBarVal(e.target.value)
-                        //         handleSearchEnter(e.target.value)
-                        //         // setSearchBarVal('')
-                        //     } else {
-                        //         setSearchBarVal(e.target.value)
-                        //         handleSearchEnter(e.target.value)
-                        //     }
-                        // }}
                         onChange={(e) => {
                             setSearchBarVal(e.target.value)
                             handleSearchEnter(e.target.value)
@@ -242,15 +185,6 @@ const UserDashboard = () => {
                             </div>
                         </div>
                         <div className={`search-tags-dropdown-${dropdownDisplay}`}>
-                            {/* <select multiple={true} value={[...searchTags]} onChange={(e) => setSearchTags(searchTags + ", " + e.target.value)}>
-                                <option value="Work">Work</option>
-                                <option value="Exercise">Exercise</option>
-                                <option value="Health + Wellness">Health + Wellness</option>
-                                <option value="School">School</option>
-                                <option value="Teams">Teams</option>
-                                <option value="Chores">Chores</option>
-                                <option value="Creativity">Creativity</option>
-                            </select> */}
                             <div id='tags-label-for-dropdown'>
                                 <p>Tags</p>
                             </div>

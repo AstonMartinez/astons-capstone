@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { logout } from "../../store/session";
+import { authenticate, logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import { Redirect } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 import CustomizeAvatarModal from "../CustomizeAvatarModal";
 import Customize from "./OpenCustomModal";
-import { getUserAvatar, updateUserAvatar } from "../../store/avatars";
+import { getUserAvatar } from "../../store/avatars";
 
 function ProfileButton({ user }) {
+  const history = useHistory()
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const [showCustomize, setShowCustomize] = useState(false)
@@ -87,7 +88,8 @@ function ProfileButton({ user }) {
           onSubmit={() => {
             setShowCustomize(false)
             dispatch(getUserAvatar())
-            return <Redirect to='/my-dashboard' />
+            dispatch(authenticate())
+            history.push('/my-dashboard')
           }}
           onClose={() => {
             setShowCustomize(false)

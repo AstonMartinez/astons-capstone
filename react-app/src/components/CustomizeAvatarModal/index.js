@@ -5,9 +5,12 @@ import allSkinOptions from './Skin'
 import allHairOptions from './Hair'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserAvatar, updateUserAvatar } from '../../store/avatars'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { authenticate } from '../../store/session'
 
 const CustomizeAvatarModal = ({onSubmit, onClose}) => {
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const userAvatar = useSelector(state => state.avatar)
     const [background, setBackground] = useState(userAvatar.background)
@@ -26,7 +29,6 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
     const [shirt, setShirt] = useState(userAvatar.shirt)
     const [skin, setSkin] = useState(userAvatar.skin)
 
-    // console.log(all)
     const checkHairColor = () => {
         if(userAvatar.hair === allHairOptions.red.one || userAvatar.hair === allHairOptions.red.two || userAvatar.hair === allHairOptions.red.three ||userAvatar.hair === allHairOptions.red.four) {
             return "red"
@@ -46,7 +48,6 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
     const [hasBangs, setHasBangs] = useState(true)
     const [hair, setHair] = useState(userAvatar.hair)
     const [bangs, setBangs] = useState(userAvatar.bangs)
-    // const [extras, setExtras] = useState('')
     const [category, setCategory] = useState("Body")
     const [subCategory, setSubCategory] = useState("Size")
 
@@ -65,7 +66,12 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
         dispatch(updateUserAvatar(updatedAvatar)).then(() => {
             dispatch(getUserAvatar())
         }).then(() => {
+            dispatch(authenticate())
+        })
+        .then(() => {
+            history.push('/my-dashboard')
             onSubmit()
+
         })
 
     }
@@ -77,7 +83,6 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
                     <div onClick={() => {
                         setBodyType("slim")
                         setShirt(allBodyOptions.slim.black)
-                        console.log(bodyType)
                         return
                     }}>
                         <img src={allBodyOptions.slim.black} alt='slim option' />
@@ -85,7 +90,6 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
                     <div onClick={() => {
                         setBodyType("broad")
                         setShirt(allBodyOptions.broad.black)
-                        console.log(bodyType)
                         return
                     }}>
                         <img src={allBodyOptions.broad.black} alt='broad option' />
@@ -178,6 +182,7 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
                 <div className='subpages-container'>
                     <div id='size-button' onClick={() => {
                         setSubCategory("Size")
+
                     }}>Size</div>
                     <div id='shirt-button' onClick={() => {
                         setSubCategory("Shirt")
@@ -637,26 +642,6 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
                         <img id='layer-4' src={bangs} alt='avatar bangs' />
                         <img id='layer-3' src={hair} alt='avatar hair' />
                     </div>
-                    {/* <div className='character-layer' id={`background-${background}`}>
-                        <div className='character-layer' id='body-layer'>
-                            <img src={shirt} alt='shirt' />
-                            <div className='character-layer' id='skin-layer'>
-                                <img src={skin} alt='skin color' />
-                                {hasBangs ? (
-                                        <div className='character-layer' id='bangs-hair-layer'>
-                                            <img src={bangs} alt='bangs' />
-                                            <div className='character-layer' id='base-hair-layer'>
-                                                <img src={hair} alt='hair color' />
-                                            </div>
-                                        </div>
-                                    ) : (
-                                        <div className='character-layer' id='base-hair-layer'>
-                                            <img src={hair} alt='hair color' />
-                                        </div>
-                                    )}
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
                 <div id='customization-category-icons'>
                     <div className='category-icon' onClick={() => {
@@ -716,24 +701,6 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
                         <p>Backgrounds</p>
                     </div>
                 </div>
-
-
-
-                    {/* <div id='extras-option' onClick={() => {
-                        setCategory("Extras")
-                        setSubCategory("Glasses")
-                        return
-                    }}>
-                        <div></div>
-                        <p>Extras</p>
-                    </div> */}
-                    {/* <div className='category-button' id='background-option' onClick={() => {
-                        setCategory("Background")
-                        return
-                    }}>
-
-                    </div> */}
-                {/* </div> */}
             </div>
             <div id='bottom-customization-container'>
                 {bottomDiv}

@@ -1,20 +1,16 @@
 """empty message
 
-Revision ID: 36139197fa20
-Revises:
-Create Date: 2023-09-13 00:18:34.697097
+Revision ID: a432d1710a54
+Revises: 
+Create Date: 2023-09-13 17:25:26.856158
 
 """
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
-
 from alembic import op
 import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '36139197fa20'
+revision = 'a432d1710a54'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,6 +23,13 @@ def upgrade():
     sa.Column('name', sa.String(length=500), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=False),
     sa.Column('points', sa.Integer(), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('bug_reports',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_email', sa.String(length=255), nullable=False),
+    sa.Column('bug_description', sa.String(length=1000), nullable=False),
+    sa.Column('status', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('equipment',
@@ -47,6 +50,14 @@ def upgrade():
     sa.Column('perc_class_bonus', sa.Integer(), nullable=False),
     sa.Column('cost', sa.Integer(), nullable=False),
     sa.Column('image', sa.String(), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('feature_requests',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('email', sa.String(length=255), nullable=False),
+    sa.Column('category', sa.String(length=500), nullable=False),
+    sa.Column('response', sa.String(length=1000), nullable=False),
+    sa.Column('description', sa.String(length=1500), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users',
@@ -153,19 +164,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE achievements SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE equipment SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE dailies SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE habits SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE avatars SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE rewards SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE to_dos SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE user_achievements SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE user_equipment SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE user_rewards SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
@@ -180,6 +178,8 @@ def downgrade():
     op.drop_table('dailies')
     op.drop_table('avatars')
     op.drop_table('users')
+    op.drop_table('feature_requests')
     op.drop_table('equipment')
+    op.drop_table('bug_reports')
     op.drop_table('achievements')
     # ### end Alembic commands ###

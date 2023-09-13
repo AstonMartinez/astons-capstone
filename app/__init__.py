@@ -15,6 +15,8 @@ from .api.todos_routes import todos_routes
 from .api.rewards_routes import rewards_routes
 from .api.search_routes import search_routes
 from .api.avatar_routes import avatar_routes
+from .api.bug_report_route import bug_routes
+from .api.feature_request_route import feature_routes
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -40,6 +42,8 @@ app.register_blueprint(todos_routes, url_prefix='/api/todos')
 app.register_blueprint(rewards_routes, url_prefix='/api/rewards')
 app.register_blueprint(search_routes, url_prefix='/api/search')
 app.register_blueprint(avatar_routes, url_prefix='/api/avatar')
+app.register_blueprint(bug_routes, url_prefix='/api/reports')
+app.register_blueprint(feature_routes, url_prefix='/api/features')
 db.init_app(app)
 Migrate(app, db)
 

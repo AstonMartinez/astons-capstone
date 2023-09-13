@@ -6,35 +6,46 @@
     /* bottom: 0; */
     display: flex;
     flex-direction: column;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+#bug-report-button:hover {
+    cursor: pointer;
 }
 
 #photo-of-me {
-    height: 80px;
-    width: 80px;
-    border-radius: 80px;
+    height: 85px;
+    width: 85px;
+    border-radius: 85px;
 }
 
 #upper-wrapper {
-    /* border: 1px solid black; */
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 200px;
+    margin-right: 200px;
+    /* border: 1px solid red; */
 }
 
-#first-third {
+#first-half-footer {
     display: flex;
-}
-
-#second-third {
-    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 #lower-wrapper {
     /* border: 1px solid red; */
     display: flex;
+    justify-content: space-between;
+    margin-left: 200px;
+    margin-right: 200px;
 }
 
 #privacy-policy-and-tos {
     display: flex;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+    width: 260px;
 }
 
 #copyright-container {
@@ -48,4 +59,30 @@ a {
 
 li {
     list-style: none;
+}
+
+#footer-about-container {
+    /* border: 1px solid blue; */
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    /* justify-items: center; */
+    align-items: center;
+}
+
+#my-socials {
+    /* border: 1px solid red; */
+    width: 70px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0;
+}
+
+#linkedin-footer-logo, #github-footer-logo {
+    height: 30px;
+    width: 30px;
+}
+
+#footer-my-name {
+
 }
