@@ -3,6 +3,22 @@ const CREATE_HABIT = '/habits/createNew'
 const UPDATE_HABIT = '/habits/updateHabit'
 const DELETE_HABIT = '/habits/deleteHabit'
 const GET_SINGLE_HABIT = '/habits/getOne'
+const GET_FILTERED_HABITS = '/habits/filter'
+const GET_SEARCHED_HABITS = '/habits/search'
+
+const search = (data) => {
+    return {
+        type: GET_SEARCHED_HABITS,
+        payload: data
+    }
+}
+
+const filter = (data) => {
+    return {
+        type: GET_FILTERED_HABITS,
+        payload: data,
+    }
+}
 
 const getHabits = (data) => {
     return {
@@ -36,6 +52,66 @@ const getOne = (data) => {
     return {
         type: GET_SINGLE_HABIT,
         payload: data,
+    }
+}
+
+export const getSearchedHabits = (query) => async (dispatch) => {
+    try {
+        // console.log("DISPATCHED")
+        const response = await fetch(`/api/search/custom/${query}`)
+        if(response.ok) {
+            const data = await response.json()
+            const habitData = data["habits"]
+            dispatch(search(habitData))
+
+
+
+        // const response = await fetch(`/api/habits/filter/search`)
+        // if(response.ok) {
+        //     console.log("SUCCESSFUL")
+        //     const data = await response.json()
+        //     dispatch(filter(data))
+        //     return data
+        } else {
+            console.log("FAILED")
+            const errors = await response.json();
+            return errors;
+        }
+
+    } catch (error) {
+        const errors = (error && error.json) ? await error.json() : { message: error.toString() }
+        console.log("ERROR: ", errors)
+        return errors
+    }
+}
+
+export const getFilteredHabits = (tags) => async (dispatch) => {
+    try {
+        console.log("DISPATCHED")
+        const response = await fetch(`/api/search/${tags}`)
+        if(response.ok) {
+            const data = await response.json()
+            const habitData = data["habits"]
+            dispatch(filter(habitData))
+
+
+
+        // const response = await fetch(`/api/habits/filter/search`)
+        // if(response.ok) {
+        //     console.log("SUCCESSFUL")
+        //     const data = await response.json()
+        //     dispatch(filter(data))
+        //     return data
+        } else {
+            console.log("FAILED")
+            const errors = await response.json();
+            return errors;
+        }
+
+    } catch (error) {
+        const errors = (error && error.json) ? await error.json() : { message: error.toString() }
+        console.log("ERROR: ", errors)
+        return errors
     }
 }
 
@@ -151,6 +227,14 @@ const habitsReducer = (state = initialState, action) => {
         case GET_SINGLE_HABIT:
             newState = Object.assign({ ...state })
             newState.singleHabit = action.payload
+            return newState
+        case GET_FILTERED_HABITS:
+            newState = Object.assign({ ...state })
+            newState.allHabits = action.payload
+            return newState
+        case GET_SEARCHED_HABITS:
+            newState = Object.assign({ ...state })
+            newState.allHabits = action.payload
             return newState
         default:
             return state

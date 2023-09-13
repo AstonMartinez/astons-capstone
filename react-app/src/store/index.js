@@ -5,6 +5,7 @@ import habitsReducer from './habits';
 import dailiesReducer from './dailies';
 import toDosReducer from './todos';
 import rewardsReducer from './rewards';
+import avatarReducer from './avatars';
 
 const rootReducer = combineReducers({
   session,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   dailies: dailiesReducer,
   toDos: toDosReducer,
   rewards: rewardsReducer,
+  avatar: avatarReducer,
 });
 
 

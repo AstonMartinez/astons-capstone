@@ -3,24 +3,72 @@ import { useState } from 'react'
 import allBodyOptions from './Body'
 import allSkinOptions from './Skin'
 import allHairOptions from './Hair'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserAvatar, updateUserAvatar } from '../../store/avatars'
 
-const CustomizeAvatarModal = () => {
-    const [background, setBackground] = useState("violet")
-    const [bodyType, setBodyType] = useState("slim")
-    const [shirt, setShirt] = useState(allBodyOptions.slim.black)
-    const [skin, setSkin] = useState(allSkinOptions.one)
+const CustomizeAvatarModal = ({onSubmit, onClose}) => {
+    const dispatch = useDispatch()
+
+    const userAvatar = useSelector(state => state.avatar)
+    const [background, setBackground] = useState(userAvatar.background)
+
+    const checkBodyType = () => {
+        if(userAvatar.shirt === allBodyOptions.slim.black || userAvatar.shirt === allBodyOptions.slim.blue || userAvatar.shirt === allBodyOptions.slim.green || userAvatar.shirt === allBodyOptions.slim.pink || userAvatar.shirt === allBodyOptions.slim.white || userAvatar.shirt === allBodyOptions.slim.yellow) {
+            return "slim"
+        } else {
+            return "broad"
+        }
+    }
+
+    const initialBodyType = checkBodyType()
+
+    const [bodyType, setBodyType] = useState(initialBodyType)
+    const [shirt, setShirt] = useState(userAvatar.shirt)
+    const [skin, setSkin] = useState(userAvatar.skin)
 
     // console.log(all)
-    const [hairColor, setHairColor] = useState("red")
+    const checkHairColor = () => {
+        if(userAvatar.hair === allHairOptions.red.one || userAvatar.hair === allHairOptions.red.two || userAvatar.hair === allHairOptions.red.three ||userAvatar.hair === allHairOptions.red.four) {
+            return "red"
+        } else if(userAvatar.hair === allHairOptions.black.one || userAvatar.hair === allHairOptions.black.two || userAvatar.hair === allHairOptions.black.three ||userAvatar.hair === allHairOptions.black.four) {
+            return "black"
+        } else if(userAvatar.hair === allHairOptions.brown.one || userAvatar.hair === allHairOptions.brown.two || userAvatar.hair === allHairOptions.brown.three ||userAvatar.hair === allHairOptions.brown.four) {
+            return "brown"
+        } else if(userAvatar.hair === allHairOptions.blonde.one || userAvatar.hair === allHairOptions.blonde.two || userAvatar.hair === allHairOptions.blonde.three ||userAvatar.hair === allHairOptions.blonde.four) {
+            return "blonde"
+        } else {
+            return "white"
+        }
+    }
+
+    const initialHairColor = checkHairColor()
+    const [hairColor, setHairColor] = useState(initialHairColor)
     const [hasBangs, setHasBangs] = useState(true)
-    const [hair, setHair] = useState(allHairOptions.red.one)
-    const [bangs, setBangs] = useState(allHairOptions.red.one)
+    const [hair, setHair] = useState(userAvatar.hair)
+    const [bangs, setBangs] = useState(userAvatar.bangs)
     // const [extras, setExtras] = useState('')
     const [category, setCategory] = useState("Body")
     const [subCategory, setSubCategory] = useState("Size")
 
     let bottomDiv
     let itemsToDisplay
+
+    const handleSubmit = () => {
+        const updatedAvatar = {
+            background: background,
+            skin: skin,
+            shirt: shirt,
+            hair: hair,
+            bangs: bangs
+        }
+
+        dispatch(updateUserAvatar(updatedAvatar)).then(() => {
+            dispatch(getUserAvatar())
+        }).then(() => {
+            onSubmit()
+        })
+
+    }
 
     if(category === "Body") {
         if(subCategory === "Size") {
@@ -579,10 +627,17 @@ const CustomizeAvatarModal = () => {
 
     return (
         <div id='avatar-customization-wrapper'>
-            <div>
-                <button>X</button>
-                <div>
-                    <div className='character-layer' id={`background-${background}`}>
+            <div id='top-customization-wrapper'>
+                <button onClick={handleSubmit}>X</button>
+                <button onClick={handleSubmit}>Save</button>
+                <div id='customization-avatar-wrapper'>
+                    <div id={`custom-avatar-display-wrapper-${background}`}>
+                        <img id='layer-1' src={shirt} alt='avatar shirt' />
+                        <img id='layer-2' src={skin} alt='avatar skin' />
+                        <img id='layer-4' src={bangs} alt='avatar bangs' />
+                        <img id='layer-3' src={hair} alt='avatar hair' />
+                    </div>
+                    {/* <div className='character-layer' id={`background-${background}`}>
                         <div className='character-layer' id='body-layer'>
                             <img src={shirt} alt='shirt' />
                             <div className='character-layer' id='skin-layer'>
@@ -601,15 +656,43 @@ const CustomizeAvatarModal = () => {
                                     )}
                             </div>
                         </div>
+                    </div> */}
+                </div>
+                <div id='customization-category-icons'>
+                    <div className='category-icon' onClick={() => {
+                        setCategory("Body")
+                        setSubCategory("Size")
+                        return
+                    }}>
+                        <svg id='body-category-icon' data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.49 32"><path d="M29.79 18.8C29.43 12.11 26.01 0 15.35 0a11.9 11.9 0 0 0-5.11 1.11l-.12.05C3.59 4.32 1.24 13.19.93 18.64a1.85 1.85 0 1 0 2.31.41c.09-1.31.83-9.79 5.5-14.14A53.73 53.73 0 0 0 7.18 16.5a76.9 76.9 0 0 0 1.43 13.16H6.83a1.17 1.17 0 0 0 0 2.34H10.34a1.13 1.13 0 0 0 .23-.1l.17-.11a1.12 1.12 0 0 0 .37-.57 1.12 1.12 0 0 0 0-.2.33.33 0 0 0 0-.26 1.09 1.09 0 0 0 0-.11c0-.05-.82-3.82-1.3-8.26a39.75 39.75 0 0 1 5.62-.45 33.72 33.72 0 0 1 5.21.43c-.48 4.44-1.29 8.23-1.3 8.28a1.17 1.17 0 0 0 .9 1.39h3.6a1.17 1.17 0 0 0 0-2.34h-1.86a76.9 76.9 0 0 0 1.43-13.2 54 54 0 0 0-1.6-11.72C26.4 8.91 27.29 17 27.44 18.84a1.85 1.85 0 1 0 2.35-.04zm-8.72-2.3c0 1.13-.05 2.3-.14 3.46a35.84 35.84 0 0 0-5.42-.43 41.52 41.52 0 0 0-5.84.46c-.09-1.17-.14-2.35-.14-3.48A57.14 57.14 0 0 1 11.65 3a10.15 10.15 0 0 1 7.28 0 57.16 57.16 0 0 1 2.14 13.5z" fill-rule="evenodd"></path></svg>
+                    </div>
+                    <div className='category-icon' onClick={() => {
+                        setCategory("Skin")
+                        setSubCategory("Skin-Color")
+                        return
+                    }}>
+                        <svg id='customize-skin-icon' data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.8 28.4"><path d="M31.7 26.72a7.44 7.44 0 0 0-3.69-3.63 8.72 8.72 0 0 0-3.82-.26c-1.21.09-2.57.19-3.08-.3-.72-.71-.15-2.6.24-3.4a1.13 1.13 0 0 0 0-.18 12 12 0 0 0 3.75-8.41c0-6.2-3.84-10.53-9.33-10.53S6.48 4.33 6.48 10.53a12.19 12.19 0 0 0 3.94 8.46 1.13 1.13 0 0 0 0 .13c.39.8 1 2.7.24 3.41-.5.5-1.87.39-3.08.3a8.75 8.75 0 0 0-3.82.26A7.43 7.43 0 0 0 .1 26.72a1.208 1.208 0 1 0 2.2 1 5 5 0 0 1 2.37-2.36 7.3 7.3 0 0 1 2.76-.16c1.72.13 3.66.28 4.94-1a3.9 3.9 0 0 0 1-3.11 5.72 5.72 0 0 0 2.39.64 6.15 6.15 0 0 0 2.57-.67 3.92 3.92 0 0 0 1 3.14c1.28 1.26 3.22 1.12 4.94 1a7.34 7.34 0 0 1 2.76.1 5 5 0 0 1 2.37 2.36 1.242 1.242 0 1 0 2.3-.94zM8.9 10.53c0-4.94 2.7-8.13 6.91-8.13s6.93 3.19 6.93 8.13-4.62 8.84-6.93 8.84c-1.91 0-6.91-3.92-6.91-8.84z"></path></svg>
+                    </div>
+                    <div className='category-icon' onClick={() => {
+                        setCategory("Hair")
+                        setSubCategory("Hair-Color")
+                        return
+                    }}>
+                        <svg id='customize-hair-icon' data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.24 31.25"><path d="M25.54 5.95l4 4 1.7-1.7L26.4 3.4l-.85-.85-1-1a5.49 5.49 0 0 0-7.76 0L1.61 16.78a5.49 5.49 0 0 0 0 7.76l1 1 .79.86 4.86 4.86 1.7-1.7-4-4 1.94-1.97 4 4 1.7-1.7-4-4 1.8-1.8 4 4 1.7-1.69-4-4 1.8-1.8 4 4 1.7-1.7-4-4 1.8-1.8 4 4 1.7-1.7-4-4 1.8-1.8 4 4 1.7-1.7-4-4 1.92-1.92zM4.28 23.82l-1-1a3.09 3.09 0 0 1 0-4.37L18.48 3.3a3.09 3.09 0 0 1 4.37 0l1 1z"></path></svg>
+                    </div>
+                    <div className='category-icon' id='customize-background-option' onClick={() => {
+                        setCategory("Background")
+                        return
+                    }}>
+                        <img id='background-icon-shine' src="https://i.ibb.co/hHWYqMd/shine.png" alt="shine" border="0" />
                     </div>
                 </div>
-                <div id='customization-category-buttons'>
+                <div id='customization-category-text'>
                     <div className='category-button' id='body-option' onClick={() => {
                         setCategory("Body")
                         setSubCategory("Size")
                         return
                     }}>
-                        <div></div>
                         <p>Body</p>
                     </div>
                     <div className='category-button' id='skin-option' onClick={() => {
@@ -617,7 +700,6 @@ const CustomizeAvatarModal = () => {
                         setSubCategory("Skin-Color")
                         return
                     }}>
-                        <div></div>
                         <p>Skin</p>
                     </div>
                     <div className='category-button' id='hair-option' onClick={() => {
@@ -625,9 +707,18 @@ const CustomizeAvatarModal = () => {
                         setSubCategory("Hair-Color")
                         return
                     }}>
-                        <div></div>
                         <p>Hair</p>
                     </div>
+                    <div className='category-button' id='background-option' onClick={() => {
+                        setCategory("Background")
+                        return
+                    }}>
+                        <p>Backgrounds</p>
+                    </div>
+                </div>
+
+
+
                     {/* <div id='extras-option' onClick={() => {
                         setCategory("Extras")
                         setSubCategory("Glasses")
@@ -636,14 +727,13 @@ const CustomizeAvatarModal = () => {
                         <div></div>
                         <p>Extras</p>
                     </div> */}
-                    <div className='category-button' id='background-option' onClick={() => {
+                    {/* <div className='category-button' id='background-option' onClick={() => {
                         setCategory("Background")
                         return
                     }}>
-                        <div></div>
-                        <p>Background</p>
-                    </div>
-                </div>
+
+                    </div> */}
+                {/* </div> */}
             </div>
             <div id='bottom-customization-container'>
                 {bottomDiv}

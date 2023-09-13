@@ -1,9 +1,12 @@
-import { useSelector } from "react-redux";
-import { useState } from 'react'
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from 'react'
 import { getRank, getXPGoal, getMaxHealth } from "./LevelRankXp";
+import AvatarDisplay from '../AvatarDisplay';
 import './UserOverview.css'
+import { getUserAvatar } from "../../store/avatars";
 
 const UserOverview = () => {
+    const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
     const [level, setLevel] = useState(sessionUser.level)
     const [health, setHealth] = useState(sessionUser.health)
@@ -17,12 +20,15 @@ const UserOverview = () => {
     const [xpGoal, setXPGoal] = useState(xpGoalToSet)
     const [maxHealth, setMaxHealth] = useState(maxHealthToSet)
 
-    return (
-        <div id='user-overview-wrapper'>
+    // useEffect(() => {
+    //     dispatch(getUserAvatar())
+    // }, [dispatch])
+
+    // return (
+        return (
+<div id='user-overview-wrapper'>
             <div>
-                <div>
-                    <span>img placeholder</span>
-                </div>
+
                 <div>
                     <div>
                         <div>

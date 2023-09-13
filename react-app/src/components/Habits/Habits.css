@@ -14,7 +14,7 @@
 }
 
 #single-habit-container {
-    /* border: 1px solid lightgray; */
+    border: 1px solid white;
     overflow: hidden;
     display: flex;
     justify-content: space-between;
@@ -23,6 +23,11 @@
     margin: 2px 5px;
     width: 280px;
 
+}
+
+#single-habit-container:hover {
+    border: 1px solid purple;
+    cursor: pointer;
 }
 
 #single-habit-text-div {

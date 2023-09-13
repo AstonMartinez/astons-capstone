@@ -5,11 +5,20 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { Redirect } from 'react-router-dom'
+import CustomizeAvatarModal from "../CustomizeAvatarModal";
+import Customize from "./OpenCustomModal";
+import { getUserAvatar, updateUserAvatar } from "../../store/avatars";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const [showCustomize, setShowCustomize] = useState(false)
   const ulRef = useRef();
+
+  const handleCustomizationOpen = () => {
+    setShowCustomize(true)
+    return
+  }
 
   const openMenu = () => {
     if (showMenu) return;
@@ -51,7 +60,8 @@ function ProfileButton({ user }) {
           <div id="user-dropdown-div">
             <li>{user.username}</li>
             <li>{user.email}</li>
-            <li>Edit Avatar</li>
+            <li onClick={handleCustomizationOpen}>Edit Avatar</li>
+            <Customize />
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
@@ -72,6 +82,19 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
+      {showCustomize && (
+        <CustomizeAvatarModal
+          onSubmit={() => {
+            setShowCustomize(false)
+            dispatch(getUserAvatar())
+            return <Redirect to='/my-dashboard' />
+          }}
+          onClose={() => {
+            setShowCustomize(false)
+          }}
+        />
+      )}
+
     </>
   );
 }

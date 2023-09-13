@@ -10,7 +10,8 @@ from .auth_routes import validation_errors_to_error_messages
 habit_routes = Blueprint('habits', __name__)
 # session = db.session
 
-@login_required
+
+
 @habit_routes.route('/user-habits')
 def get_user_habits():
     user_habits = Habit.query.filter(Habit.user_id == current_user.id)
@@ -23,7 +24,7 @@ def get_user_habits():
     return result
 
 
-@login_required
+
 @habit_routes.route('/new', methods=["POST"])
 def create_habit():
     form = CreateHabitForm()
@@ -51,7 +52,7 @@ def create_habit():
         db.session.commit()
         return new_habit.to_dict()
 
-@login_required
+
 @habit_routes.route('/<int:id>/update', methods=["PUT"])
 def update_habit(id):
     curr_habit = Habit.query.get(id)
@@ -89,7 +90,7 @@ def update_habit(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
-@login_required
+
 @habit_routes.route('/<int:id>/delete', methods=["DELETE"])
 def delete_habit(id):
     curr_habit = Habit.query.get(id)
@@ -97,7 +98,7 @@ def delete_habit(id):
     db.session.commit()
     return curr_habit.to_dict()
 
-@login_required
+
 @habit_routes.route('/<int:id>/change-habit-counts', methods=["PUT"])
 def change_habit_counts(id):
     curr_habit = Habit.query.get(id)
@@ -113,7 +114,7 @@ def change_habit_counts(id):
     db.session.commit()
     return updated_habit_dict
 
-@login_required
+
 @habit_routes.route('/<int:id>/change-habit-type', methods=["PUT"])
 def change_habit_type(id):
     curr_habit = Habit.query.get(id)
@@ -124,7 +125,7 @@ def change_habit_type(id):
     db.session.commit()
     return updated_habit_dict
 
-@login_required
+
 @habit_routes.route('/<int:id>')
 def get_one_habit(id):
     habit = Habit.query.get(id)

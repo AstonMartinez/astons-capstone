@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import User, db
+from app.models.avatar import Avatar
 
 user_routes = Blueprint('users', __name__)
 
@@ -22,6 +23,12 @@ def user(id):
     Query for a user by id and returns that user in a dictionary
     """
     user = User.query.get(id)
+    user_dict = user.to_dict()
+
+    avatar_to_return = Avatar.query.filter(Avatar.user_id == user_dict['id'])
+    avatar_dict = avatar_to_return[0].to_dict()
+
+    user_dict['avatar'] = avatar_dict
     return user.to_dict()
 
 

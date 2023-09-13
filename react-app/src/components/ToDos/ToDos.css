@@ -36,6 +36,11 @@
     height: 60px;
 }
 
+#single-todo-container:hover {
+    border: 1px solid purple;
+    cursor: pointer;
+}
+
 #single-todo-text-div {
     margin-left: 5px;
     text-align: left;

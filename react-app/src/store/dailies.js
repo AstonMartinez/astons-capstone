@@ -3,11 +3,19 @@ const CREATE_DAILY = '/dailies/createNew'
 const UPDATE_DAILY = '/dailies/updateDaily'
 const DELETE_DAILY = '/dailies/deleteDaily'
 const GET_SINGLE_DAILY = '/dailies/getOne'
-const UPDATE_DAILY_COUNT = '/dailies/count'
+const GET_FILTERED_DAILIES = '/dailies/filter'
+const GET_SEARCHED_DAILIES = '/dailies/search'
 
-const count = (data) => {
+const search = (data) => {
     return {
-        type: UPDATE_DAILY_COUNT,
+        type: GET_SEARCHED_DAILIES,
+        payload: data,
+    }
+}
+
+const filter = (data) => {
+    return {
+        type: GET_FILTERED_DAILIES,
         payload: data,
     }
 }
@@ -44,6 +52,66 @@ const deleteDaily = (data) => {
     return {
         type: DELETE_DAILY,
         payload: data,
+    }
+}
+
+export const getSearchedDailies = (query) => async (dispatch) => {
+    try {
+        // console.log("DISPATCHED")
+        const response = await fetch(`/api/search/custom/${query}`)
+        if(response.ok) {
+            const data = await response.json()
+            const dailiesData = data["dailies"]
+            dispatch(search(dailiesData))
+
+
+
+        // const response = await fetch(`/api/habits/filter/search`)
+        // if(response.ok) {
+        //     console.log("SUCCESSFUL")
+        //     const data = await response.json()
+        //     dispatch(filter(data))
+        //     return data
+        } else {
+            console.log("FAILED")
+            const errors = await response.json();
+            return errors;
+        }
+
+    } catch (error) {
+        const errors = (error && error.json) ? await error.json() : { message: error.toString() }
+        console.log("ERROR: ", errors)
+        return errors
+    }
+}
+
+export const getFilteredDailies = (tags) => async (dispatch) => {
+    try {
+        console.log("DISPATCHED")
+        const response = await fetch(`/api/search/${tags}`)
+        if(response.ok) {
+            const data = await response.json()
+            const dailiesData = data["dailies"]
+            dispatch(filter(dailiesData))
+
+
+
+        // const response = await fetch(`/api/habits/filter/search`)
+        // if(response.ok) {
+        //     console.log("SUCCESSFUL")
+        //     const data = await response.json()
+        //     dispatch(filter(data))
+        //     return data
+        } else {
+            console.log("FAILED")
+            const errors = await response.json();
+            return errors;
+        }
+
+    } catch (error) {
+        const errors = (error && error.json) ? await error.json() : { message: error.toString() }
+        console.log("ERROR: ", errors)
+        return errors
     }
 }
 
@@ -180,9 +248,13 @@ const dailiesReducer = (state = initialState, action) => {
             newState = Object.assign({ ...state })
             newState.singleDaily = action.payload
             return newState
-        case UPDATE_DAILY_COUNT:
+        case GET_FILTERED_DAILIES:
             newState = Object.assign({ ...state })
-            newState.singleDaily = action.payload
+            newState.allDailies = action.payload
+            return newState
+        case GET_SEARCHED_DAILIES:
+            newState = Object.assign({ ...state })
+            newState.allDailies = action.payload
             return newState
         default:
             return state

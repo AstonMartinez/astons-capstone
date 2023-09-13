@@ -3,11 +3,19 @@ const CREATE_TODO = '/todos/createNew'
 const UPDATE_TODO = '/todos/updateToDo'
 const DELETE_TODO = '/todos/deleteToDo'
 const GET_SINGLE_TODO = '/todos/getOne'
-const UPDATE_STATUS = '/todos/updateStatus'
+const GET_FILTERED_TODOS = '/todos/filter'
+const GET_SEARCHED_TODOS = '/todos/search'
 
-const updateStatus = (data) => {
+const search = (data) => {
     return {
-        type: UPDATE_STATUS,
+        type: GET_SEARCHED_TODOS,
+        payload: data,
+    }
+}
+
+const filter = (data) => {
+    return {
+        type: GET_FILTERED_TODOS,
         payload: data,
     }
 }
@@ -44,6 +52,57 @@ const deleteToDo = (data) => {
     return {
         type: DELETE_TODO,
         payload: data,
+    }
+}
+
+export const getSearchedToDos = (query) => async (dispatch) => {
+    try {
+        // console.log("DISPATCHED")
+        const response = await fetch(`/api/search/custom/${query}`)
+        if(response.ok) {
+            const data = await response.json()
+            const toDoData = data["ToDos"]
+            dispatch(search(toDoData))
+
+
+
+        // const response = await fetch(`/api/habits/filter/search`)
+        // if(response.ok) {
+        //     console.log("SUCCESSFUL")
+        //     const data = await response.json()
+        //     dispatch(filter(data))
+        //     return data
+        } else {
+            console.log("FAILED")
+            const errors = await response.json();
+            return errors;
+        }
+
+    } catch (error) {
+        const errors = (error && error.json) ? await error.json() : { message: error.toString() }
+        console.log("ERROR: ", errors)
+        return errors
+    }
+}
+
+export const getFilteredToDos = (tags) => async (dispatch) => {
+    try {
+        console.log("DISPATCHED")
+        const response = await fetch(`/api/search/${tags}`)
+        if(response.ok) {
+            const data = await response.json()
+            const toDoData = data["ToDos"]
+            dispatch(filter(toDoData))
+        } else {
+            console.log("FAILED")
+            const errors = await response.json();
+            return errors;
+        }
+
+    } catch (error) {
+        const errors = (error && error.json) ? await error.json() : { message: error.toString() }
+        console.log("ERROR: ", errors)
+        return errors
     }
 }
 
@@ -189,9 +248,14 @@ const toDosReducer = (state = initialState, action) => {
             newState.singleToDo = action.payload
             return newState
         }
-        case UPDATE_STATUS: {
+        case GET_FILTERED_TODOS: {
             const newState = Object.assign({ ...state })
-            newState.singleToDo = action.payload
+            newState.allToDos = action.payload
+            return newState
+        }
+        case GET_SEARCHED_TODOS: {
+            const newState = Object.assign({ ...state })
+            newState.allToDos = action.payload
             return newState
         }
         default:

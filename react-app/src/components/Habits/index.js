@@ -59,9 +59,9 @@ const HabitComponent = () => {
                 </form>
                 <div>
                     {habitsToMap && habitsToMap.map(habit => (
-                        <div id='single-habit-container'>
+                        // <div id='single-habit-container'>
                             <IndividualHabit habitData={habit} key={habit.id} />
-                        </div>
+                        // </div>
                     ))}
                 </div>
             </div>

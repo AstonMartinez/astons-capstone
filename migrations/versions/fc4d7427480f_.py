@@ -1,20 +1,16 @@
 """empty message
 
-Revision ID: e3ad77694a2d
-Revises:
-Create Date: 2023-09-10 20:30:49.115542
+Revision ID: fc4d7427480f
+Revises: 
+Create Date: 2023-09-12 18:53:45.150474
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
-
 
 # revision identifiers, used by Alembic.
-revision = 'e3ad77694a2d'
+revision = 'fc4d7427480f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -63,6 +59,17 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
+    )
+    op.create_table('avatars',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('shirt', sa.Text(length=1000), nullable=False),
+    sa.Column('hair', sa.Text(length=1000), nullable=False),
+    sa.Column('bangs', sa.Text(length=1000), nullable=False),
+    sa.Column('skin', sa.Text(length=1000), nullable=False),
+    sa.Column('background', sa.Text(length=1000), nullable=False),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('dailies',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -142,20 +149,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE achievements SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE equipment SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE dailies SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE habits SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE rewards SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE to_dos SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE user_achievements SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE user_equipment SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE user_rewards SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
-
 
 
 def downgrade():
@@ -167,6 +161,7 @@ def downgrade():
     op.drop_table('rewards')
     op.drop_table('habits')
     op.drop_table('dailies')
+    op.drop_table('avatars')
     op.drop_table('users')
     op.drop_table('equipment')
     op.drop_table('achievements')

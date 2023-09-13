@@ -137,6 +137,11 @@
     /* height: 150px; */
 }
 
+#single-daily-container:hover {
+    border: 1px solid purple;
+    cursor: pointer;
+}
+
 #single-daily-text-div {
     margin-left: 5px;
     text-align: left;

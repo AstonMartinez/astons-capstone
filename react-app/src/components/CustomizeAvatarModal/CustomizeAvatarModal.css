@@ -1,7 +1,9 @@
 #avatar-customization-wrapper {
     border: 1px solid black;
     /* position: absolute; */
-    width: 80%;
+    background-color: #ffffff;
+    border-radius: 10px 10px 10px 10px;
+    width: 600px;
     margin: 0 auto;
 }
 
@@ -16,12 +18,15 @@
     display: flex;
     /* border: 1px solid blue; */
     justify-content: space-around;
-    margin-top: 120px;
+    margin-top: 150px;
+    /* height: 300px; */
+    /* position: absolute; */
 
 }
 
 #bottom-customization-container {
     display: flex;
+    /* position: absolute; */
 }
 
 .customization-bottom-div {
@@ -29,10 +34,12 @@
     flex-direction: column;
     /* border: 1px solid red; */
     width: 100%;
+    border-radius: 0px 0px 10px 10px;
+    background-color: #f9f9f9;
 }
 
 .subpages-container {
-    border: 1px solid orange;
+    /* border: 1px solid orange; */
     display: flex;
     justify-content: center;
 }
@@ -41,22 +48,59 @@
     margin-right: 30px;
 }
 
-.category-button {
+/* .category-button {
     display: flex;
     flex-direction: column;
-    /* border: 1px solid red; */
-    width: 100px;
+    border: 1px solid red;
+    width: 20%;
     justify-items: space-evenly;
+    text-align: center;
+
+} */
+
+#body-option {
+    /* border: 1px solid purple; */
+    position: absolute;
+    /* margin-left: 40px; */
+    /* padding-left: 10px; */
+    /* margin-right: 50px; */
+    left: 15%;
+}
+
+#skin-option {
+    padding-right: 15px;
+    margin-right: 25px;
+    /* margin-left: 10px; */
+    /* border: 1px solid purple; */
+    /* text-align: center; */
+    position: absolute;
+    left: 36%;
+}
+
+#hair-option {
+    /* border: 1px solid red; */
+    margin-right: 5px;
+    margin-left: 35px;
+    position: absolute;
+    left: 53%;
+}
+
+#background-option {
+    margin-right: 25px;
+    /* border: 1px solid red; */
+    padding-right: 20px;
+    position: absolute;
+    right: 2%;
 }
 
 .customization-item {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     height: fit-content;
     width: fit-content;
 }
 
 #item-options-container {
-    border: 1px solid purple;
+    /* border: 1px solid purple; */
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -115,6 +159,7 @@
     border-left: 2px solid #92bd94;
     border-bottom: 20px solid #92bd94;
     background-color: #d3e4d4;
+
 }
 
 #background-purple {
@@ -125,6 +170,7 @@
     border-left: 2px solid #9397bd;
     border-bottom: 20px solid #9397bd;
     background-color: #d3d5e4;
+    /* position: absolute; */
 }
 
 #background-red {
@@ -148,12 +194,12 @@
 }
 
 .character-layer {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     height: fit-content;
     width: fit-content;
     position: fixed;
     top: 80px;
-    left: 42%;
+    left: 47%;
 }
 
 #background-layer {
@@ -174,4 +220,39 @@
 
 #bangs-hair-layer {
     z-index: 4;
+}
+
+#customization-category-icons, #customization-category-text {
+    display: flex;
+    justify-content: space-evenly;
+    /* border: 1px solid green; */
+}
+
+#customization-category-text {
+    font-family: 'Roboto Condensed', sans-serif;
+    /* border: 1px solid orange; */
+}
+
+#customize-hair-icon,
+#background-icon-shine,
+#body-category-icon,
+#customize-skin-icon {
+    height: 45px;
+    margin-top: 150px;
+    /* border: 1px solid blue; */
+}
+
+/* #body-category-icon {
+    height: 25px;
+}
+
+#background_icon_shine {
+    height: 25px;
+} */
+
+#top-customization-wrapper {
+    width: 100%;
+    height: 300px;
+    /* border: 1px solid red; */
+    /* margin-top: 80px; */
 }

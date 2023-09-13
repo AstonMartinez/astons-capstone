@@ -7,6 +7,7 @@ from app.models.user_equipment import UserEquipment
 from app.models.achievements import Achievement
 from app.models.user_achievements import UserAchievement
 from app.models.reward import Reward
+from app.models.avatar import Avatar
 from app.models.user_rewards import UserReward
 from sqlalchemy.sql import text
 from datetime import datetime
@@ -181,6 +182,116 @@ def seed_users():
         )
 
     db.session.add_all([demo, marnie, bobbie, user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12])
+
+    avatar1 = Avatar(
+        user_id=1,
+        shirt="https://i.ibb.co/z8tJWZV/slim-shirt-black.png",
+        hair="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        bangs="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        skin="https://i.ibb.co/KN3nLzw/skin-98461a.png",
+        background="violet"
+    )
+
+    avatar2 = Avatar(
+        user_id=2,
+        shirt="https://i.ibb.co/z8tJWZV/slim-shirt-black.png",
+        hair="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        bangs="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        skin="https://i.ibb.co/KN3nLzw/skin-98461a.png",
+        background="violet"
+    )
+
+    avatar3 = Avatar(
+        user_id=3,
+        shirt="https://i.ibb.co/z8tJWZV/slim-shirt-black.png",
+        hair="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        bangs="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        skin="https://i.ibb.co/KN3nLzw/skin-98461a.png",
+        background="violet"
+    )
+
+    avatar4 = Avatar(
+        user_id=4,
+        shirt="https://i.ibb.co/z8tJWZV/slim-shirt-black.png",
+        hair="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        bangs="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        skin="https://i.ibb.co/KN3nLzw/skin-98461a.png",
+        background="violet"
+    )
+
+    avatar5 = Avatar(
+        user_id=5,
+        shirt="https://i.ibb.co/z8tJWZV/slim-shirt-black.png",
+        hair="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        bangs="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        skin="https://i.ibb.co/KN3nLzw/skin-98461a.png",
+        background="violet"
+    )
+
+    avatar6 = Avatar(
+        user_id=6,
+        shirt="https://i.ibb.co/z8tJWZV/slim-shirt-black.png",
+        hair="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        bangs="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        skin="https://i.ibb.co/KN3nLzw/skin-98461a.png",
+        background="violet"
+    )
+
+    avatar7 = Avatar(
+        user_id=7,
+        shirt="https://i.ibb.co/z8tJWZV/slim-shirt-black.png",
+        hair="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        bangs="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        skin="https://i.ibb.co/KN3nLzw/skin-98461a.png",
+        background="violet"
+    )
+
+    avatar8 = Avatar(
+        user_id=8,
+        shirt="https://i.ibb.co/z8tJWZV/slim-shirt-black.png",
+        hair="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        bangs="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        skin="https://i.ibb.co/KN3nLzw/skin-98461a.png",
+        background="violet"
+    )
+
+    avatar9 = Avatar(
+        user_id=9,
+        shirt="https://i.ibb.co/z8tJWZV/slim-shirt-black.png",
+        hair="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        bangs="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        skin="https://i.ibb.co/KN3nLzw/skin-98461a.png",
+        background="violet"
+    )
+
+    avatar10 = Avatar(
+        user_id=10,
+        shirt="https://i.ibb.co/z8tJWZV/slim-shirt-black.png",
+        hair="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        bangs="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        skin="https://i.ibb.co/KN3nLzw/skin-98461a.png",
+        background="violet"
+    )
+
+    avatar11 = Avatar(
+        user_id=11,
+        shirt="https://i.ibb.co/z8tJWZV/slim-shirt-black.png",
+        hair="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        bangs="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        skin="https://i.ibb.co/KN3nLzw/skin-98461a.png",
+        background="violet"
+    )
+
+    avatar12 = Avatar(
+        user_id=12,
+        shirt="https://i.ibb.co/z8tJWZV/slim-shirt-black.png",
+        hair="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        bangs="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
+        skin="https://i.ibb.co/KN3nLzw/skin-98461a.png",
+        background="violet"
+    )
+
+    db.session.add_all([avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11, avatar12])
 
     habit1 = Habit(
         user_id=1,

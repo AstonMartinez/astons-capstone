@@ -25,6 +25,8 @@ class User(db.Model, UserMixin):
     dailies = db.relationship('Daily', back_populates='user', cascade='all, delete-orphan')
     to_dos = db.relationship('ToDo', back_populates='user', cascade='all, delete-orphan')
     rewards = db.relationship('Reward', back_populates='user', cascade='all, delete-orphan')
+    avatar = db.relationship('Avatar', back_populates='user', cascade='all, delete-orphan')
+
 
     @property
     def password(self):
@@ -47,5 +49,6 @@ class User(db.Model, UserMixin):
             'level': self.level,
             'date_joined': self.date_joined,
             "gold": self.gold,
-            "health": self.health
+            "health": self.health,
+            "avatar": self.avatar[0].to_dict()
         }

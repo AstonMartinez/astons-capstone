@@ -1,5 +1,6 @@
 #user-overview-wrapper {
     background-color: #36205d;
+    color: white;
     position: absolute;
     height: 180px;
     right: 0;
@@ -7,4 +8,17 @@
     top: 64px;
     display: flex;
     justify-content: space-around;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+
+#username-level-container {
+    font-weight: lighter;
+    font-size: 13px;
+}
+
+
+#health-heart {
+    width: 28px;
 }

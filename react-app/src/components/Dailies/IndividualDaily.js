@@ -20,9 +20,9 @@ const IndividualDaily = ({dailyData}) => {
     const [finished, setFinished] = useState(false)
     const [status, setStatus] = useState(dailyData.status)
 
-    useEffect(() => {
-        dispatch(getOneDaily(dailyData.id))
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getOneDaily(dailyData.id))
+    // }, [dispatch])
 
     // Handles opening the modal for deleting/updating
     const handleUpdateDeleteClick = async () => {
