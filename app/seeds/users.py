@@ -1001,6 +1001,7 @@ def seed_users():
 def undo_users():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.avatars RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.habits RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.dailies RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.to_dos RESTART IDENTITY CASCADE;")
@@ -1010,6 +1011,7 @@ def undo_users():
         db.session.execute(f"TRUNCATE table {SCHEMA}.user_achievements RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
+        db.session.execute(text("DELETE FROM avatars"))
         db.session.execute(text("DELETE FROM habits"))
         db.session.execute(text("DELETE FROM dailies"))
         db.session.execute(text("DELETE FROM to_dos"))
