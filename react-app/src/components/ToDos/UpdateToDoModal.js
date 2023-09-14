@@ -1,8 +1,9 @@
-import React, { useState, useRef, useCallback } from 'react'
+import React, { useState, useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { deleteUserToDo, getOneToDo, getUserToDos, updateUserToDo } from '../../store/todos'
+import { deleteUserToDo, getUserToDos, updateUserToDo } from '../../store/todos'
 import Calendar from 'react-calendar'
 import { stringToInt, stringToInt2 } from '../Dailies/DateFunctions'
+import './ToDos.css'
 
 const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
     const dispatch = useDispatch()
@@ -17,9 +18,24 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
     const [checklist, setChecklist] = useState(toDoData.checklist)
     const [newChecklistItem, setNewChecklistItem] = useState('')
     const [status, setStatus] = useState(toDoData.status)
+    const [showTagDropdown, setShowTagDropdown] = useState(false)
 
     let calDisplay
     let dueDateDisplay
+
+    const processAddTags = (value) => {
+        const tagsArr = tags.split(", ")
+        const checker = tagsArr.filter((tag) => tag.toLowerCase() === value.toLowerCase())
+        // console.log(checker)
+        if(checker.length === 1) {
+            return
+        } else {
+            tagsArr.push(value)
+            const result = tagsArr.join(", ")
+            setTags(result)
+            return
+        }
+    }
 
     // console.log("DUE DATE: ", dueDate)
 
@@ -150,56 +166,72 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
     return (
         <>
             <div className='habit-update-modal-backdrop' ref={modalOverlayRef}></div>
-            <div className='update-habit-modal-wrapper'>
-                <h3>Edit To-Do</h3><button onClick={onClose}>Cancel</button><button type='submit' onClick={handleSubmit}>Save</button>
-                <input
-                        type='text'
-                        placeholder="Add a checklist item"
-                        value={newChecklistItem}
-                        onChange={(e) => setNewChecklistItem(e.target.value)}
-                        onKeyPress={(e) => {
-                            if(e.key === 'Enter') {
-                                handleAddChecklistItem()
-                            } else {
-                                setNewChecklistItem(e.target.value)
-                            }
-                        }}
+                <div className='update-habit-modal-wrapper'>
+                    <div id='daily-update-modal-colored'>
+                        <div id='edit-daily-button-container'>
+                            <div>
+                                <h3>Edit Daily</h3>
+                            </div>
+                            <div>
+                                <button id='daily-update-cancel-button' onClick={onClose}>Cancel</button>
+                                <button id='daily-update-save-button' onClick={handleSubmit}>Save</button>
+                            </div>
+                        </div>
+                        <div id='daily-title-container'>
+                                <label htmlFor='title'>Title*</label>
+                                <input
+                                    type='text'
+                                    name='title'
+                                    id='daily-title-input-field'
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                />
+                        </div>
+                        <div id='daily-notes-container'>
+                            <label htmlFor='notes'>Notes</label>
+                            <textarea
+                                name='notes'
+                                id='daily-notes-input-field'
+                                value={notes}
+                                onChange={(e) => setNotes(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    <div id='daily-checklist-container'>
+                        <div id='new-checklist-item-div'>
+                            <img id='plus-icon' src="https://i.ibb.co/CB901y0/plus.png" alt="plus" border="0" />
+                            <input
+                                id='add-checklist-item-input'
+                                type='text'
+                                placeholder="New checklist item"
+                                value={newChecklistItem}
+                                onChange={(e) => setNewChecklistItem(e.target.value)}
+                                onKeyPress={(e) => {
+                                    if(e.key === 'Enter') {
+                                        handleAddChecklistItem()
+                                    } else {
+                                        setNewChecklistItem(e.target.value)
+                                    }
+                                }}
 
-                />
-                {checklist?.split(", ").length ? checklist.split(", ").map(item => (
-                    <div>
-                        <input
-                        type='checkbox'
-                        value={item}
-                        onChange={() => processDeleteChecklistItem(item)}
-                        /><span>{item}</span><button onClick={() => processDeleteChecklistItem(item)}>x</button>
-                    </div>
-                )): ''}
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        {/* <button type='submit'>Save</button> */}
-                    </div>
-                    <div>
-                        <label htmlFor='title'>Title*</label>
-                        <input
-                            type='text'
-                            name='title'
-                            id='habit-title-input-field'
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
                         />
+                        </div>
+                    {checklist?.split(", ").length ? checklist.split(", ").map(item => (
+                        <div id='individual-checklist-item'>
+                            <div>
+                                <input
+                                type='checkbox'
+                                value={item}
+                                onChange={() => processDeleteChecklistItem(item)}
+                                /><span>{item}</span>
+                            </div>
+                            <div id='trashcan-container'>
+                                <img onClick={() => processDeleteChecklistItem(item)} id='checklist-trashcan' src="https://i.ibb.co/2WtHztY/trash.png" alt="trash" border="0" />
+                            </div>
+                        </div>
+                    )): ''}
                     </div>
-                    <div>
-                        <label htmlFor='notes'>Notes</label>
-                        <input
-                            type='textarea'
-                            name='notes'
-                            id='habit-notes-input-field'
-                            value={notes}
-                            onChange={(e) => setNotes(e.target.value)}
-                        />
-                    </div>
-                    <div>
+                    <div id='daily-update-difficulty-container'>
                         <label htmlFor='difficulty'>Difficulty</label>
                         <select
                             className='habit-difficulty-select'
@@ -221,26 +253,33 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
                         {/* <Calendar onChange={(e) => setStartDate(e.target.value)} value={startDate} /> */}
 
                     </div>
-                    <div>
-                        <div>
-                            <div>
-                                {tags.length ? tags.split(", ").map(tag => (
-                                    <div>{tag}<button onClick={() => processDeleteTags(tag)}>x</button></div>
-                                )) : <div>Add tags here...</div>}
-                            </div>
-                            <select multiple={true} value={[...tags]} onChange={(e) => setTags(tags + ", " + e.target.value)}>
-                                <option value="Work">Work</option>
-                                <option value="Exercise">Exercise</option>
-                                <option value="Health + Wellness">Health + Wellness</option>
-                                <option value="School">School</option>
-                                <option value="Teams">Teams</option>
-                                <option value="Chores">Chores</option>
-                                <option value="Creativity">Creativity</option>
-                            </select>
+                    <div id='tags-outer-wrapper'>
+                            {/* <div id='tags-outer-wrapper'> */}
+
+                                <div id='habit-tags-container' onClick={() => showTagDropdown === "hidden" ? setShowTagDropdown("visible") : setShowTagDropdown("hidden")}>
+                                    <label id='tags-label'>Tags</label>
+                                    <div id='edit-modal-tag-display'>
+                                        {tags.length ? tags.split(", ").map(tag => (
+                                            <div className='individual-tag-display'>{tag}<button className='tag-delete-x-button' onClick={() => processDeleteTags(tag)}>x</button></div>
+                                        )) : <div className='individual-tag-display'>Add tags here...</div>}
+                                    </div>
+                                </div>
+                                <select id={`difficulty-select-${showTagDropdown}`} multiple={true} value={[...tags]} onChange={(e) => processAddTags(e.target.value)}>
+                                    <option className='tag-dropdown-option' value="Work">Work</option>
+                                    <option className='tag-dropdown-option' value="Exercise">Exercise</option>
+                                    <option className='tag-dropdown-option' value="Health + Wellness">Health + Wellness</option>
+                                    <option className='tag-dropdown-option' value="School">School</option>
+                                    <option className='tag-dropdown-option' value="Teams">Teams</option>
+                                    <option className='tag-dropdown-option' value="Chores">Chores</option>
+                                    <option className='tag-dropdown-option' value="Creativity">Creativity</option>
+                                </select>
+                            {/* </div> */}
                         </div>
-                    </div>
-                </form>
-                <button onClick={handleDeleteToDo}>Delete this To-Do</button>
+                {/* </div> */}
+                <div id='edit-habit-bottom-container' onClick={handleDeleteToDo}>
+                    <img id='trash-can-icon' src="https://i.ibb.co/2WtHztY/trash.png" alt="trash" border="0" /><p id='edit-habit-submit-trashcan'>Delete this To-Do</p>
+                </div>
+            {/* // </div> */}
             </div>
         </>
     )
