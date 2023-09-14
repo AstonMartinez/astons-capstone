@@ -213,6 +213,7 @@
     align-items: center;
     border-radius: 5px;
     height: 98%;
+    min-height: 300px;
 }
 
 #habits-column-wrapper {

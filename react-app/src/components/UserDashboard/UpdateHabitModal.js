@@ -15,6 +15,7 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
     const [errors, setErrors] = useState([])
     const [status, setStatus] = useState(habitData.status)
     console.log("TOP FILL: ", fillType)
+    const [showTagDropdown, setShowTagDropdown] = useState("hidden")
 
     const determineTopFill = () => {
         if(habitData.status === "strong") {
@@ -235,8 +236,7 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
                             </div>
                             <div id={`habit-notes-container`}>
                                 <label htmlFor='notes'>Notes</label>
-                                <input
-                                    type='textarea'
+                                <textarea
                                     name='notes'
                                     id={`habit-notes-input-field-${topFill}`}
                                     value={notes}
@@ -255,7 +255,7 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
                                 <p>Negative</p>
                             </div>
                         </div>
-                        <div>
+                        <div id='habit-update-difficulty-container'>
                             <label htmlFor='difficulty'>Difficulty</label>
                             <select
                                 className='habit-difficulty-select'
@@ -268,25 +268,31 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
                                 <option value="hard">Hard</option>
                             </select>
                         </div>
-                        <div>
-                            <div>
-                                <div>
-                                    {tags.length ? tags.split(", ").map(tag => (
-                                        <div>{tag}<button onClick={() => processDeleteTags(tag)}>x</button></div>
-                                    )) : <div>Add tags here...</div>}
+                        <div id='tags-outer-wrapper'>
+                            {/* <div id='tags-outer-wrapper'> */}
+
+                                <div id='habit-tags-container' onClick={() => showTagDropdown === "hidden" ? setShowTagDropdown("visible") : setShowTagDropdown("hidden")}>
+                                    <label id='tags-label'>Tags</label>
+                                    <div id='edit-modal-tag-display'>
+                                        {tags.length ? tags.split(", ").map(tag => (
+                                            <div className='individual-tag-display'>{tag}<button className='tag-delete-x-button' onClick={() => processDeleteTags(tag)}>x</button></div>
+                                        )) : <div className='individual-tag-display'>Add tags here...</div>}
+                                    </div>
                                 </div>
-                                <select multiple={true} value={[...tags]} onChange={(e) => processAddTags(e.target.value)}>
-                                    <option value="Work">Work</option>
-                                    <option value="Exercise">Exercise</option>
-                                    <option value="Health + Wellness">Health + Wellness</option>
-                                    <option value="School">School</option>
-                                    <option value="Teams">Teams</option>
-                                    <option value="Chores">Chores</option>
-                                    <option value="Creativity">Creativity</option>
+                                <select id={`difficulty-select-${showTagDropdown}`} multiple={true} value={[...tags]} onChange={(e) => processAddTags(e.target.value)}>
+                                    <option className='tag-dropdown-option' value="Work">Work</option>
+                                    <option className='tag-dropdown-option' value="Exercise">Exercise</option>
+                                    <option className='tag-dropdown-option' value="Health + Wellness">Health + Wellness</option>
+                                    <option className='tag-dropdown-option' value="School">School</option>
+                                    <option className='tag-dropdown-option' value="Teams">Teams</option>
+                                    <option className='tag-dropdown-option' value="Chores">Chores</option>
+                                    <option className='tag-dropdown-option' value="Creativity">Creativity</option>
                                 </select>
-                            </div>
+                            {/* </div> */}
                         </div>
-                    <button onClick={handleDeleteHabit}>Delete this Habit</button>
+                        <div id='edit-habit-bottom-container' onClick={handleDeleteHabit}>
+                            <img id='trash-can-icon' src="https://i.ibb.co/2WtHztY/trash.png" alt="trash" border="0" /><p id='edit-habit-submit-trashcan'>Delete this Habit</p>
+                        </div>
                 </div>
 
             {/* </div> */}

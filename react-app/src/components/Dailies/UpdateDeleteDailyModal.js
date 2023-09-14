@@ -21,6 +21,7 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
     const [dayOfRepeat, setDayOfRepeat] = useState(dailyData.day_of_repeat)
     const [checklist, setChecklist] = useState(dailyData.checklist)
     const [newChecklistItem, setNewChecklistItem] = useState('')
+    const [showTagDropdown, setShowTagDropdown] = useState(false)
 
 
     const [sundayFill, setSundayFill] = useState(checkWeekdayOne(dayOfRepeat))
@@ -46,6 +47,20 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
             setChecklist(res)
             return
         } else {
+            return
+        }
+    }
+
+    const processAddTags = (value) => {
+        const tagsArr = tags.split(", ")
+        const checker = tagsArr.filter((tag) => tag.toLowerCase() === value.toLowerCase())
+        // console.log(checker)
+        if(checker.length === 1) {
+            return
+        } else {
+            tagsArr.push(value)
+            const result = tagsArr.join(", ")
+            setTags(result)
             return
         }
     }
@@ -210,17 +225,17 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
 
     if(startDate === dailyData.start_date) {
         startDateDisplay = (
-            <p>{startDate}</p>
+            <p id='start-date-text'>{startDate}</p>
         )
     } else {
         startDateDisplay = (
-            <p>{startDate.toDateString()}</p>
+            <p id='start-date-text'>{startDate.toDateString()}</p>
         )
     }
 
     if(showCal) {
         calDisplay = (
-            <div>
+            <div id='react-calendar-container'>
                 <Calendar onChange={setStartDate} value={startDate} />
             </div>
         )
@@ -233,9 +248,11 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
     if(repeats === "daily" || repeats === 'Daily') {
         repeatData = (
             <div>
-                <div>
+                <div id='repeat-data-label'>
                     <label htmlFor='repeats'>Repeats</label>
-                    <select defaultValue={repeats} name='repeats' onChange={(e) => setRepeats(e.target.value)}>
+                </div>
+                <div>
+                    <select id='repeat-data-selector' defaultValue={repeats} name='repeats' onChange={(e) => setRepeats(e.target.value)}>
                         <option value="Daily">Daily</option>
                         <option value="Weekly">Weekly</option>
                         <option value="Monthly">Monthly</option>
@@ -243,22 +260,30 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
                     </select>
                 </div>
                 <div>
-                    <label htmlFor='repeat-every'>Repeat Every</label>
-                    <input
-                        type="number"
-                        name="repeat-every"
-                        value={numRepeats}
-                        onChange={(e) => setNumRepeats(e.target.value)}
-                    /><div>{numRepeats === 1 ? "Day" : "Days"}</div>
+                    <div id='repeat-every-label'>
+                        <label htmlFor='repeat-every'>Repeat Every</label>
+                    </div>
+                    <div id='repeat-every-input'>
+                        <input
+                        id='repeat-number-input'
+                            type="number"
+                            name="repeat-every"
+                            value={numRepeats}
+                            onChange={(e) => setNumRepeats(e.target.value)}
+                        /><div id='repeat-every-span'>{numRepeats === 1 ? "Day" : "Days"}</div>
+                    </div>
                 </div>
             </div>
         )
     } else if(repeats === "weekly" || repeats === "Weekly") {
         repeatData = (
             <div>
-                <div>
+                <div id='repeat-data-label'>
                     <label htmlFor='repeats'>Repeats</label>
-                    <select defaultValue={repeats} name='repeats' onChange={(e) => setRepeats(e.target.value)}>
+
+                </div>
+                <div>
+                    <select id='repeat-data-selector' defaultValue={repeats} name='repeats' onChange={(e) => setRepeats(e.target.value)}>
                         <option value="Daily">Daily</option>
                         <option value="Weekly">Weekly</option>
                         <option value="Monthly">Monthly</option>
@@ -266,17 +291,24 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
                     </select>
                 </div>
                 <div>
-                    <label htmlFor='repeat-every'>Repeat Every</label>
-                    <input
-                        type="number"
-                        name="repeat-every"
-                        value={numRepeats}
-                        onChange={(e) => setNumRepeats(e.target.value)}
-                    /><div>{numRepeats === 1 ? "Week" : "Weeks"}</div>
+                    <div id='repeat-every-label'>
+                        <label htmlFor='repeat-every'>Repeat Every</label>
+                    </div>
+                    <div id='repeat-every-input'>
+                        <input
+                        id='repeat-number-input'
+                            type="number"
+                            name="repeat-every"
+                            value={numRepeats}
+                            onChange={(e) => setNumRepeats(e.target.value)}
+                        /><div id='repeat-every-span'>{numRepeats === 1 ? "Week" : "Weeks"}</div>
+                    </div>
                 </div>
                 <div>
-                    <label htmlFor='repat-days-of-week'>Repeat On</label>
-                    <div>
+                    <div id='repeat-on-label'>
+                        <label htmlFor='repat-days-of-week'>Repeat On</label>
+                    </div>
+                    <div id='weekdays-container'>
                         <div className='weekday' id={`dailies-sunday-${sundayFill}`} onClick={() => onWeekdayClick("sunday")}>Su</div>
                         <div className='weekday' id={`dailies-monday-${mondayFill}`} onClick={() => onWeekdayClick("monday")}>Mo</div>
                         <div className='weekday' id={`dailies-tuesday-${tuesdayFill}`} onClick={() => onWeekdayClick("tuesday")}>Tu</div>
@@ -291,9 +323,11 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
     } else if(repeats === "monthly" || repeats === "Monthly") {
         repeatData = (
             <div>
-                <div>
+                <div id='repeat-data-label'>
                     <label htmlFor='repeats'>Repeats</label>
-                    <select defaultValue={repeats} name='repeats' onChange={(e) => setRepeats(e.target.value)}>
+                </div>
+                <div>
+                    <select id='repeat-data-selector' defaultValue={repeats} name='repeats' onChange={(e) => setRepeats(e.target.value)}>
                         <option value="Daily">Daily</option>
                         <option value="Weekly">Weekly</option>
                         <option value="Monthly">Monthly</option>
@@ -301,16 +335,24 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
                     </select>
                 </div>
                 <div>
-                    <label htmlFor='repeat-every'>Repeat Every</label>
-                    <input
-                        type="number"
-                        name="repeat-every"
-                        value={numRepeats}
-                        onChange={(e) => setNumRepeats(e.target.value)}
-                    /><div>{numRepeats === 1 ? "Month" : "Months"}</div>
-                </div>
-                <div>
+                    <div id='repeat-every-label'>
+                        <label htmlFor='repeat-every'>Repeat Every</label>
+                    </div>
+                    <div id='repeat-every-input'>
+                        <input
+                        id='repeat-number-input'
+                            type="number"
+                            name="repeat-every"
+                            value={numRepeats}
+                            onChange={(e) => setNumRepeats(e.target.value)}
+                        /><div id='repeat-every-span'>{numRepeats === 1 ? "Month" : "Months"}</div>
+                    </div>
+                {/* </div> */}
+                <div id='repeat-on-label'>
+
                     <label htmlFor='monthly-repeat-on'>Repeat On</label>
+                </div>
+                <div id='repeat-on-day-of-month'>
                     <input
                     type='radio'
                     name="monthly-repeat-on"
@@ -318,21 +360,28 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
                     onChange={(e) => setDayOfRepeat(e.target.value)}
                     /><p>Day of the Month</p>
 
+                </div>
+                <div id='repeat-on-day-of-week'>
+
                     <input
                     type='radio'
                     name="monthly-repeat-on"
                     value="Day of the Week"
                     onChange={(e) => setDayOfRepeat(e.target.value)}
                     /><p>Day of the Week</p>
+
+                </div>
                 </div>
             </div>
         )
     } else {
         repeatData = (
             <div>
-                <div>
+<div id='repeat-data-label'>
                     <label htmlFor='repeats'>Repeats</label>
-                    <select defaultValue={repeats} name='repeats' onChange={(e) => setRepeats(e.target.value)}>
+                </div>
+                <div>
+                    <select id='repeat-data-selector' defaultValue={repeats} name='repeats' onChange={(e) => setRepeats(e.target.value)}>
                         <option value="Daily">Daily</option>
                         <option value="Weekly">Weekly</option>
                         <option value="Monthly">Monthly</option>
@@ -340,13 +389,18 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
                     </select>
                 </div>
                 <div>
-                    <label htmlFor='repeat-every'>Repeat Every</label>
-                    <input
-                        type="number"
-                        name="repeat-every"
-                        value={numRepeats}
-                        onChange={(e) => setNumRepeats(e.target.value)}
-                    /><div>{numRepeats === 1 ? "Year" : "Years"}</div>
+                    <div id='repeat-every-label'>
+                        <label htmlFor='repeat-every'>Repeat Every</label>
+                    </div>
+                    <div id='repeat-every-input'>
+                        <input
+                        id='repeat-number-input'
+                            type="number"
+                            name="repeat-every"
+                            value={numRepeats}
+                            onChange={(e) => setNumRepeats(e.target.value)}
+                        /><div id='repeat-every-span'>{numRepeats === 1 ? "Year" : "Years"}</div>
+                    </div>
                 </div>
             </div>
         )
@@ -355,56 +409,74 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
     return (
         <>
             <div className='habit-update-modal-backdrop' ref={modalOverlayRef}></div>
-            <div className='update-habit-modal-wrapper'>
-                <h3>Edit Daily</h3><button onClick={onClose}>Cancel</button><button type='submit' onClick={handleSubmit}>Save</button>
-                <input
-                        type='text'
-                        placeholder="Add a checklist item"
-                        value={newChecklistItem}
-                        onChange={(e) => setNewChecklistItem(e.target.value)}
-                        onKeyPress={(e) => {
-                            if(e.key === 'Enter') {
-                                handleAddChecklistItem()
-                            } else {
-                                setNewChecklistItem(e.target.value)
-                            }
-                        }}
+                <div className='update-habit-modal-wrapper'>
+                    <div id='daily-update-modal-colored'>
+                        <div id='edit-daily-button-container'>
+                            <div>
+                                <h3>Edit Daily</h3>
+                            </div>
+                            <div>
+                                <button id='daily-update-cancel-button' onClick={onClose}>Cancel</button>
+                                <button id='daily-update-save-button' onClick={handleSubmit}>Save</button>
+                            </div>
+                        </div>
+                        <div id='daily-title-container'>
+                                <label htmlFor='title'>Title*</label>
+                                <input
+                                    type='text'
+                                    name='title'
+                                    id='daily-title-input-field'
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                />
+                        </div>
+                        <div id='daily-notes-container'>
+                            <label htmlFor='notes'>Notes</label>
+                            <textarea
+                                name='notes'
+                                id='daily-notes-input-field'
+                                value={notes}
+                                onChange={(e) => setNotes(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    <div id='daily-checklist-container'>
+                        <div id='new-checklist-item-div'>
+                            <img id='plus-icon' src="https://i.ibb.co/CB901y0/plus.png" alt="plus" border="0" />
+                            <input
+                                id='add-checklist-item-input'
+                                type='text'
+                                placeholder="New checklist item"
+                                value={newChecklistItem}
+                                onChange={(e) => setNewChecklistItem(e.target.value)}
+                                onKeyPress={(e) => {
+                                    if(e.key === 'Enter') {
+                                        handleAddChecklistItem()
+                                    } else {
+                                        setNewChecklistItem(e.target.value)
+                                    }
+                                }}
 
-                />
-                {checklist?.split(", ").length ? checklist.split(", ").map(item => (
-                    <div>
-                        <input
-                        type='checkbox'
-                        value={item}
-                        onChange={() => processDeleteChecklistItem(item)}
-                        /><span>{item}</span><button onClick={() => processDeleteChecklistItem(item)}>x</button>
-                    </div>
-                )): ''}
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        {/* <button type='submit'>Save</button> */}
-                    </div>
-                    <div>
-                        <label htmlFor='title'>Title*</label>
-                        <input
-                            type='text'
-                            name='title'
-                            id='habit-title-input-field'
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
                         />
+                        </div>
+                    {checklist?.split(", ").length ? checklist.split(", ").map(item => (
+                        <div id='individual-checklist-item'>
+                            <div>
+                                <input
+                                type='checkbox'
+                                value={item}
+                                onChange={() => processDeleteChecklistItem(item)}
+                                /><span>{item}</span>
+                            </div>
+                            <div id='trashcan-container'>
+                                <img onClick={() => processDeleteChecklistItem(item)} id='checklist-trashcan' src="https://i.ibb.co/2WtHztY/trash.png" alt="trash" border="0" />
+                            </div>
+                        </div>
+                    )): ''}
                     </div>
-                    <div>
-                        <label htmlFor='notes'>Notes</label>
-                        <input
-                            type='textarea'
-                            name='notes'
-                            id='habit-notes-input-field'
-                            value={notes}
-                            onChange={(e) => setNotes(e.target.value)}
-                        />
-                    </div>
-                    <div>
+                {/* <form onSubmit={handleSubmit}> */}
+
+                    <div id='daily-update-difficulty-container'>
                         <label htmlFor='difficulty'>Difficulty</label>
                         <select
                             className='habit-difficulty-select'
@@ -417,36 +489,48 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
                             <option value="hard">Hard</option>
                         </select>
                     </div>
-                    <div>
+                    <div id='daily-start-date-container'>
                         <label htmlFor='start-date-calendar'>Start Date</label>
-                        <div onClick={() => showCal ? setShowCal(false) : setShowCal(true)}>{startDateDisplay}</div>
-                        {/* <div onClick={() => showCal ? setShowCal(false) : setShowCal(true)}>Cal</div> */}
+                        <div id='start-date-inner' onClick={() => showCal ? setShowCal(false) : setShowCal(true)}>
+                            <div id='start-calendar-container'>
+                                <img id='start-date-calendar-icon' src="https://i.ibb.co/B27L9Pb/calendar.png" alt="calendar" border="0" />
+                            </div>
+                            <div id='start-date-display-outer'>
+                                {startDateDisplay}
+                            </div>
+
+                        </div>
+
                         {calDisplay}
-                        {/* {showCal ? (<Calendar onChange={(e) => setStartDate(e.target.value)} value={startDate} />) : ''} */}
-                        {/* <Calendar onChange={(e) => setStartDate(e.target.value)} value={startDate} /> */}
 
                     </div>
-                    <div>{repeatData}</div>
-                    <div>
-                        <div>
-                            <div>
-                                {tags.length ? tags.split(", ").map(tag => (
-                                    <div>{tag}<button onClick={() => processDeleteTags(tag)}>x</button></div>
-                                )) : <div>Add tags here...</div>}
-                            </div>
-                            <select multiple={true} value={[...tags]} onChange={(e) => setTags(tags + ", " + e.target.value)}>
-                                <option value="Work">Work</option>
-                                <option value="Exercise">Exercise</option>
-                                <option value="Health + Wellness">Health + Wellness</option>
-                                <option value="School">School</option>
-                                <option value="Teams">Teams</option>
-                                <option value="Chores">Chores</option>
-                                <option value="Creativity">Creativity</option>
-                            </select>
+                    <div id='repeat-data-wrapper'>{repeatData}</div>
+                    <div id='tags-outer-wrapper'>
+                            {/* <div id='tags-outer-wrapper'> */}
+
+                                <div id='habit-tags-container' onClick={() => showTagDropdown === "hidden" ? setShowTagDropdown("visible") : setShowTagDropdown("hidden")}>
+                                    <label id='tags-label'>Tags</label>
+                                    <div id='edit-modal-tag-display'>
+                                        {tags.length ? tags.split(", ").map(tag => (
+                                            <div className='individual-tag-display'>{tag}<button className='tag-delete-x-button' onClick={() => processDeleteTags(tag)}>x</button></div>
+                                        )) : <div className='individual-tag-display'>Add tags here...</div>}
+                                    </div>
+                                </div>
+                                <select id={`difficulty-select-${showTagDropdown}`} multiple={true} value={[...tags]} onChange={(e) => processAddTags(e.target.value)}>
+                                    <option className='tag-dropdown-option' value="Work">Work</option>
+                                    <option className='tag-dropdown-option' value="Exercise">Exercise</option>
+                                    <option className='tag-dropdown-option' value="Health + Wellness">Health + Wellness</option>
+                                    <option className='tag-dropdown-option' value="School">School</option>
+                                    <option className='tag-dropdown-option' value="Teams">Teams</option>
+                                    <option className='tag-dropdown-option' value="Chores">Chores</option>
+                                    <option className='tag-dropdown-option' value="Creativity">Creativity</option>
+                                </select>
+                            {/* </div> */}
                         </div>
-                    </div>
-                </form>
-                <button onClick={handleDeleteHabit}>Delete this Daily</button>
+                {/* </form> */}
+                <div id='edit-habit-bottom-container' onClick={handleDeleteHabit}>
+                            <img id='trash-can-icon' src="https://i.ibb.co/2WtHztY/trash.png" alt="trash" border="0" /><p id='edit-habit-submit-trashcan'>Delete this Daily</p>
+                        </div>
             </div>
         </>
     )

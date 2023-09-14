@@ -16,12 +16,14 @@
     display: flex;
     flex-direction: column;
     background-color: white;
+    align-items: center;
     position: absolute;
     top: 40%;
-    width: 350px;
-    height: 600px;
+    width: 400px;
+    height: fit-content;
     left: 40%;
     z-index: 2000;
+    border-radius: 15px;
 }
 
 #edit-habit-button-container {
@@ -35,17 +37,22 @@
 #update-habit-modal-colored-green {
     background-color: #24cc84;
     color: rgb(0, 87, 55);
-    height: 200px;
+    padding: 10px 25px 10px 25px;
+    border-radius: 15px 15px 0 0;
 }
 
 #update-habit-modal-colored-orange {
     background-color: #ffbe5d;
     color: rgb(121, 75, 0);
+    padding: 10px 25px 10px 25px;
+    border-radius: 15px 15px 0 0;
 }
 
 #update-habit-modal-colored-dark-orange {
     background-color: #ff944c;
     color: rgb(127, 51, 0);
+    padding: 10px 25px 10px 25px;
+    border-radius: 15px 15px 0 0;
 }
 
 #habit-update-cancel-button {
@@ -66,14 +73,20 @@
     border-radius: 2px;
     width: 55px;
     margin-top: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    box-shadow: 0 1px 1px 0 rgba(26,24,29,.16),0 1px 1px 0 rgba(26,24,29,.24);
+    margin-left: 5px;
 }
 
 #habit-update-save-button-orange {
     background-color: #ffffff;
     border: none;
-    height: 40px;
+    height: 35px;
     width: 55px;
     margin-top: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    box-shadow: 0 1px 1px 0 rgba(26,24,29,.16),0 1px 1px 0 rgba(26,24,29,.24);
+    margin-left: 5px;
 }
 
 #habit-update-save-button-dark-orange {
@@ -82,6 +95,9 @@
     height: 40px;
     width: 55px;
     margin-top: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    box-shadow: 0 1px 1px 0 rgba(26,24,29,.16),0 1px 1px 0 rgba(26,24,29,.24);
+    margin-left: 5px;
 }
 
 #habit-update-save-button:hover {
@@ -94,18 +110,30 @@
     border: 1px solid #a09ba7;
     color: #a09ba7;
     background-color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
 }
 
 .habit-pos-button-empty-orange {
     border: 1px solid #a09ba7;
     color: #a09ba7;
     background-color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
 }
 
 .habit-pos-button-empty-dark-orange {
     border: 1px solid #a09ba7;
     background-color: #a09ba7;
     color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
 }
 
 /* !!!POS BUTTON FILLED */
@@ -113,18 +141,30 @@
     border: none;
     background-color: #24cc8f;
     color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
 }
 
 .habit-pos-button-filled-orange {
     border: none;
     background-color: #ffbe5d;
     color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
 }
 
 .habit-pos-button-filled-dark-orange {
     border: none;
     background-color: #ff944c;
     color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
 }
 
 /* !!!NEG BUTTON EMPTY */
@@ -132,18 +172,30 @@
     border: 1px solid #a09ba7;
     color: #a09ba7;
     background-color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
 }
 
 .habit-neg-button-empty-orange {
     border: 1px solid #a09ba7;
     color: #a09ba7;
     background-color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
 }
 
 .habit-neg-button-empty-dark-orange {
     border: 1px solid #a09ba7;
     background-color: #a09ba7;
     color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
 }
 
 /* !!!NEG BUTTON FILLED */
@@ -151,18 +203,30 @@
     border: none;
     background-color: #24cc8f;
     color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
 }
 
 .habit-neg-button-filled-orange {
     border: none;
     background-color: #ffbe5d;
     color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
 }
 
 .habit-neg-button-filled-dark-orange {
     border: none;
     background-color: #ff944c;
     color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
 }
 
 #pos-neg-button-container {
@@ -175,7 +239,7 @@
 #positive-button-and-label, #negative-button-and-label {
     display: flex;
     flex-direction: column;
-    margin-right: 10px;
+    margin: 10px;
 }
 
 #habit-title-container {
@@ -200,26 +264,150 @@
 /* !!!TITLE INPUT */
 #habit-title-input-field-green {
     background-color: #99e7ca;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #2f2f2f;
+    height: 35px;
+    outline: none;
+    border: none;
+    margin-top: 6px;
 }
 
 #habit-title-input-field-orange {
     background-color: #ffdeae;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #2f2f2f;
+    height: 35px;
+    outline: none;
+    border: none;
+    margin-top: 6px;
 }
 
 #habit-title-input-field-dark-orange {
     background-color: #ffc9a6;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #2f2f2f;
+    height: 35px;
+    outline: none;
+    border: none;
+    margin-top: 6px;
 }
 
 /* !!!NOTES INPUT */
 #habit-notes-input-field-green {
     background-color: #99e7ca;
     height: 50px;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #2f2f2f;
+    height: 50px;
+    outline: none;
+    border: none;
+    margin-top: 6px;
 }
 
 #habit-notes-input-field-orange {
     background-color: #ffdeae;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #2f2f2f;
+    height: 50px;
+    outline: none;
+    border: none;
+    margin-top: 6px;
 }
 
 #habit-notes-input-field-dark-orange {
     background-color: #ffc9a6;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #2f2f2f;
+    height: 50px;
+    outline: none;
+    border: none;
+    margin-top: 6px;
+}
+
+
+#habit-update-difficulty-container {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid blue; */
+    width: 80%;
+}
+
+.habit-difficulty-select {
+    height: 38px;
+    margin: 10px 0 15px 0;
+    box-shadow: 2px 2px 2px 2px rgba(26,24,29,.16),0 2px 2px 0 rgba(26,24,29,.24);
+    border: none;
+}
+
+#tags-outer-wrapper {
+    width: 80%;
+    /* border: 1px solid red; */
+}
+
+#tags-outer-wrapper:hover {
+    cursor: pointer;
+}
+
+#difficulty-select-hidden {
+    display: none;
+}
+
+#difficulty-select-visible {
+    position: relative;
+    width: 100%;
+    top: -15px;
+    box-shadow: 2px 2px 2px 2px rgba(26,24,29,.16),0 2px 2px 0 rgba(26,24,29,.24);
+    border: none;
+    z-index: 8000;
+    height: 180px;
+}
+
+#edit-modal-tag-display {
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 2px 2px rgba(26,24,29,.16),0 2px 2px 0 rgba(26,24,29,.24);
+}
+
+.individual-tag-display {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 14px;
+    background-color: #f2f2f2;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 20px;
+    margin: 5px;
+    border: 1px solid lightgray;
+}
+
+.tag-delete-x-button {
+    background-color: white;
+    border: 1px solid #eeeeee;
+    border-radius: 20px;
+    margin-left: 5px;
+
+}
+
+.tag-dropdown-option {
+    margin: 8px 0px;
+}
+
+#edit-habit-bottom-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+#edit-habit-submit-trashcan {
+    width: 80%;
+    background-color: none;
+    border: none;
+}
+
+#trash-can-icon {
+    height: 22px;
+    margin-right: 10px;
 }
