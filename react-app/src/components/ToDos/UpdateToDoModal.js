@@ -155,7 +155,7 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
 
     if(showCal) {
         calDisplay = (
-            <div>
+            <div id='react-calendar-container'>
                 <Calendar onChange={setDueDate} value={dueDate} />
             </div>
         )
@@ -244,13 +244,19 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
                             <option value="hard">Hard</option>
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor='due-date-calendar'>Due Date</label>
-                        <div onClick={() => showCal ? setShowCal(false) : setShowCal(true)}>{dueDateDisplay}</div>
-                        {/* <div onClick={() => showCal ? setShowCal(false) : setShowCal(true)}>Cal</div> */}
+                    <div id='daily-start-date-container'>
+                        <label htmlFor='start-date-calendar'>Start Date</label>
+                        <div id='start-date-inner' onClick={() => showCal ? setShowCal(false) : setShowCal(true)}>
+                            <div id='start-calendar-container'>
+                                <img id='start-date-calendar-icon' src="https://i.ibb.co/B27L9Pb/calendar.png" alt="calendar" border="0" />
+                            </div>
+                            <div id='start-date-display-outer'>
+                                {dueDateDisplay}
+                            </div>
+
+                        </div>
+
                         {calDisplay}
-                        {/* {showCal ? (<Calendar onChange={(e) => setStartDate(e.target.value)} value={startDate} />) : ''} */}
-                        {/* <Calendar onChange={(e) => setStartDate(e.target.value)} value={startDate} /> */}
 
                     </div>
                     <div id='tags-outer-wrapper'>

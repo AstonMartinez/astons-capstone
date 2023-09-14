@@ -39,7 +39,12 @@ const UserOverview = () => {
                         </div>
                     </div>
                     <div>
-                        <div></div><span>{health}/{maxHealth}</span>
+                        <div>
+                            <img id="health-heart" src="https://i.ibb.co/sbhZwgt/love-always-wins.png" alt="love-always-wins" border="0" />
+                        </div>
+                        <div id='health-bar-outer'>
+                            <div id='health-bar-inner' style={{"width": `${health}%`}}></div>
+                        </div><span>{health}/{maxHealth}</span>
                     </div>
                     <div></div><span>{currentXP}/{xpGoal}</span>
                 </div>

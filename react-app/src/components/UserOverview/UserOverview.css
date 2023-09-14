@@ -22,3 +22,14 @@
 #health-heart {
     width: 28px;
 }
+
+#health-bar-outer {
+    width: 200px;
+    height: 12px;
+    background-color: red;
+    border: 1px solid white;
+}
+
+#health-bar-outer {
+    background-color: green;
+}
