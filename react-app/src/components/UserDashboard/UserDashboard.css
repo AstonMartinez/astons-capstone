@@ -261,3 +261,14 @@
 #dashboard-search-bar:focus {
     outline: 2px solid purple;
 }
+
+
+
+#user-overview-elem, #right-half-user-overview-elem {
+    /* border: 1px solid white; */
+    position: absolute;
+}
+
+#user-overview-elem {
+    left: 160px;
+}

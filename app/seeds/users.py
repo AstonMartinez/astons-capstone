@@ -19,7 +19,7 @@ def seed_users():
         username='Demo',
         email='demo@aa.io',
         bio='just your average everyday adventurer',
-        experience_points=80,
+        experience_points=5,
         level=1,
         date_joined=datetime(2023, 9, 6),
         password='password',

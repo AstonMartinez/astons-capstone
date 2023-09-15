@@ -325,16 +325,16 @@ const UserDashboard = () => {
                 </div>
             </div>
             <div id='user-dashboard-wrapper'>
-                <div>
+                <div id='habit-component-dashboard-container'>
                     <HabitComponent />
                 </div>
-                <div>
+                <div id='dailies-component-dashboard-container'>
                     <DailiesComponent />
                 </div>
-                <div>
+                <div id='todos-component-dashboard-container'>
                     <ToDosComponent />
                 </div>
-                <div>
+                <div id='rewards-component-dashboard-container'>
                     <RewardsComponent />
                 </div>
             </div>

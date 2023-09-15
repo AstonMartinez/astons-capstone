@@ -16,6 +16,7 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
     const [status, setStatus] = useState(habitData.status)
     console.log("TOP FILL: ", fillType)
     const [showTagDropdown, setShowTagDropdown] = useState("hidden")
+    const [showDifficultyDropdown, setShowDifficultyDropdown] = useState(false)
 
     const determineTopFill = () => {
         if(habitData.status === "strong") {
@@ -56,21 +57,70 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
     const [positiveFill, setPositiveFill] = useState(initialPosButtonFill)
     const [negativeFill, setNegativeFill] = useState(initialNegButtonFill)
 
-    // const handleClickOutside = useCallback((e) => {
-    //     e.preventDefault()
-    //     if (modalOverlayRef.current === e.target) {
-    //         onClose()
-    //     } else {
-    //         return
-    //     }
-    // }, [onClose]);
+    const trivialOption = (
+        <div className='difficulty-option-outer-container' onClick={() => setDifficulty("Trivial")}>
+            <div className='individual-difficulty-option'>
+                <span>Trivial</span>
+            </div>
+            <div>
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+            </div>
+        </div>
+    )
 
-    // useEffect(() => {
-    //     document.addEventListener('mousedown', handleClickOutside)
-    //     return () => {
-    //         document.removeEventListener('mousedown', handleClickOutside)
-    //     }
-    // }, [handleClickOutside])
+    const easyOption = (
+        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Easy")}>
+            <div className='individual-difficulty-option'>
+                <span>Easy</span>
+            </div>
+            <div>
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+            </div>
+        </div>
+    )
+
+    const mediumOption = (
+        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Medium")}>
+            <div className='individual-difficulty-option'>
+                <span>Medium</span>
+            </div>
+            <div>
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+            </div>
+        </div>
+    )
+
+    const hardOption = (
+        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Hard")}>
+            <div className='individual-difficulty-option'>
+                <span>Hard</span>
+            </div>
+            <div>
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+            </div>
+        </div>
+    )
+
+    const difficultyDropdown = (
+        <div id={`difficulty-dropdown-container-${showDifficultyDropdown}`}>
+            {trivialOption}
+            {easyOption}
+            {mediumOption}
+            {hardOption}
+        </div>
+    )
+
+    const difficultyDisplay = (
+        <div id='chosen-difficulty-display' onClick={() => showDifficultyDropdown ? setShowDifficultyDropdown(false) : setShowDifficultyDropdown(true)} >
+            <p>{difficulty}</p><img src="https://i.ibb.co/tpMrL6c/down-arrow-not-filled.png" alt="down-arrow-not-filled" border="0" style={{"height": "14px"}} />
+        </div>
+    )
 
     const processDeleteTags = (item) => {
         const allTags = tags.split(", ")
@@ -257,7 +307,9 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
                         </div>
                         <div id='habit-update-difficulty-container'>
                             <label htmlFor='difficulty'>Difficulty</label>
-                            <select
+                            {difficultyDisplay}
+                            {difficultyDropdown}
+                            {/* <select
                                 className='habit-difficulty-select'
                                 value={difficulty}
                                 onChange={(e) => setDifficulty(e.target.value)}
@@ -266,7 +318,7 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
                                 <option value="easy">Easy</option>
                                 <option value="medium">Medium</option>
                                 <option value="hard">Hard</option>
-                            </select>
+                            </select> */}
                         </div>
                         <div id='tags-outer-wrapper'>
                             {/* <div id='tags-outer-wrapper'> */}

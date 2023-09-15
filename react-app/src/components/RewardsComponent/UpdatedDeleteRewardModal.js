@@ -10,6 +10,7 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
     const [cost, setCost] = useState(rewardData.cost)
     const [tags, setTags] = useState(rewardData.tags)
     const [errors, setErrors] = useState([])
+    const [showTagDropdown, setShowTagDropdown] = useState("hidden")
 
     // const handleClickOutside = useCallback((e) => {
     //     e.preventDefault()
@@ -88,14 +89,14 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
         <>
             <div className='habit-update-modal-backdrop'  ref={modalOverlayRef}></div>
                 <div className='update-habit-modal-wrapper'>
-                    <div id={`update-reward-modal-colored`}>
+                    <div id={`reward-update-modal-colored`}>
                         <div id='edit-habit-button-container'>
-                            <div>
+                            <div id='edit-reward-header-text'>
                                 <h3>Edit Reward</h3>
                             </div>
                             <div>
                                 <button id={`reward-update-cancel-button`} onClick={onClose}>Cancel</button>
-                                <button id={`reward-update-save-button`} onClick={handleSubmit}>Save</button>
+                                <button id={`daily-update-save-button`} onClick={handleSubmit}>Save</button>
                             </div>
                         </div>
                         <div id={`reward-title-container`}>
@@ -120,35 +121,50 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
                             />
                         </div>
                     </div>
-                    <div>
+                    <div id='reward-cost-container'>
                         <label htmlFor='cost'>Cost</label>
-                        <input
-                            name='cost'
-                            id='reward-cost-input'
-                            type='number'
-                            value={cost}
-                            onChange={(e) => setCost(e.target.value)}
-                        />
-                    </div>
-                        <div>
-                            <div>
-                                <div>
-                                    {tags !== undefined && tags.length > 0 ? tags?.split(", ")?.map(tag => (
-                                        <div>{tag}<button onClick={() => processDeleteTags(tag)}>x</button></div>
-                                    )) : <div>Add tags here...</div>}
+                        <div id='reward-cost-inner'>
+                            <div id='reward-coin-holder'>
+                                <div className='coin-circle'>
+                                    <div className='inner-coin-circle'><p>Q</p></div>
                                 </div>
-                                <select multiple={true} value={[...tags]} onChange={(e) => processAddTags(e.target.value)}>
-                                    <option value="Work">Work</option>
-                                    <option value="Exercise">Exercise</option>
-                                    <option value="Health + Wellness">Health + Wellness</option>
-                                    <option value="School">School</option>
-                                    <option value="Teams">Teams</option>
-                                    <option value="Chores">Chores</option>
-                                    <option value="Creativity">Creativity</option>
-                                </select>
+                            </div>
+                            <div>
+                                <input
+                                    name='cost'
+                                    id='reward-cost-input'
+                                    type='number'
+                                    value={cost}
+                                    onChange={(e) => setCost(e.target.value)}
+                                />
                             </div>
                         </div>
-                    <button onClick={handleDeleteReward}>Delete this Reward</button>
+                    </div>
+                        {/* <div> */}
+                        <div id='tags-outer-wrapper'>
+                            {/* <div id='tags-outer-wrapper'> */}
+
+                                <div id='habit-tags-container' onClick={() => showTagDropdown === "hidden" ? setShowTagDropdown("visible") : setShowTagDropdown("hidden")}>
+                                    <label id='tags-label'>Tags</label>
+                                    <div id='edit-modal-tag-display'>
+                                        {tags.length ? tags.split(", ").map(tag => (
+                                            <div className='individual-tag-display'>{tag}<button className='tag-delete-x-button' onClick={() => processDeleteTags(tag)}>x</button></div>
+                                        )) : <div className='individual-tag-display'>Add tags here...</div>}
+                                    </div>
+                                </div>
+                                <select id={`difficulty-select-${showTagDropdown}`} multiple={true} value={[...tags]} onChange={(e) => processAddTags(e.target.value)}>
+                                    <option className='tag-dropdown-option' value="Work">Work</option>
+                                    <option className='tag-dropdown-option' value="Exercise">Exercise</option>
+                                    <option className='tag-dropdown-option' value="Health + Wellness">Health + Wellness</option>
+                                    <option className='tag-dropdown-option' value="School">School</option>
+                                    <option className='tag-dropdown-option' value="Teams">Teams</option>
+                                    <option className='tag-dropdown-option' value="Chores">Chores</option>
+                                    <option className='tag-dropdown-option' value="Creativity">Creativity</option>
+                                </select>
+                        </div>
+                        <div id='edit-reward-bottom-container' onClick={handleDeleteReward}>
+                            <img id='trash-can-icon' src="https://i.ibb.co/2WtHztY/trash.png" alt="trash" border="0" /><p id='edit-habit-submit-trashcan'>Delete this Reward</p>
+                        </div>
                 </div>
 
             {/* </div> */}

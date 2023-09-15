@@ -1,0 +1,110 @@
+#create-task-header-text {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+#create-task-button-container {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    display: flex;
+    width: 110px;
+    margin: 0 10px;
+    justify-content: space-between;
+}
+
+#create-task-modal-colored {
+    background-color: #6133b4;
+    color: rgb(127, 51, 0);
+    padding: 10px 25px 10px 25px;
+    border-radius: 15px 15px 0 0;
+    color: white;
+    margin-bottom: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+#task-create-cancel-button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: white;
+    height: 30px;
+}
+
+#task-create-cancel-button:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#task-create-save-button {
+    background-color: #ffffff;
+    border: none;
+    height: 30px;
+    width: 55px;
+    margin-top: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    box-shadow: 0 1px 1px 0 rgba(26,24,29,.16),0 1px 1px 0 rgba(26,24,29,.24);
+    margin-left: 5px;
+}
+
+#task-create-save-button:hover {
+    cursor: pointer;
+}
+
+.create-habit-pos-button-empty {
+    border: 1px solid #a09ba7;
+    color: #a09ba7;
+    background-color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
+}
+
+.create-habit-pos-button-filled {
+    border: none;
+    background-color: #6133b4;
+    color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
+}
+
+.create-habit-neg-button-empty {
+    border: 1px solid #a09ba7;
+    color: #a09ba7;
+    background-color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
+}
+
+.create-habit-neg-button-filled {
+    border: none;
+    background-color: #6133b4;
+    color: white;
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-left: 5px;
+}
+
+#create-task-bottom-create-button {
+    background-color: #6133b4;
+    color: white;
+    border: none;
+    height: 35px;
+    width: 55px;
+    margin-top: 10px;
+    font-family: 'Roboto Condensed', sans-serif;
+    box-shadow: 0 1px 1px 0 rgba(26,24,29,.16),0 1px 1px 0 rgba(26,24,29,.24);
+    margin-left: 5px;
+}
+
+#create-task-error-text {
+    color: red;
+}
+
+h3 {
+    font-family: 'Roboto Condensed', sans-serif;
+}

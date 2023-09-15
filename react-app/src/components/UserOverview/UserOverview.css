@@ -26,10 +26,94 @@
 #health-bar-outer {
     width: 200px;
     height: 12px;
-    background-color: red;
-    border: 1px solid white;
+    background-color: #f74e52;
+    /* border: 1px solid white; */
 }
 
-#health-bar-outer {
-    background-color: green;
+#health-bar-inner {
+    background-color: #271b3d;
+}
+
+#health-container {
+    display: flex;
+    /* border: 1px solid red; */
+    align-items: center;
+    width: 310px;
+    justify-content: space-evenly;
+}
+
+
+#experience-star {
+    width: 28px;
+}
+
+#experience-bar-outer {
+    width: 200px;
+    height: 12px;
+    background-color: #ffbe5d;
+    /* border: 1px solid white; */
+}
+
+#experience-bar-inner {
+    background-color: #271b3d;
+}
+
+#experience-container {
+    display: flex;
+    /* border: 1px solid red; */
+    align-items: center;
+    width: 310px;
+    justify-content: space-evenly;
+}
+
+
+#user-overview-username-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* border: 1px solid red; */
+    width: 100%;
+    margin-left: 5px;
+    padding-left: 8px;
+    /* justify-content: space-around; */
+}
+
+#warrior-sword {
+    height: 28px;
+    margin-right: 8px;
+}
+
+#top-username-container {
+    margin-left: 15px;
+    margin-bottom: -10px;
+    margin-top: 5px;
+    /* border: 1px solid blue; */
+}
+
+#user-overview-elem {
+    /* border: 1px solid red; */
+    margin-bottom: 20px;
+}
+
+#right-half-user-overview-elem {
+    position: absolute;
+    right: 100px;
+}
+
+@media screen and (max-width: 990px) {
+    #right-half-user-overview-elem {
+        display: none;
+    }
+
+    #user-dashboard-wrapper {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+    }
+
+    #habit-component-dashboard-container, #dailies-component-dashboard-container {
+        margin-bottom: 60px;
+        /* height: fit-content; */
+        /* border: 1px solid red; */
+    }
 }

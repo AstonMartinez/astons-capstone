@@ -115,3 +115,106 @@
     text-align: left;
     /* padding-bottom: 5px; */
 }
+
+#reward-update-modal-colored {
+    background-color: #6133b4;
+    color: rgb(127, 51, 0);
+    padding: 10px 25px 10px 25px;
+    border-radius: 15px 15px 0 0;
+    color: white;
+    margin-bottom: 20px;
+}
+
+#reward-title-container {
+    display: flex;
+    flex-direction: column;
+    width: 330px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+#reward-title-input-field {
+    background-color: #d7ccec;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #2f2f2f;
+    height: 35px;
+    outline: none;
+    border: none;
+    margin-top: 6px;
+}
+
+#reward-notes-container {
+    display: flex;
+    flex-direction: column;
+    width: 330px;
+    /* height: 60px; */
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+#reward-notes-input-field {
+    background-color: #d7ccec;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #2f2f2f;
+    height: 50px;
+    outline: none;
+    border: none;
+    margin-top: 6px;
+}
+
+#edit-reward-header-text {
+    color: white;
+}
+
+
+#reward-update-cancel-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+#reward-update-cancel-button:hover {
+    cursor: pointer;
+}
+
+#reward-cost-container {
+    /* border: 1px solid red; */
+    width: 80%;
+}
+
+#reward-cost-inner {
+    /* border: 1px solid blue; */
+    margin: 10px 0 15px 0;
+    display: flex;
+    width: 100%;
+}
+
+#reward-cost-input {
+    border: .5px solid gray;
+    width: 80%;
+    height: 30px;
+    width: 195%;
+}
+
+#reward-coin-holder {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: .5px solid gray;
+    border-left: .5px solid gray;
+    border-bottom: .5px solid gray;
+    background-color: #edecee;
+}
+
+#edit-reward-bottom-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-bottom: 15px; */
+    /* border: 1px solid red; */
+    width: 50%;
+    margin: 0 auto 15px auto;
+}

@@ -18,10 +18,76 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
     const [checklist, setChecklist] = useState(toDoData.checklist)
     const [newChecklistItem, setNewChecklistItem] = useState('')
     const [status, setStatus] = useState(toDoData.status)
-    const [showTagDropdown, setShowTagDropdown] = useState(false)
+    const [showTagDropdown, setShowTagDropdown] = useState("hidden")
+    const [showDifficultyDropdown, setShowDifficultyDropdown] = useState(false)
 
     let calDisplay
     let dueDateDisplay
+
+    const trivialOption = (
+        <div className='difficulty-option-outer-container' onClick={() => setDifficulty("Trivial")}>
+            <div className='individual-difficulty-option'>
+                <span>Trivial</span>
+            </div>
+            <div>
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+            </div>
+        </div>
+    )
+
+    const easyOption = (
+        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Easy")}>
+            <div className='individual-difficulty-option'>
+                <span>Easy</span>
+            </div>
+            <div>
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+            </div>
+        </div>
+    )
+
+    const mediumOption = (
+        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Medium")}>
+            <div className='individual-difficulty-option'>
+                <span>Medium</span>
+            </div>
+            <div>
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+            </div>
+        </div>
+    )
+
+    const hardOption = (
+        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Hard")}>
+            <div className='individual-difficulty-option'>
+                <span>Hard</span>
+            </div>
+            <div>
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+                <img src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" style={{"height": "12px"}} />
+            </div>
+        </div>
+    )
+
+    const difficultyDropdown = (
+        <div id={`difficulty-dropdown-container-${showDifficultyDropdown}`}>
+            {trivialOption}
+            {easyOption}
+            {mediumOption}
+            {hardOption}
+        </div>
+    )
+
+    const difficultyDisplay = (
+        <div id='chosen-difficulty-display' onClick={() => showDifficultyDropdown ? setShowDifficultyDropdown(false) : setShowDifficultyDropdown(true)} >
+            <p>{difficulty}</p><img src="https://i.ibb.co/tpMrL6c/down-arrow-not-filled.png" alt="down-arrow-not-filled" border="0" style={{"height": "14px"}} />
+        </div>
+    )
 
     const processAddTags = (value) => {
         const tagsArr = tags.split(", ")
@@ -170,10 +236,10 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
                     <div id='daily-update-modal-colored'>
                         <div id='edit-daily-button-container'>
                             <div>
-                                <h3>Edit Daily</h3>
+                                <h3>Edit To-Do</h3>
                             </div>
                             <div>
-                                <button id='daily-update-cancel-button' onClick={onClose}>Cancel</button>
+                                <button id='habit-update-cancel-button' onClick={onClose}>Cancel</button>
                                 <button id='daily-update-save-button' onClick={handleSubmit}>Save</button>
                             </div>
                         </div>
@@ -233,7 +299,9 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
                     </div>
                     <div id='daily-update-difficulty-container'>
                         <label htmlFor='difficulty'>Difficulty</label>
-                        <select
+                        {difficultyDisplay}
+                        {difficultyDropdown}
+                        {/* <select
                             className='habit-difficulty-select'
                             value={difficulty}
                             onChange={(e) => setDifficulty(e.target.value)}
@@ -242,7 +310,7 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
                             <option value="easy">Easy</option>
                             <option value="medium">Medium</option>
                             <option value="hard">Hard</option>
-                        </select>
+                        </select> */}
                     </div>
                     <div id='daily-start-date-container'>
                         <label htmlFor='start-date-calendar'>Start Date</label>

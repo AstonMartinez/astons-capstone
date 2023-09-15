@@ -311,7 +311,13 @@
     margin-left: 5px;
 }
 
-#daily-update-cancel-button {
+#daily-update-save-button:hover {
+    cursor: pointer;
+}
+
+
+
+#habit-update-cancel-button {
     background-color: transparent;
     border: none;
 }
@@ -706,4 +712,52 @@
 
 #repeat-on-day-of-week, #repeat-on-day-of-month {
     display: flex;
+}
+
+#difficulty-dropdown-container-false {
+    display: none;
+}
+
+#difficulty-dropdown-container-true {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    z-index: 8000;
+    background-color: white;
+    width: 96%;
+    box-shadow: 2px 2px 2px 2px rgba(26,24,29,.16),0 2px 2px 0 rgba(26,24,29,.24);
+    padding: 5px;
+    /* top: 10px; */
+    /* bottom: 10px; */
+    top: -10px;
+}
+
+.difficulty-option-outer-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 5px;
+    height: 15px;
+}
+
+.difficulty-option-outer-container:hover {
+    cursor: pointer;
+    background-color: #f5f1ff;
+}
+
+#chosen-difficulty-display {
+    width: 93%;
+    height: 38px;
+    margin: 10px 0 15px 0;
+    box-shadow: 2px 2px 2px 2px rgba(26,24,29,.16),0 2px 2px 0 rgba(26,24,29,.24);
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+#chosen-difficulty-display:hover {
+    cursor: pointer;
 }

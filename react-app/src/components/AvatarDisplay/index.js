@@ -22,8 +22,8 @@ const AvatarDisplay = ({ avatarSkin, avatarHair, avatarShirt, avatarBangs, avata
                 <div id={`avatar-display-wrapper-${avatar.background}`}>
                     <img id='layer-1' src={avatar.shirt} alt='avatar shirt' />
                     <img id='layer-2' src={avatar.skin} alt='avatar skin' />
-                    <img id='layer-4' src={avatar.bangs} alt='avatar hair' />
-                    <img id='layer-3' src={avatar.hair} alt='avatar hair' />
+                    <img id='layer-4' src={avatar.hair} alt='avatar hair' />
+                    <img id='layer-3' src={avatar.bangs} alt='avatar hair' />
                 </div>
             )}
         </>
