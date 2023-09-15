@@ -1,0 +1,126 @@
+#inventory-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    /* position: absolute; */
+    margin-top: 175px;
+    width: 100%;
+    /* margin-left: -20px; */
+    /* margin-right: -200px; */
+    background-color: #f9f9f9;
+    /* padding-right: 100px; */
+    margin-bottom: 100px;
+    justify-content: center;
+
+}
+
+#upper-item-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    height: 50px;
+    width: 100%;
+    /* margin-bottom: 50px; */
+    /* margin-left: -10px;
+    margin-right: -20px; */
+
+}
+
+#equipment-display-wrapper {
+    /* margin-top: 50px; */
+    background-color: white;
+    padding-top: 100px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 200px;
+    /* margin-right: -100px; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: space-evenly;
+}
+
+#equipment-item-text {
+    font-family: 'Roboto Condensed', sans-serif;
+    border-bottom: 5px solid gray;
+}
+
+#item-image-container {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.equipment-item-image {
+    height: 100px;
+    /* border: 1px solid blue; */
+    box-shadow: 2px 2px 2px 2px rgba(26,24,29,.16),0 2px 2px 0 rgba(26,24,29,.24);
+}
+
+#tool-tip-active {
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+    z-index: 8000;
+    border: 1px solid black;
+    bottom: 20px;
+}
+
+#tool-tip-inactive {
+    /* display: none; */
+    display: flex;
+    flex-flow: row wrap;
+    z-index: 8000;
+    border: 1px solid black;
+}
+
+#item-stats-wrapper-true {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    align-items: center;
+    text-align: center;
+    border: 1px solid black;
+    position: relative;
+    width: 300px;
+    height: 150px;
+    border-radius: 20px;
+    top: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+#item-stats-wrapper-false {
+    display: none;
+}
+
+.stats-inner-container {
+    display: flex;
+    flex-flow: column;
+    border: 2px solid purple;
+    width: 146px;
+    height: 72px;
+    justify-content: center;
+    background-color: #f5f1ff;
+
+}
+
+#strength-stats-inner-container {
+    border-radius: 20px 0 0 0;
+}
+
+#intelligence-stats-inner-container {
+    border-radius: 0 20px 0 0;
+}
+
+#perception-stats-inner-container {
+    border-radius: 0 0 20px 0;
+}
+
+#constitution-stats-inner-container {
+    border-radius: 0 0 0 20px;
+}
+
+.item-stat-label {
+    font-weight: bold;
+}

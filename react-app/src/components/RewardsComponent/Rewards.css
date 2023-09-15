@@ -218,3 +218,18 @@
     width: 50%;
     margin: 0 auto 15px auto;
 }
+
+#reward-enter-form-error {
+    width: 90%;
+    /* text-align: center; */
+    /* border: 1px solid red; */
+    /* justify-self: center; */
+    margin: 0 auto;
+    /* height: fit-content; */
+    /* padding: 0 5px; */
+    position: relative;
+}
+
+#new-habit-title-input:focus {
+    outline: 1px solid purple;
+}

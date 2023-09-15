@@ -169,9 +169,11 @@ const IndividualHabit = ({habitData}) => {
 
         let count
         const currCount = habitData.neg_count
+        setNegativeCount(currCount + 1)
         // console.log("CURR COUNT: ", currCount)
         if(habitData.type === "negative" && currCount === 0) {
             // console.log("STARTING")
+
             const userInfo = {
                 gold: sessionUser.gold,
                 experience_points: sessionUser.experience_points,

@@ -56,16 +56,16 @@ function ProfileButton({ user }) {
         <img id='profile-icon' src="https://i.ibb.co/Wg6yLBy/user-icon.png" alt="user-icon" border="0" />
 
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <div className={ulClassName} ref={ulRef}>
         {user ? (
           <div id="user-dropdown-div">
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li onClick={handleCustomizationOpen}>Edit Avatar</li>
+            {/* <div className='nav-dropdown-option'>{user.username}</div>
+            <div className='nav-dropdown-option'>{user.email}</div> */}
+            <div className='nav-dropdown-option' onClick={handleCustomizationOpen}>Edit Avatar</div>
             <Customize />
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
+            <div id='nav-log-out-container' className='nav-dropdown-option'>
+              <button id='nav-log-out-button' onClick={handleLogout}>Log Out</button>
+            </div>
           </div>
         ) : (
           <>
@@ -82,7 +82,7 @@ function ProfileButton({ user }) {
             />
           </>
         )}
-      </ul>
+      </div>
       {showCustomize && (
         <CustomizeAvatarModal
           onSubmit={() => {

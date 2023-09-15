@@ -68,7 +68,7 @@ const UserOverview = () => {
                 <div>
                     <p>Play QuestForge with Others</p>
                     <p>Start your own Party or join an existing one<br></br>to take on Quests and boost your motivation!</p>
-                    <button>Get Started</button>
+                    <button id='add-task-button' onClick={() =>  alert("Feature coming soon!")}>Get Started</button>
                 </div>
             </div>
         </div>

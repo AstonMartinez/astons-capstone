@@ -51,6 +51,7 @@ def create_habit():
         db.session.add(new_habit)
         db.session.commit()
         return new_habit.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
 @habit_routes.route('/<int:id>/update', methods=["PUT"])

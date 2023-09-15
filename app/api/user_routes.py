@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import User, db
 from app.models.avatar import Avatar
+from app.models.user_equipment import UserEquipment
+from app.models.equipment import EquipmentItem
 
 user_routes = Blueprint('users', __name__)
 
@@ -52,3 +54,15 @@ def update_user_stats():
     db.session.commit()
     updated_user = curr_user
     return updated_user.to_dict()
+
+@user_routes.route('/inventory')
+def get_user_inventory():
+    curr_user_equip_items = UserEquipment.query.filter(UserEquipment.user_id == current_user.id)
+    result = {}
+    if curr_user_equip_items:
+        for item in curr_user_equip_items:
+            equipment_item = EquipmentItem.query.get(item.id)
+            if equipment_item:
+                equipment_item_dict = equipment_item.to_dict()
+                result[equipment_item_dict['id']] = equipment_item_dict
+    return result
