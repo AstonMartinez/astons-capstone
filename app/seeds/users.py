@@ -24,7 +24,7 @@ def seed_users():
         date_joined=datetime(2023, 9, 6),
         password='password',
         gold=500,
-        health=100
+        health=50
         )
     marnie = User(
         username='marnie',
