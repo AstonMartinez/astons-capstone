@@ -1,0 +1,106 @@
+#bug-report-modal-inner-wrap {
+    font-family: 'Roboto Condensed', sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+    position: absolute;
+    /* top: -40%; */
+    bottom: 0px;
+    width: 400px;
+    height: 650px;
+    left: 40%;
+    z-index: 2000;
+    border-radius: 15px;
+    border-radius: 15px 15px 15px 15px;
+    margin-bottom: 200px;
+}
+
+#bug-report-x-button-container {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    display: flex;
+    width: 98%;
+    margin: 10px 10px 0 0;
+    justify-content: flex-end;
+    /* border: 1px solid red; */
+}
+
+#report-form-container {
+    padding: 10px 25px 10px 25px;
+}
+
+#bug-report-title-container {
+    color: white;
+    background-color: #6133b4;
+    border-radius: 15px 15px 0 0;
+    padding: 10px 25px 10px 25px;
+    margin-bottom: 20px;
+}
+
+#bug-report-submit-button {
+    background-color: #6133b4;
+    color: white;
+    border: none;
+    height: 35px;
+    width: 150px;
+    margin: 10px auto;
+    font-family: 'Roboto Condensed', sans-serif;
+    box-shadow: 0 1px 1px 0 rgba(26,24,29,.16),0 1px 1px 0 rgba(26,24,29,.24);
+    margin-left: 90px;
+}
+
+
+#bug-report-email-container {
+    display: flex;
+    flex-direction: column;
+    width: 330px;
+    /* margin-right: 10px;
+    margin-left: 10px; */
+    margin-bottom: 10px;
+}
+
+#bug-report-desc-container {
+    display: flex;
+    flex-direction: column;
+    width: 330px;
+    /* height: 60px; */
+    /* margin-right: 10px;
+    margin-left: 10px; */
+    margin-bottom: 10px;
+}
+
+#bug-report-email-field {
+    /* background-color: #ffdeae; */
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #2f2f2f;
+    height: 25px;
+    outline: none;
+    border: 1px solid black;
+    margin-top: 6px;
+    padding: 10px 5px 10px 5px;
+    width: 98%;
+    margin-bottom: 15px;
+}
+
+#bug-report-description-field {
+    /* background-color: #ffdeae; */
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #2f2f2f;
+    height: 50px;
+    outline: none;
+    border: 1px solid black;
+    margin-top: 6px;
+    padding: 10px 5px 10px 5px;
+    width: 98%;
+    margin-bottom: 15px;
+}
+
+#bug-report-description-field:focus, #bug-report-email-field:focus {
+    outline: 2px solid purple;
+}
+
+#required-asterisk {
+    color: red;
+}

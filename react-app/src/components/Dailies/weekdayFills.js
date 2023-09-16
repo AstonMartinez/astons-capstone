@@ -1,6 +1,6 @@
 export const checkWeekdayOne = (dayOfRepeat) => {
     const weekdays = dayOfRepeat.split(", ")
-    const checker = weekdays.filter(i => i.toLowerCase === "sunday")
+    const checker = weekdays.filter(i => i.toLowerCase() === "sunday")
     if(checker.length) {
         return 'filled'
     } else {
@@ -10,7 +10,7 @@ export const checkWeekdayOne = (dayOfRepeat) => {
 
 export const checkWeekdayTwo = (dayOfRepeat) => {
     const weekdays = dayOfRepeat.split(", ")
-    const checker = weekdays.filter(i => i.toLowerCase === "monday")
+    const checker = weekdays.filter(i => i.toLowerCase() === "monday")
     if(checker.length) {
         return 'filled'
     } else {
@@ -20,7 +20,7 @@ export const checkWeekdayTwo = (dayOfRepeat) => {
 
 export const checkWeekdayThree = (dayOfRepeat) => {
     const weekdays = dayOfRepeat.split(", ")
-    const checker = weekdays.filter(i => i.toLowerCase === "tuesday")
+    const checker = weekdays.filter(i => i.toLowerCase() === "tuesday")
     if(checker.length) {
         return 'filled'
     } else {
@@ -30,7 +30,7 @@ export const checkWeekdayThree = (dayOfRepeat) => {
 
 export const checkWeekdayFour = (dayOfRepeat) => {
     const weekdays = dayOfRepeat.split(", ")
-    const checker = weekdays.filter(i => i.toLowerCase === "wednesday")
+    const checker = weekdays.filter(i => i.toLowerCase() === "wednesday")
     if(checker.length) {
         return 'filled'
     } else {
@@ -40,7 +40,7 @@ export const checkWeekdayFour = (dayOfRepeat) => {
 
 export const checkWeekdayFive = (dayOfRepeat) => {
     const weekdays = dayOfRepeat.split(", ")
-    const checker = weekdays.filter(i => i.toLowerCase === "thursday")
+    const checker = weekdays.filter(i => i.toLowerCase() === "thursday")
     if(checker.length) {
         return 'filled'
     } else {
@@ -50,7 +50,7 @@ export const checkWeekdayFive = (dayOfRepeat) => {
 
 export const checkWeekdaySix = (dayOfRepeat) => {
     const weekdays = dayOfRepeat.split(", ")
-    const checker = weekdays.filter(i => i.toLowerCase === "friday")
+    const checker = weekdays.filter(i => i.toLowerCase() === "friday")
     if(checker.length) {
         return 'filled'
     } else {
@@ -60,7 +60,7 @@ export const checkWeekdaySix = (dayOfRepeat) => {
 
 export const checkWeekdaySeven = (dayOfRepeat) => {
     const weekdays = dayOfRepeat.split(", ")
-    const checker = weekdays.filter(i => i.toLowerCase === "saturday")
+    const checker = weekdays.filter(i => i.toLowerCase() === "saturday")
     if(checker.length) {
         return 'filled'
     } else {

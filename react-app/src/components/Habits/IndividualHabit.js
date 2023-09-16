@@ -265,7 +265,7 @@ const IndividualHabit = ({habitData}) => {
     } else if(habitData.type === "positive, negative") {
         countDisplay = (
             <div>
-                <span>{positiveCount > 0 ? '+' : ''}{positiveCount} | {negativeCount > 0 ? '-' : ''}{negativeCount}</span>
+                <span>{positiveCount > 0 ? '+' : '0'}{positiveCount} | {negativeCount > 0 ? '-' : '0'}{negativeCount}</span>
             </div>
         )
     } else {

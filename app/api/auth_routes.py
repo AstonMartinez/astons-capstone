@@ -73,6 +73,8 @@ def sign_up():
     """
     Creates a new user and logs them in
     """
+    all_users = User.query.all()
+    user_id = len(all_users) + 1
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -88,8 +90,10 @@ def sign_up():
             health=100
         )
 
+
+
         user_avatar = Avatar(
-            user_id=user.id,
+            user_id=user_id,
             shirt="https://i.ibb.co/z8tJWZV/slim-shirt-black.png",
             hair="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
             bangs="https://i.ibb.co/Qrby7Vm/hair-bangs-1-black.png",
@@ -101,9 +105,7 @@ def sign_up():
         db.session.commit()
 
         user_dict = user.to_dict()
-
-        avatar_to_return = Avatar.query.filter(Avatar.user_id == user_dict.id)
-        avatar_dict = avatar_to_return.to_dict()
+        avatar_dict = user_avatar.to_dict()
 
         user_dict['avatar'] = avatar_dict
         login_user(user)

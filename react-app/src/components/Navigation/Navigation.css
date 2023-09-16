@@ -108,6 +108,27 @@
   z-index: 1000;
 } */
 
+.inner-coin-circle {
+  border: 2px solid #df901e;
+  background-color: #ffd391;
+  width: 14px;
+  height: 14px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4000;
+}
+
+.inner-coin-circle > p {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 8px;
+  font-weight: bold;
+  color: #cf9030;
+  z-index: 4000;
+
+}
+
 #nav-decor {
   position: absolute;
   right: 0;
@@ -171,4 +192,36 @@
   border: none;
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 15px;
+}
+
+#nav-bar-log-in-button {
+  background-color: #9963fe;
+  border: none;
+  border-radius: 2px;
+  height: 50%;
+  margin: auto 10px;
+  width: 80px;
+  color: white;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+
+}
+
+#nav-bar-coin-container {
+  /* border: 1px solid red; */
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5000;
+  /* margin-top: 20px; */
+  position: absolute;
+  width: 80px;
+  right: 80px;
+}
+
+#gold-text {
+  color: white;
+  font-family: 'Roboto Condensed', sans-serif;
 }

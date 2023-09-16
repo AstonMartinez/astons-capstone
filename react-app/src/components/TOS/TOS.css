@@ -1,0 +1,28 @@
+#tos-outer-parent-container {
+    /* border: 1px solid red; */
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-bottom: 50px;
+}
+
+#tos-inner-parent-container {
+    /* border: 1px solid blue; */
+    width: 80%;
+    margin: 0 auto;
+}
+
+.tos-h1 {
+    color: purple;
+}
+
+.tos-h3 {
+    color: purple;
+}
+
+.tos-service-use-list > li {
+    list-style-type: circle;
+    margin-bottom: 5px;
+}
+
+#tos-text-underlined {
+    text-decoration: underline;
+}

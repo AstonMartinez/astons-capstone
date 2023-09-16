@@ -16,6 +16,8 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import TOS from "./components/TOS";
 import UserInventory from "./components/UserInventory";
 import ShopsComponent from "./components/ShopsComponent";
+import OtherFooter from "./components/Footer/OtherFooter";
+import FooterThree from "./components/Footer/FooterThree";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,40 +33,54 @@ function App() {
         <Switch>
           <Route exact path="/login" >
             <LoginFormPage />
+            <OtherFooter />
           </Route>
           <Route exact path='/my-dashboard'>
             <UserDashboard />
+            <Footer />
           </Route>
           <Route exact path='/faq'>
             <FAQComponent />
+            <Footer />
           </Route>
           <Route exact path='/inventory'>
             <UserInventory />
+            <Footer />
           </Route>
           <Route exact path='/shops'>
             <ShopsComponent />
+            <Footer />
           </Route>
           <Route exact path='/bug-report'>
             <BugReport />
+            <Footer />
           </Route>
           <Route exact path='/feature-request'>
             <RequestFeature />
+            <Footer />
           </Route>
           <Route exact path='/wiki'>
             <WikiComponent />
+            <Footer />
           </Route>
           <Route exact path='/privacy-policy'>
             <PrivacyPolicy />
+            <Footer />
           </Route>
           <Route exact path='/tos'>
             <TOS />
+            <Footer />
+          </Route>
+          <Route exact path='/signup'>
+            <SignupFormPage />
+            <FooterThree />
           </Route>
           <Route path='/'>
             <SignUpPage />
+            <OtherFooter />
           </Route>
         </Switch>
       )}
-      <Footer />
     </>
   );
 }

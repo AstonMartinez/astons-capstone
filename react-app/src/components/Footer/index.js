@@ -19,7 +19,7 @@ const Footer = () => {
                         <p id='footer-my-name'>Aston Martinez</p>
                         <div id='my-socials'>
                             <a href='https://www.linkedin.com/in/aston-martinez-0716/'><img id="linkedin-footer-logo" src="https://i.ibb.co/5j5Wn4H/linkedin-logo.png" alt="linkedin-logo" border="0" /></a>
-                            <a href='https://github.com/AstonMartinez'><img id="github-footer-logo" src="https://i.ibb.co/K0n6zXY/github-logo.png" alt="github-logo" border="0" /></a>
+                            <a href='https://github.com/AstonMartinez'><img id="footer-1-github-footer-logo" src="https://i.ibb.co/K0n6zXY/github-logo.png" alt="github-logo" border="0" /></a>
                         </div>
                     </div>
                     <div id='footer-support-container'>

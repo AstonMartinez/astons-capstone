@@ -61,18 +61,15 @@
 #tool-tip-active {
     display: flex;
     flex-flow: row wrap;
-    position: relative;
-    z-index: 8000;
+    z-index: 12000;
     border: 1px solid black;
-    bottom: 20px;
+    border-radius: 15px;
+    background-color: #f5f1ff;
+    padding: 5px;
 }
 
 #tool-tip-inactive {
-    /* display: none; */
-    display: flex;
-    flex-flow: row wrap;
-    z-index: 8000;
-    border: 1px solid black;
+    display: none;
 }
 
 #item-stats-wrapper-true {
@@ -91,7 +88,7 @@
 }
 
 #item-stats-wrapper-false {
-    display: none;
+    visibility: hidden;
 }
 
 .stats-inner-container {
@@ -123,4 +120,9 @@
 
 .item-stat-label {
     font-weight: bold;
+}
+
+#no-equipment-message {
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
 }

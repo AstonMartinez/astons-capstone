@@ -1,0 +1,35 @@
+#privacy-policy-parent-container {
+    /* border: 1px solid red; */
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-bottom: 50px;
+}
+
+#privacy-policy-inner-container {
+    /* border: 1px solid blue; */
+    width: 80%;
+    margin: 0 auto;
+}
+
+.privacy-policy-h2, .privacy-policy-h3 {
+    color: purple;
+}
+
+.privacy-policy-h3 {
+    font-size: 15px;
+}
+
+.privacy-policy-links {
+    text-decoration: underline;
+}
+
+.privacy-policy-list > li {
+    list-style-type: circle;
+}
+
+.pp-list-span {
+    font-weight: bold;
+}
+
+.privacy-policy-h1 {
+    color: purple;
+}

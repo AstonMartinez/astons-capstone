@@ -1,7 +1,103 @@
 #signup-page-wrapper {
     margin-top: 60px;
     display: flex;
-    margin-bottom: 20px;
+    flex-direction: column;
+    margin-bottom: 0px;
+    font-family: 'Roboto Condensed', sans-serif;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    /* background-color: #6133b4; */
+    color: white;
+}
+
+#signup-page-first-section {
+    /* margin-top: 60px; */
+    display: flex;
+    padding-bottom: 100px;
+    background-color: #6133b4;
+    width: 100%;
+    /* margin-left: -10px; */
+    margin-top: -68px;
+    padding-top: 80px;
+    background-image: url(https://habitica.com/static/svg/cce576f817758fa4398dadf559199d47.svg);
+}
+
+#signup-page-second-section, #signup-page-third-section {
+    /* background-color: #432874; */
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: -10px;
+    width: 100%;
+    /* margin-left: -10px; */
+}
+
+#signup-page-second-section {
+    background-color: #432874;
+}
+
+#signup-page-third-section {
+    background-color: #38205d;
+}
+
+#signup-page-third-section {
+    width: 100%;
+    margin-left: -10px;
+    /* margin-top: -68px; */
+    padding-top: 80px;
+}
+
+#signup-page-fourth-section {
+    background-color: #271b3d;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    margin-top: -10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#signup-page-second-section, #signup-page-third-section {
+    display: flex;
+    flex-direction: column;
+}
+
+#section-two-bottom, #section-three-bottom {
+    display: flex;
+}
+
+#section-two-bottom, #section-three-bottom {
+    flex-direction: column;
+}
+
+#section-two-bottom-first-half, #section-three-bottom-first-half {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#section-two-bottom-second-half-titles, #section-three-bottom-second-half-titles {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.bottom-half-title-tags {
+    width: 300px;
+    text-align: center;
+    /* margin-left: 50px; */
+}
+
+#section-two-bottom-second-half-descriptions, #section-three-bottom-second-half-descriptions {
+    display: flex;
+    /* width: 300px; */
+    /* margin-left: 50px; */
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+.description-thirds {
+    width: 300px;
 }
 
 #right-side-signup-page-container {
@@ -18,4 +114,191 @@
     align-items: center;
     justify-content: center;
     width: 50%;
+}
+
+#section-two-top, #section-three-top {
+    /* border: 1px solid red; */
+    width: 500px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#section-two-bottom, #section-three-bottom {
+    /* border: 1px solid red; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.bottom-section-third {
+    /* border: 1px solid white; */
+    width: 350px;
+    text-align: center;
+}
+
+#main-landing-page-img {
+    width: 400px;
+}
+
+#section-two-img-one {
+    width: 250px;
+}
+
+#section-two-img-two {
+    width: 250px;
+}
+
+#section-two-img-three {
+    width: 250px;
+}
+
+#section-three-img-one {
+    width: 250px;
+}
+
+#section-three-img-two {
+    width: 250px;
+}
+
+#section-three-img-three {
+    width: 250px;
+}
+
+#signup-page-section-four {
+    padding-bottom: 100px;
+    margin-bottom: -10px;
+    height: 100%;
+}
+
+#join-questforge-button {
+    font-family: 'Varela Round', sans-serif;
+    font-weight: light;
+    font-size: 16px;
+    color: white;
+    background-color: #925cf3;
+    border: 1px solid black;
+    height: 48px;
+    width: 411px;
+    border-radius: 2px;
+    margin-top: 20px;
+}
+
+#join-questforge-button:hover {
+    background-color: #36205d;
+    border: none;
+}
+
+#signup-divider-one, #signup-divider-two, #signup-divider-three {
+    width: 100%;
+    /* margin-left: -10px; */
+}
+
+#signup-divider-one {
+    background-color: #6133b4;
+    /* margin-top: 0; */
+    /* height: 100%; */
+}
+
+#signup-divider-two {
+    background-color: #432874;
+}
+
+#signup-divider-three {
+    background-color: #38205d;
+}
+
+/* #signup-divider-two {
+    transform: scaleX(1);
+    transform: rotate(180deg);
+} */
+
+#signup-page-get-started, #signup-page-learn-more {
+    /* border: 1px solid white; */
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#signup-page-get-started > a, #signup-page-learn-more > a {
+    font-family: 'Varela Round', sans-serif;
+    font-size: 16px;
+    color: white;
+    font-weight: lighter;
+}
+
+#signup-page-get-started a:hover, #signup-page-learn-more > a:hover {
+    text-decoration: underline;
+}
+
+#signup-form {
+    font-family:'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    width: 420px;
+    margin-right: 50px;
+}
+
+#signup-form-h2 {
+    font-family:'Varela Round', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    margin-right: 65px;
+}
+
+#signup-username-label, #signup-form > label, #su-label-container {
+    margin-bottom: 15px;
+    margin-right: 0px;
+    padding-right: 0px;
+    width: 420px;
+}
+
+#username-input-field, #email-input-field, #password-field, #password-confirm-field {
+    width: 420px;
+    background-color: #432874;
+    border: none;
+    height: 30px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+#username-input-field:hover, #email-input-field:hover, #password-field:hover, #password-confirm-field:hover {
+    background-color: #36205d;
+}
+
+#username-input-field::placeholder, #email-input-field::placeholder, #password-field::placeholder, #password-confirm-field::placeholder {
+    color: rgb(189, 168, 255);
+    padding-left: 10px;
+}
+
+#signup-submit-button {
+    width: 425px;
+    background-color: #46a7d9;
+    /* background-color: rgb(17, 122, 139); */
+    /* box-shadow: rgba(26, 24, 29, 0.16) 0px 3px 6px 0px, rgba(26, 24, 29, 0.24) 0px 3px 6px 0px; */
+    height: 55px;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: white;
+    border: 1px solid rgb(17, 122, 139);
+    border-radius: 2px;
+}
+
+#signup-submit-button:hover {
+    background-color: rgb(80, 181, 233);
+    box-shadow: rgba(26, 24, 29, 0.16) 0px 3px 6px 0px, rgba(26, 24, 29, 0.24) 0px 3px 6px 0px;
+
+}
+
+#agreement-text {
+    font-size: 16px;
+}
+
+#agreement-text-container {
+    width: 420px;
+    margin-bottom: 20px;
 }

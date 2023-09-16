@@ -1,0 +1,80 @@
+#login-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Varela Round', sans-serif;
+    color: white;
+    background-color: #512b97;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 100px;
+    background-image: url(https://habitica.com/static/svg/cce576f817758fa4398dadf559199d47.svg);
+
+}
+
+#login-page-footer-divider {
+    width: 100%;
+    margin-bottom: -10px;
+    background-color: #512b97;
+}
+
+#login-page-form {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+#login-submit-button, #login-du-button {
+    /* width: 200px; */
+    height: 40px;
+    /* margin: 0 auto; */
+    width: 200px;
+    background-color: #46a7d9;
+    /* background-color: rgb(17, 122, 139); */
+    /* box-shadow: rgba(26, 24, 29, 0.16) 0px 3px 6px 0px, rgba(26, 24, 29, 0.24) 0px 3px 6px 0px; */
+    height: 45px;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    border: 1px solid rgb(17, 122, 139);
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+
+#login-submit-container, #login-demo-user-button {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+}
+
+#login-submit-button:hover, #login-du-button:hover {
+    background-color: rgb(80, 181, 233);
+    box-shadow: rgba(26, 24, 29, 0.16) 0px 3px 6px 0px, rgba(26, 24, 29, 0.24) 0px 3px 6px 0px;
+
+}
+
+#login-password-input:hover, #login-email-input:hover {
+    background-color: #36205d;
+}
+
+#login-password-input::placeholder, #login-email-input::placeholder {
+    color: rgb(189, 168, 255);
+    padding-left: 10px;
+}
+
+#login-password-input, #login-email-input {
+    width: 420px;
+    background-color: #432874;
+    border: none;
+    height: 30px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+#login-submit-container {
+    margin-top: 20px;
+}
+
+.login-field-label {
+    padding-bottom: 15px;
+}
