@@ -1,148 +1,100 @@
-# Flask React Project
+# QuestForge
+QuestForge is a project created by Aston Martinez and based on the style of Habitica. It serves to gamify your habits, daily tasks, and productivity to keep you on track and ensure your well-being. By allowing you to visualize your tasks and goals, as well as the impact of sticking to them or falling behind (via health, experience, and gold for your avatar), QuestForge helps increase motivation and sets you up for success.
 
-This is the starter for the Flask React project.
+You can access the live app here: https://questforge-capstone.onrender.com
+<img width="1404" alt="Screenshot 2023-09-17 at 3 17 04 PM" src="https://github.com/AstonMartinez/astons-capstone/assets/129995811/7aecfedb-3495-4baf-9e11-c62b2d392e38">
 
-## Getting started
-1. Clone this repository (only this branch)
+<img width="1404" alt="Screenshot 2023-09-17 at 3 18 40 PM" src="https://github.com/AstonMartinez/astons-capstone/assets/129995811/12d51c07-00db-4cda-aefd-f808d7a6945e">
 
-2. Install dependencies
+## Technologies / Frameworks Used
+### Backend
+* Flask
+* Alembic
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+* SQLAlchemy
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
+### Frontend
+* React.js
+* Redux
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+## Core Features
+* Habits
+>* Registered users can create new Habits, which appear on their user dashboard.
+>* Registered users can view their Habit details from within their user dashboard.
+>* Registered users can edit/update their Habit details from within a modal on the user dashboard by clicking on a specific Habit.
+>* Registered users can delete Habits from their user dashboard by clicking on the Habit and viewing its details.
+* Dailies
+>* Registered users can create new Dailies, which appear on their user dashboard.
+>* Registered users can view their Daily details from within their user dashboard.
+>* Registered users can edit/update their Daily details from within a modal on the user dashboard by clicking on a specific Daily.
+>* Registered users can delete Dailies from their user dashboard by clicking on the Daily and viewing its details.
+* To-Dos
+>* Registered users can create new To-Dos, which appear on their user dashboard.
+>* Registered users can view their To-Do details from within their user dashboard.
+>* Registered users can edit/update their To-Dp details from within a modal on the user dashboard by clicking on a specific To-Do.
+>* Registered users can delete To-Dos from their user dashboard by clicking on the To-Do and viewing its details.
+* Avatar Customization
+>* Registered users are assigned a default avatar, which they can then customize by clicking the 'Edit Avatar' button within the user dropdown in the top right corner.
+* Rewards
+>* Registered users can create new Rewards, which appear on their user dashboard.
+>* Registered users can view their Reward details from within their user dashboard.
+>* Registered users can edit/update their Reward details from within a modal on the user dashboard by clicking on a specific Reward.
+>* Registered users can delete Rewards from their user dashboard by clicking on the Reward and viewing its details.
+* Shops
+>* Registered users can buy new items for their avatar, which will later have uses (by equipping or using a specified item).
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
+## Future Implementation Goals
+* Quests:
+>* Registered users will be able to go on epic quests to increase their stats, find new equipment, and level up.
+* Parties
+>* Registered users will be able to join parties with other users, go on quests together, and increase their rewards. 
+* Drag and Drop
+>* Registered users will be able to drag and drop items within the same list (i.e., Habits, Dailies, To-Dos, Rewards)
+* More Shop items
+>* Registered users will have more item options to purchase with the gold they earn.
 
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+## Contact Information
+You can contact Aston via email, GitHub, or LinkedIn:
+* Email: aston.martinez1614@gmail.com
+* GitHub: https://github.com/AstonMartinez
+* LinkedIn: https://www.linkedin.com/in/aston-martinez-0716/
 
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
-
-## Deployment through Render.com
-
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
-
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
-
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
-
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
-
-### Part A: Configure the Start and Build Commands
-
-Start by giving your application a name.
-
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
-
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
-
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
-
-For your Flask project, enter the following command into the Build field, all in
-one line:
-
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
-
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
-
-Now, add your start command in the Start field:
-
-```shell
-# start script
-gunicorn app:app
-```
-
-_If you are using websockets, use the following start command instead for increased performance:_
-
-`gunicorn --worker-class eventlet -w 1 app:app`
-
-### Part B: Add the Environment Variables
-
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
-
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from Internal Database URL field)
-
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
-
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
-
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
-
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+## API Endpoints
+| Request | Purpose | Return Value |
+| ------------- | ------------- | ------------- |
+| GET /api/auth/ | This fetch is sent upon initial load and on subsequent refreshes. It returns an object representing the current user, if user is logged in | {<br> 'id': INT,<br>'username': STRING,<br> 'email': STRING,<br> 'bio': STRING,<br> 'experience_points': INT,<br> 'level': INT,<br> 'date_joined': DATE,<br> 'gold': INT,<br> 'health': INT<br> 'avatar': { <br> &nbsp; &nbsp; &nbsp;'id': INT,<br>&nbsp; &nbsp; &nbsp; 'user_id': INT,<br>&nbsp; &nbsp; &nbsp; 'shirt': STRING,<br>&nbsp; &nbsp; &nbsp; 'hair': STRING,<br>&nbsp; &nbsp; &nbsp; 'bangs': STRING,<br>&nbsp; &nbsp; &nbsp; 'skin': STRING,<br>&nbsp; &nbsp; &nbsp; 'background': STRING<br>&nbsp; }<br>} |
+| POST /api/auth/login | This fetch attempts to log in a user with the provided credentials. It returns an object representing the current user, if validation succeeds. | {<br> 'id': INT,<br>'username': STRING,<br> 'email': STRING,<br> 'bio': STRING,<br> 'experience_points': INT,<br> 'level': INT,<br> 'date_joined': DATE,<br> 'gold': INT,<br> 'health': INT<br> 'avatar': { <br> &nbsp; &nbsp; &nbsp;'id': INT,<br>&nbsp; &nbsp; &nbsp; 'user_id': INT,<br>&nbsp; &nbsp; &nbsp; 'shirt': STRING,<br>&nbsp; &nbsp; &nbsp; 'hair': STRING,<br>&nbsp; &nbsp; &nbsp; 'bangs': STRING,<br>&nbsp; &nbsp; &nbsp; 'skin': STRING,<br>&nbsp; &nbsp; &nbsp; 'background': STRING<br>&nbsp; }<br>} |
+| GET /api/auth/logout | Logs out a user. | {<br> &nbsp; 'message': 'User logged out'<br>} |
+| POST /api/auth/signup | Creates a new user and logs them in. Returns an object representing the newly created user. | {<br> 'id': INT,<br>'username': STRING,<br> 'email': STRING,<br> 'bio': STRING,<br> 'experience_points': INT,<br> 'level': INT,<br> 'date_joined': DATE,<br> 'gold': INT,<br> 'health': INT<br> 'avatar': { <br> &nbsp; &nbsp; &nbsp;'id': INT,<br>&nbsp; &nbsp; &nbsp; 'user_id': INT,<br>&nbsp; &nbsp; &nbsp; 'shirt': STRING,<br>&nbsp; &nbsp; &nbsp; 'hair': STRING,<br>&nbsp; &nbsp; &nbsp; 'bangs': STRING,<br>&nbsp; &nbsp; &nbsp; 'skin': STRING,<br>&nbsp; &nbsp; &nbsp; 'background': STRING<br>&nbsp; }<br>} |
+| GET /api/auth/unauthorized | Returns unauthorized JSON when flask-login authentication fails. | {<br> &nbsp;'errors':<br>&nbsp; &nbsp;[<br>&nbsp; &nbsp; &nbsp;'Unauthorized'<br>&nbsp; &nbsp;]<br>} |
+| GET /api/avatar/current | Fetches a logged-in user's avatar details. | {<br> &nbsp; &nbsp;'id': INT,<br>&nbsp; &nbsp;'user_id': INT,<br>&nbsp; &nbsp;'shirt': STRING,<br>&nbsp; &nbsp;'hair': STRING,<br>&nbsp; &nbsp;'bangs': STRING,<br>&nbsp; &nbsp;'skin': STRING,<br>&nbsp; &nbsp;'background': STRING<br>} |
+| PUT /api/avatar/update | Updates a logged-in user's avatar details after changing them in the customization modal. | {<br> &nbsp; &nbsp;'id': INT,<br>&nbsp; &nbsp;'user_id': INT,<br>&nbsp; &nbsp;'shirt': STRING,<br>&nbsp; &nbsp;'hair': STRING,<br>&nbsp; &nbsp;'bangs': STRING,<br>&nbsp; &nbsp;'skin': STRING,<br>&nbsp; &nbsp;'background': STRING<br>} |
+| GET /api/dailies/:id | Fetches the details of a specified Daily. | {<br> &nbsp; 'id': INT,<br> &nbsp; 'user_id': INT,<br> &nbsp; 'title': STRING,<br> &nbsp; 'notes': STRING,<br> &nbsp; 'checklist': STRING,<br> &nbsp; 'difficulty': STRING,<br> &nbsp; 'start_date': DATE,<br> &nbsp; 'repeats': STRING,<br> &nbsp; 'num_repeats': INT,<br> &nbsp; 'day_of_repeat': STRING,<br> &nbsp; 'count': INT,<br> &nbsp; 'tags': STRING,<br> &nbsp; 'status': STRING<br>} |
+| DELETE /api/dailies/:id/delete | Deletes a logged-in user's specified Daily. | {<br> &nbsp; 'id': INT,<br> &nbsp; 'user_id': INT,<br> &nbsp; 'title': STRING,<br> &nbsp; 'notes': STRING,<br> &nbsp; 'checklist': STRING,<br> &nbsp; 'difficulty': STRING,<br> &nbsp; 'start_date': DATE,<br> &nbsp; 'repeats': STRING,<br> &nbsp; 'num_repeats': INT,<br> &nbsp; 'day_of_repeat': STRING,<br> &nbsp; 'count': INT,<br> &nbsp; 'tags': STRING,<br> &nbsp; 'status': STRING<br>} |
+| PUT /api/dailies/:id/update | Updates the details of user's specified Daily. | {<br> &nbsp; 'id': INT,<br> &nbsp; 'user_id': INT,<br> &nbsp; 'title': STRING,<br> &nbsp; 'notes': STRING,<br> &nbsp; 'checklist': STRING,<br> &nbsp; 'difficulty': STRING,<br> &nbsp; 'start_date': DATE,<br> &nbsp; 'repeats': STRING,<br> &nbsp; 'num_repeats': INT,<br> &nbsp; 'day_of_repeat': STRING,<br> &nbsp; 'count': INT,<br> &nbsp; 'tags': STRING,<br> &nbsp; 'status': STRING<br>} |
+| POST /api/dailies/new | Creates a new Daily. | {<br> &nbsp; 'id': INT,<br> &nbsp; 'user_id': INT,<br> &nbsp; 'title': STRING,<br> &nbsp; 'notes': STRING,<br> &nbsp; 'checklist': STRING,<br> &nbsp; 'difficulty': STRING,<br> &nbsp; 'start_date': DATE,<br> &nbsp; 'repeats': STRING,<br> &nbsp; 'num_repeats': INT,<br> &nbsp; 'day_of_repeat': STRING,<br> &nbsp; 'count': INT,<br> &nbsp; 'tags': STRING,<br> &nbsp; 'status': STRING<br>} |
+| GET /api/docs | Returns all API routes and their doc strings. | {<br> &nbsp; "route": [<br> &nbsp; &nbsp;[<br> &nbsp; &nbsp; &nbsp; "method"<br> &nbsp; &nbsp;],<br> &nbsp; &nbsp;[<br> &nbsp; &nbsp; &nbsp;"purpose"<br> &nbsp; &nbsp;]<br>&nbsp;]<br>} |
+| POST /api/equipment/:id/buy | Allows a user to purchase an item, then adds the item to their inventory. Returns an object with the user's id and the equipment item's id. | {<br> &nbsp; 'id': INT,<br> &nbsp; 'user_id': INT,<br> &nbsp; 'equipment_id': INT<br>} |
+| POST /api/features/new | Allows a user to create and submit a new Feature Request. | {<br>&nbsp; 'id': INT,<br>&nbsp; 'email': STRING,<br>&nbsp; 'category': STRING,<br>&nbsp; 'response': STRING,<br>&nbsp; 'description': STRING<br>} |
+| GET /api/habits/:id | Fetches the details of a specific Habit. | {<br>&nbsp; 'id': INT,<br>&nbsp; 'user_id': INT,<br>&nbsp; 'title': STRING,<br>&nbsp; 'notes': STRING,<br>&nbsp; 'type': STRING,<br>&nbsp; 'difficulty': STRING,<br>&nbsp; 'tags': STRING,<br>&nbsp; 'pos_count': INT,<br>&nbsp; 'neg_count': INT,<br>&nbsp; 'status': STRING<br>} |
+| GET /api/habits/:id | Fetches the details of a specific Habit. | {<br>&nbsp; 'id': INT,<br>&nbsp; 'user_id': INT,<br>&nbsp; 'title': STRING,<br>&nbsp; 'notes': STRING,<br>&nbsp; 'type': STRING,<br>&nbsp; 'difficulty': STRING,<br>&nbsp; 'tags': STRING,<br>&nbsp; 'pos_count': INT,<br>&nbsp; 'neg_count': INT,<br>&nbsp; 'status': STRING<br>} |
+| DELETE /api/habits/:id/delete | Allows a user to delete a specified Habit. | {<br>&nbsp; 'id': INT,<br>&nbsp; 'user_id': INT,<br>&nbsp; 'title': STRING,<br>&nbsp; 'notes': STRING,<br>&nbsp; 'type': STRING,<br>&nbsp; 'difficulty': STRING,<br>&nbsp; 'tags': STRING,<br>&nbsp; 'pos_count': INT,<br>&nbsp; 'neg_count': INT,<br>&nbsp; 'status': STRING<br>} |
+| PUT /api/habits/:id/update | Updates the details of a specified Habit. | {<br>&nbsp; 'id': INT,<br>&nbsp; 'user_id': INT,<br>&nbsp; 'title': STRING,<br>&nbsp; 'notes': STRING,<br>&nbsp; 'type': STRING,<br>&nbsp; 'difficulty': STRING,<br>&nbsp; 'tags': STRING,<br>&nbsp; 'pos_count': INT,<br>&nbsp; 'neg_count': INT,<br>&nbsp; 'status': STRING<br>} |
+| POST /api/habits/new | Allows a logged-in user to create a new Habit. | {<br>&nbsp; 'id': INT,<br>&nbsp; 'user_id': INT,<br>&nbsp; 'title': STRING,<br>&nbsp; 'notes': STRING,<br>&nbsp; 'type': STRING,<br>&nbsp; 'difficulty': STRING,<br>&nbsp; 'tags': STRING,<br>&nbsp; 'pos_count': INT,<br>&nbsp; 'neg_count': INT,<br>&nbsp; 'status': STRING<br>} |
+| PUT /api/reports/:id/status | Updates a Bug Report's status to resolved or unresolved. | {<br> &nbsp; 'id': INT,<br> &nbsp; 'user_email': STRING,<br> &nbsp; 'bug_description': STRING,<br> &nbsp; 'status': STRING<br>} |
+| POST /api/reports/new | Allows a user to create a new Bug Report. | {<br> &nbsp; 'id': INT,<br> &nbsp; 'user_email': STRING,<br> &nbsp; 'bug_description': STRING,<br> &nbsp; 'status': STRING<br>} |
+| GET /api/rewards/:id | Fetches the details of a specified Reward. | {<br> &nbsp; 'id': INT,<br> &nbsp; 'user_id': INT,<br> &nbsp; 'title': STRING,<br> &nbsp; 'notes': STRING,<br> &nbsp; 'cost': INT,<br> &nbsp; 'tags': STRING<br>} |
+| DELETE /api/rewards/:id/delete | Allows a user to delete a specified Reward. | {<br> &nbsp; 'id': INT,<br> &nbsp; 'user_id': INT,<br> &nbsp; 'title': STRING,<br> &nbsp; 'notes': STRING,<br> &nbsp; 'cost': INT,<br> &nbsp; 'tags': STRING<br>} |
+| PUT /api/rewards/:id/update | Updates the details of a specified Reward. | {<br> &nbsp; 'id': INT,<br> &nbsp; 'user_id': INT,<br> &nbsp; 'title': STRING,<br> &nbsp; 'notes': STRING,<br> &nbsp; 'cost': INT,<br> &nbsp; 'tags': STRING<br>} |
+| POST /api/rewards/new | Allows a user to create a new Reward. | {<br> &nbsp; 'id': INT,<br> &nbsp; 'user_id': INT,<br> &nbsp; 'title': STRING,<br> &nbsp; 'notes': STRING,<br> &nbsp; 'cost': INT,<br> &nbsp; 'tags': STRING<br>} |
+| GET /api/search/:tags | Filters a user's Habits, Dailies, To-Dos, and Rewards based on the specified tags. | {<br> &nbsp; 'habits': {<br>&nbsp; &nbsp; 'id': INT,<br>&nbsp; &nbsp; 'user_id': INT,<br>&nbsp; &nbsp; 'title': STRING,<br>&nbsp; &nbsp; 'notes': STRING,<br>&nbsp; &nbsp; 'type': STRING,<br>&nbsp; &nbsp; 'difficulty': STRING,<br>&nbsp; &nbsp; 'tags': STRING,<br>&nbsp; &nbsp; 'pos_count': INT,<br>&nbsp; &nbsp; 'neg_count': INT,<br>&nbsp; &nbsp; 'status': STRING<br> &nbsp; &nbsp;}<br>&nbsp; 'dailies': {<br> &nbsp; &nbsp; 'id': INT,<br> &nbsp; &nbsp; 'user_id': INT,<br> &nbsp; &nbsp; 'title': STRING,<br>&nbsp; &nbsp; 'notes': STRING,<br>&nbsp; &nbsp; 'checklist': STRING,<br>&nbsp; &nbsp; 'difficulty': STRING,<br>&nbsp; &nbsp; 'start_date': DATE,<br> &nbsp; 'repeats': STRING,<br> &nbsp; 'num_repeats': INT,<br> &nbsp; 'day_of_repeat': STRING,<br>&nbsp; &nbsp; 'count': INT,<br>&nbsp; &nbsp; 'tags': STRING,<br>&nbsp; &nbsp; 'status': STRING<br> &nbsp;}<br> &nbsp; 'toDos': {<br> &nbsp; &nbsp; 'id': INT,<br> &nbsp; &nbsp; 'user_id': INT,<br> &nbsp; &nbsp; 'title': STRING,<br> &nbsp; &nbsp; 'notes': STRING,<br> &nbsp; &nbsp; 'difficulty': STRING,<br> &nbsp; &nbsp; 'checklist': STRING,<br> &nbsp; &nbsp; 'due_date': DATE,<br> &nbsp; &nbsp; 'tags': STRING,<br> &nbsp; &nbsp; 'status': STRING<br> &nbsp;}<br> &nbsp; 'rewards': {<br> &nbsp; &nbsp; 'id': INT,<br> &nbsp; &nbsp; 'user_id': INT,<br> &nbsp; &nbsp; 'title': STRING,<br> &nbsp; &nbsp; 'notes': STRING,<br> &nbsp; &nbsp; 'cost': INT,<br> &nbsp; &nbsp; 'tags': STRING<br> &nbsp;}<br>} |
+| GET /api/search/custom/:query | Filters a user's Habits, Dailies, To-Dos, and Rewards based on keywords in the item's title or notes. | {<br> &nbsp; 'habits': {<br>&nbsp; &nbsp; 'id': INT,<br>&nbsp; &nbsp; 'user_id': INT,<br>&nbsp; &nbsp; 'title': STRING,<br>&nbsp; &nbsp; 'notes': STRING,<br>&nbsp; &nbsp; 'type': STRING,<br>&nbsp; &nbsp; 'difficulty': STRING,<br>&nbsp; &nbsp; 'tags': STRING,<br>&nbsp; &nbsp; 'pos_count': INT,<br>&nbsp; &nbsp; 'neg_count': INT,<br>&nbsp; &nbsp; 'status': STRING<br> &nbsp; &nbsp;}<br>&nbsp; 'dailies': {<br> &nbsp; &nbsp; 'id': INT,<br> &nbsp; &nbsp; 'user_id': INT,<br> &nbsp; &nbsp; 'title': STRING,<br>&nbsp; &nbsp; 'notes': STRING,<br>&nbsp; &nbsp; 'checklist': STRING,<br>&nbsp; &nbsp; 'difficulty': STRING,<br>&nbsp; &nbsp; 'start_date': DATE,<br> &nbsp; 'repeats': STRING,<br> &nbsp; 'num_repeats': INT,<br> &nbsp; 'day_of_repeat': STRING,<br>&nbsp; &nbsp; 'count': INT,<br>&nbsp; &nbsp; 'tags': STRING,<br>&nbsp; &nbsp; 'status': STRING<br> &nbsp;}<br> &nbsp; 'toDos': {<br> &nbsp; &nbsp; 'id': INT,<br> &nbsp; &nbsp; 'user_id': INT,<br> &nbsp; &nbsp; 'title': STRING,<br> &nbsp; &nbsp; 'notes': STRING,<br> &nbsp; &nbsp; 'difficulty': STRING,<br> &nbsp; &nbsp; 'checklist': STRING,<br> &nbsp; &nbsp; 'due_date': DATE,<br> &nbsp; &nbsp; 'tags': STRING,<br> &nbsp; &nbsp; 'status': STRING<br> &nbsp;}<br> &nbsp; 'rewards': {<br> &nbsp; &nbsp; 'id': INT,<br> &nbsp; &nbsp; 'user_id': INT,<br> &nbsp; &nbsp; 'title': STRING,<br> &nbsp; &nbsp; 'notes': STRING,<br> &nbsp; &nbsp; 'cost': INT,<br> &nbsp; &nbsp; 'tags': STRING<br> &nbsp;}<br>} |
+| GET /api/todos/:id | Fetches the details of a specified To-Do. | {<br> &nbsp; 'id': INT,<br> &nbsp; 'user_id': INT,<br> &nbsp; 'title': STRING,<br> &nbsp; 'notes': STRING,<br> &nbsp; 'difficulty': STRING,<br> &nbsp; 'checklist': STRING,<br> &nbsp; 'due_date': DATE,<br> &nbsp; 'tags': STRING,<br> &nbsp; 'status': STRING<br>} |
+| DELETE /api/todos/:id/delete | Allows users to delete a specified To-Do. | <br> &nbsp; 'id': INT,<br> &nbsp; 'user_id': INT,<br> &nbsp; 'title': STRING,<br> &nbsp; 'notes': STRING,<br> &nbsp; 'difficulty': STRING,<br> &nbsp; 'checklist': STRING,<br> &nbsp; 'due_date': DATE,<br> &nbsp; 'tags': STRING,<br> &nbsp; 'status': STRING<br>} |
+| PUT /api/todos/:id/update | Updates the details of a specified To-Do. | <br> &nbsp; 'id': INT,<br> &nbsp; 'user_id': INT,<br> &nbsp; 'title': STRING,<br> &nbsp; 'notes': STRING,<br> &nbsp; 'difficulty': STRING,<br> &nbsp; 'checklist': STRING,<br> &nbsp; 'due_date': DATE,<br> &nbsp; 'tags': STRING,<br> &nbsp; 'status': STRING<br>} |
+| POST /api/todos/new | Allows a user to create a new To-Do. | <br> &nbsp; 'id': INT,<br> &nbsp; 'user_id': INT,<br> &nbsp; 'title': STRING,<br> &nbsp; 'notes': STRING,<br> &nbsp; 'difficulty': STRING,<br> &nbsp; 'checklist': STRING,<br> &nbsp; 'due_date': DATE,<br> &nbsp; 'tags': STRING,<br> &nbsp; 'status': STRING<br>} |
+| GET /api/todos/user-to-dos | Fetches all of a logged-in user's To-Dos. | Fetches all of a logged-in user's To-Dos. | <br> &nbsp; 'id': INT,<br> &nbsp; 'user_id': INT,<br> &nbsp; 'title': STRING,<br> &nbsp; 'notes': STRING,<br> &nbsp; 'difficulty': STRING,<br> &nbsp; 'checklist': STRING,<br> &nbsp; 'due_date': DATE,<br> &nbsp; 'tags': STRING,<br> &nbsp; 'status': STRING<br>} |
+| GET /api/users | Query for all users and returns them in a list of user dictionaries. | [<br> &nbsp; {<br> &nbsp; &nbsp; 'id': INT,<br> &nbsp; &nbsp; 'username': STRING,<br> &nbsp; &nbsp; 'email': STRING,<br> &nbsp; &nbsp; 'bio': STRING,<br> 'experience_points': INT,<br> &nbsp; &nbsp;'level': INT,<br> &nbsp; &nbsp; 'date_joined': DATE,<br> &nbsp; &nbsp; 'gold': INT,<br> &nbsp; &nbsp; 'health': INT<br> 'avatar': { <br> &nbsp; &nbsp; &nbsp;'id': INT,<br>&nbsp; &nbsp; &nbsp; 'user_id': INT,<br>&nbsp; &nbsp; &nbsp; 'shirt': STRING,<br>&nbsp; &nbsp; &nbsp; 'hair': STRING,<br>&nbsp; &nbsp; &nbsp; 'bangs': STRING,<br>&nbsp; &nbsp; &nbsp; 'skin': STRING,<br>&nbsp; &nbsp; &nbsp; 'background': STRING<br>&nbsp; &nbsp; }<br> &nbsp;}<br>] |
+| GET /api/users/:id | Query for a user by id and returns that user in a dictionary object. | {<br> &nbsp; 'id': INT,<br> &nbsp; 'username': STRING,<br> &nbsp; 'email': STRING,<br> &nbsp; 'bio': STRING,<br> &nbsp; 'experience_points': INT,<br> &nbsp; 'level': INT,<br> &nbsp; 'date_joined': DATE,<br> &nbsp; 'gold': INT,<br> &nbsp; 'health': INT<br> &nbsp; 'avatar': { <br> &nbsp; &nbsp; 'id': INT,<br>&nbsp; &nbsp; 'user_id': INT,<br>&nbsp; &nbsp; 'shirt': STRING,<br>&nbsp; &nbsp; 'hair': STRING,<br>&nbsp; &nbsp; 'bangs': STRING,<br>&nbsp; &nbsp; 'skin': STRING,<br>&nbsp; &nbsp;  'background': STRING<br>&nbsp; }<br>} |
+| GET /api/users/inventory | Fetches all of a logged-in user's inventory items. | {<br> &nbsp; 'id': {<br> &nbsp; &nbsp; 'id': INT,<br> &nbsp; &nbsp; &nbsp; 'name': STRING,<br> &nbsp; &nbsp; &nbsp; 'description': STRING,<br> &nbsp; &nbsp; &nbsp; 'strength': INT,<br> &nbsp; &nbsp; &nbsp; 'str_gear_num': INT,<br> &nbsp; &nbsp; &nbsp; 'str_class_bonus': INT,<br> &nbsp; &nbsp; &nbsp; 'constitution': INT,<br> &nbsp; &nbsp; &nbsp; 'const_gear_num': INT,<br> &nbsp; &nbsp; &nbsp; 'const_class_bonus': INT,<br> &nbsp; &nbsp; &nbsp; 'intelligence': INT,<br> &nbsp; &nbsp; &nbsp; 'int_gear_num': INT,<br> &nbsp; &nbsp; &nbsp; 'int_class_bonus': INT,<br> &nbsp; &nbsp; &nbsp; 'perception': INT,<br> &nbsp; &nbsp; &nbsp; 'perc_gear_num': INT,<br> &nbsp; &nbsp; &nbsp; 'perc_class_bonus': INT,<br> &nbsp; &nbsp; &nbsp; 'cost': INT,<br> &nbsp; &nbsp; &nbsp; 'image': STRING<br> &nbsp; }<br>} | 
+| PUT /api/users/update-user-stats | Updates a user's stats and information. | {<br> &nbsp; 'id': INT,<br> &nbsp; 'username': STRING,<br> &nbsp; 'email': STRING,<br> &nbsp; 'bio': STRING,<br> &nbsp; 'experience_points': INT,<br> &nbsp; 'level': INT,<br> &nbsp; 'date_joined': DATE,<br> &nbsp; 'gold': INT,<br> &nbsp; 'health': INT<br> &nbsp; 'avatar': { <br> &nbsp; &nbsp; 'id': INT,<br>&nbsp; &nbsp; 'user_id': INT,<br>&nbsp; &nbsp; 'shirt': STRING,<br>&nbsp; &nbsp; 'hair': STRING,<br>&nbsp; &nbsp; 'bangs': STRING,<br>&nbsp; &nbsp; 'skin': STRING,<br>&nbsp; &nbsp;  'background': STRING<br>&nbsp; }<br>} |
