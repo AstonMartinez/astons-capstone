@@ -1,16 +1,20 @@
 """empty message
 
-Revision ID: 18c1ddee225b
-Revises: 
-Create Date: 2023-09-16 22:39:07.353049
+Revision ID: c80dcd85aba4
+Revises:
+Create Date: 2023-09-17 14:56:01.643706
 
 """
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
+
 
 # revision identifiers, used by Alembic.
-revision = '18c1ddee225b'
+revision = 'c80dcd85aba4'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -165,6 +169,20 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
+    if environment == "production":
+        op.execute(f"ALTER TABLE achievements SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE bug_reports SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE equipment SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE feature_requests SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE avatars SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE dailies SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE habits SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE rewards SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE to_dos SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE user_achievements SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE user_equipment SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE user_rewards SET SCHEMA {SCHEMA};")
 
 
 def downgrade():
