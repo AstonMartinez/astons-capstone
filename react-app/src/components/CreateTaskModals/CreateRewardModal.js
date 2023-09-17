@@ -11,6 +11,7 @@ const CreateRewardModal = ({ onSubmit, onClose }) => {
     const [cost, setCost] = useState(10)
     const [tags, setTags] = useState('')
     const [errors, setErrors] = useState([])
+    const [titleError, setTitleError] = useState('')
     const [showTagDropdown, setShowTagDropdown] = useState("hidden")
 
     // const handleClickOutside = useCallback((e) => {
@@ -63,6 +64,16 @@ const CreateRewardModal = ({ onSubmit, onClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if(cost > 1000) {
+            setErrors("Please choose a value that is less than or equal to 1,000")
+            return
+        }
+
+        if(!title) {
+            setTitleError("Please enter a title for this Reward.")
+            return
+        }
+
         const newReward = {
             title: title,
             notes: notes,
@@ -109,6 +120,7 @@ const CreateRewardModal = ({ onSubmit, onClose }) => {
                                 placeholder="Add a title"
                             />
                         </div>
+                        {titleError ? (<p id='no-title-error'>{titleError}</p>) : ''}
                         <div id={`reward-notes-container`}>
                             <label htmlFor='notes'>Notes</label>
                             <input
@@ -140,6 +152,7 @@ const CreateRewardModal = ({ onSubmit, onClose }) => {
                             </div>
                         </div>
                     </div>
+                    {errors ? (<p id='reward-cost-error-text'>{errors}</p>) : ''}
                         {/* <div> */}
                         <div id='tags-outer-wrapper'>
                             {/* <div id='tags-outer-wrapper'> */}

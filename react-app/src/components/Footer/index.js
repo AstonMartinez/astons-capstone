@@ -25,12 +25,12 @@ const Footer = () => {
                     <div id='footer-support-container'>
                         <h5>Support:</h5>
                         {/* <ul> */}
-                            <p><NavLink exact to='/faq'>FAQ</NavLink></p>
-                            <p id='bug-report-button' onClick={() => setShowModal(true)}>Report a Bug
+                            <p className='footer-section-links'><NavLink exact to='/faq'>FAQ</NavLink></p>
+                            <p className='footer-section-links' id='bug-report-button' onClick={() => setShowModal(true)}>Report a Bug
                                 <CreateBugReport />
                             </p>
-                            <p><NavLink exact to='/feature-request'>Request a Feature</NavLink></p>
-                            <p><NavLink exact to='/wiki'>Wiki</NavLink></p>
+                            <p className='footer-section-links'><NavLink exact to='/feature-request'>Request a Feature</NavLink></p>
+                            <p className='footer-section-links'><NavLink exact to='/wiki'>Wiki</NavLink></p>
                         {/* </ul> */}
                     </div>
                 </div>
@@ -43,8 +43,8 @@ const Footer = () => {
                     <img src="https://i.ibb.co/4p9CmV4/small-gray-lion.png" alt="small-gray-lion" border="0" />
                 </div>
                 <div id='privacy-policy-and-tos'>
-                    <NavLink exact to='/privacy-policy'><p>Privacy Policy</p></NavLink>
-                    <NavLink exact to='/tos'><p>Terms and Conditions</p></NavLink>
+                    <NavLink exact to='/privacy-policy'><p id='pp-footer-text'>Privacy Policy</p></NavLink>
+                    <NavLink exact to='/tos'><p id='tos-footer-text'>Terms and Conditions</p></NavLink>
                 </div>
             </div>
             {showModal && (

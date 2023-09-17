@@ -25,7 +25,10 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
     let dueDateDisplay
 
     const trivialOption = (
-        <div className='difficulty-option-outer-container' onClick={() => setDifficulty("Trivial")}>
+        <div className='difficulty-option-outer-container' onClick={() => {
+            setDifficulty("Trivial")
+            setShowDifficultyDropdown(false)
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Trivial</span>
             </div>
@@ -36,7 +39,11 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
     )
 
     const easyOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Easy")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Easy")
+            setShowDifficultyDropdown(false)
+            return
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Easy</span>
             </div>
@@ -48,7 +55,9 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
     )
 
     const mediumOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Medium")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Medium")
+            setShowDifficultyDropdown(false)}}>
             <div className='individual-difficulty-option'>
                 <span>Medium</span>
             </div>
@@ -61,7 +70,10 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
     )
 
     const hardOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Hard")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Hard")
+            setShowDifficultyDropdown(false)
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Hard</span>
             </div>
@@ -158,6 +170,11 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if(!title) {
+            setErrors("Please enter a title for this To-Do.")
+            return
+        }
         // console.log("submitting")
         let dateInfo
         // console.log(startDate.toDateString())
@@ -222,7 +239,10 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
     if(showCal) {
         calDisplay = (
             <div id='react-calendar-container'>
-                <Calendar onChange={setDueDate} value={dueDate} />
+                <Calendar onChange={(date) => {
+                    setShowCal(false)
+                    setDueDate(date)
+                    }} value={dueDate} />
             </div>
         )
     } else {
@@ -253,6 +273,7 @@ const ToDoUpdateDeleteModal = ({ onSubmit, onClose, toDoId, toDoData }) => {
                                     onChange={(e) => setTitle(e.target.value)}
                                 />
                         </div>
+                        {errors ? (<p id='no-title-error'>{errors}</p>) : ''}
                         <div id='daily-notes-container'>
                             <label htmlFor='notes'>Notes</label>
                             <textarea

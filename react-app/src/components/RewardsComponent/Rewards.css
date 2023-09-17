@@ -233,3 +233,7 @@
 #new-habit-title-input:focus {
     outline: 1px solid purple;
 }
+
+#reward-cost-error-text {
+    color: red;
+}

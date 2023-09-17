@@ -152,7 +152,7 @@ const IndividualHabit = ({habitData}) => {
             neg_count: habitData.neg_count,
             status: status
         }
-        console.log(updatedhabitInfo)
+        // console.log(updatedhabitInfo)
         await dispatch(updateUserHabit(habitData.id, updatedhabitInfo))
         await dispatch(updateUserInfo(result)).then(() => {
             return <Redirect to='/my-dashboard' />
@@ -167,9 +167,10 @@ const IndividualHabit = ({habitData}) => {
             return
         }
 
-        let count
-        const currCount = habitData.neg_count
+        // let count
+        const currCount = negativeCount
         setNegativeCount(currCount + 1)
+        const incremented = negativeCount
         // console.log("CURR COUNT: ", currCount)
         if(habitData.type === "negative" && currCount === 0) {
             // console.log("STARTING")
@@ -186,34 +187,35 @@ const IndividualHabit = ({habitData}) => {
             // console.log("WORKED")
             // return <Redirect to='/my-dashboard' />
         } else {
-            const incremented = currCount + 1
+            // const incremented = currCount + 1
+            // count = incremented
             // let status
             if(habitData.type === "positive, negative") {
                 if(habitData.pos_count > habitData.neg_count) {
                     setStatus("strong")
-                    count = currCount + 1
+                    // count = currCount + 1
                     setNegativeFill("green")
                     setPositiveFill("green")
                 } else if(habitData.pos_count === habitData.neg_count) {
                     setStatus("regular")
-                    count = currCount + 1
+                    // count = currCount + 1
                     setNegativeFill("orange")
                     setNegativeFill("orange")
                 } else {
                     setStatus("weak")
-                    count = currCount + 1
+                    // count = currCount + 1
                     setNegativeFill("dark-orange")
                     setNegativeFill("dark-orange")
                 }
             } else {
                 if(habitData.neg_count >= 1) {
                     setStatus("weak")
-                    count = currCount
+                    // count = currCount + 1
                     setNegativeFill("dark-orange")
                     setPositiveFill("gray")
                 }
             }
-
+            // setNegativeCount(incremented)
             const currentGold = sessionUser.gold
             const currentXP = sessionUser.experience_points
             const currentLevel = sessionUser.level
@@ -233,8 +235,8 @@ const IndividualHabit = ({habitData}) => {
                 type: habitData.type,
                 difficulty: habitData.difficulty,
                 tags: habitData.tags,
-                pos_count: habitData.pos_count,
-                neg_count: count,
+                pos_count: positiveCount,
+                neg_count: incremented,
                 status: status
             }
 

@@ -108,3 +108,7 @@
 h3 {
     font-family: 'Roboto Condensed', sans-serif;
 }
+
+#no-title-error {
+    color: red;
+}

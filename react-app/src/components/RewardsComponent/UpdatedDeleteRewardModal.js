@@ -11,6 +11,7 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
     const [tags, setTags] = useState(rewardData.tags)
     const [errors, setErrors] = useState([])
     const [showTagDropdown, setShowTagDropdown] = useState("hidden")
+    const [titleError, setTitleError] = useState('')
 
     // const handleClickOutside = useCallback((e) => {
     //     e.preventDefault()
@@ -62,6 +63,15 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if(!title) {
+            setTitleError("Please enter a title for this Reward.")
+            return
+        }
+
+        if(cost > 1000) {
+            setErrors("Please choose a value that is less than or equal to 1,000")
+            return
+        }
         const updatedReward = {
             title: title,
             notes: notes,
@@ -101,6 +111,7 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
                         </div>
                         <div id={`reward-title-container`}>
                             <label htmlFor='title'>Title*</label>
+
                             <input
                                 type='text'
                                 name='title'
@@ -108,7 +119,10 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                             />
+
                         </div>
+                        {titleError ? (<p id='no-title-error'>{titleError}</p>) : ''}
+
                         <div id={`reward-notes-container`}>
                             <label htmlFor='notes'>Notes</label>
                             <input
@@ -119,6 +133,7 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
                                 onChange={(e) => setNotes(e.target.value)}
                                 placeholder="Add notes"
                             />
+                            {/* {errors ? (<p id='reward-cost-error-text'>{errors}</p>) : ''} */}
                         </div>
                     </div>
                     <div id='reward-cost-container'>
@@ -140,6 +155,7 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
                             </div>
                         </div>
                     </div>
+                    {errors ? (<p id='reward-cost-error-text'>{errors}</p>) : ''}
                         {/* <div> */}
                         <div id='tags-outer-wrapper'>
                             {/* <div id='tags-outer-wrapper'> */}

@@ -45,7 +45,11 @@
     display: flex;
     justify-content: space-between;
     /* border: 1px solid red; */
-    width: 260px;
+    width: 270px;
+}
+
+#privacy-policy-and-tos > a:hover {
+    text-decoration: underline;
 }
 
 #copyright-container {
@@ -90,4 +94,12 @@ li {
 #footer-1-github-footer-logo {
     width: 31px;
     height: 31px;
+}
+
+.footer-section-links > a:hover {
+    text-decoration: underline;
+}
+
+#bug-report-button:hover {
+    text-decoration: underline;
 }

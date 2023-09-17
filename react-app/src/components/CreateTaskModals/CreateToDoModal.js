@@ -25,7 +25,10 @@ const CreateToDoModal = ({ onSubmit, onClose }) => {
     let dueDateDisplay
 
     const trivialOption = (
-        <div className='difficulty-option-outer-container' onClick={() => setDifficulty("Trivial")}>
+        <div className='difficulty-option-outer-container' onClick={() => {
+            setDifficulty("Trivial")
+            setShowDifficultyDropdown(false)
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Trivial</span>
             </div>
@@ -36,7 +39,11 @@ const CreateToDoModal = ({ onSubmit, onClose }) => {
     )
 
     const easyOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Easy")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Easy")
+            setShowDifficultyDropdown(false)
+            return
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Easy</span>
             </div>
@@ -48,7 +55,9 @@ const CreateToDoModal = ({ onSubmit, onClose }) => {
     )
 
     const mediumOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Medium")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Medium")
+            setShowDifficultyDropdown(false)}}>
             <div className='individual-difficulty-option'>
                 <span>Medium</span>
             </div>
@@ -61,7 +70,10 @@ const CreateToDoModal = ({ onSubmit, onClose }) => {
     )
 
     const hardOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Hard")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Hard")
+            setShowDifficultyDropdown(false)
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Hard</span>
             </div>
@@ -158,6 +170,11 @@ const CreateToDoModal = ({ onSubmit, onClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if(!title) {
+            setErrors("Please enter a title for this To-Do.")
+            return
+        }
         // console.log("submitting")
         const dateString = dueDate.toDateString()
         const splitDateString = dateString.split(" ")
@@ -199,7 +216,10 @@ const CreateToDoModal = ({ onSubmit, onClose }) => {
     if(showCal) {
         calDisplay = (
             <div id='react-calendar-container'>
-                <Calendar onChange={setDueDate} value={dueDate} />
+                <Calendar onChange={(date) => {
+                    setShowCal(false)
+                    setDueDate(date)
+                    }} value={dueDate} />
             </div>
         )
     } else {
@@ -231,6 +251,7 @@ const CreateToDoModal = ({ onSubmit, onClose }) => {
                                     placeholder="Add a title"
                                 />
                         </div>
+                        {errors ? (<p id='no-title-error'>{errors}</p>) : ''}
                         <div id='reward-notes-container'>
                             <label htmlFor='notes'>Notes</label>
                             <textarea

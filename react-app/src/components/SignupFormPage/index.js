@@ -22,7 +22,7 @@ function SignupFormPage() {
         const res = await dispatch(signUp(username, email, password))
         if(res) {
             setErrors(res)
-            console.log("RESPONSE: ", res)
+            // console.log("RESPONSE: ", res)
             return
         } else {
             return <Redirect to='/my-dashboard' />
@@ -101,11 +101,11 @@ function SignupFormPage() {
             onChange={(e) => setPasswordConfirm(e.target.value)}
             placeholder="Make sure it's the same password!"
           />
-            <p>{passwordMatchError}</p>
+            <p id="su-form-pw-match-error">{passwordMatchError}</p>
         </div>
         </div>
         {errors.length ? errors.map(error => (
-          <p>{error}</p>
+          <p id='su-form-error-text'>{error}</p>
         )) : ''}
         <div id='su-form-page-agreement-text'>
           <p id='su-form-page-agreement-p'>By clicking the button below, you are indicating that you have read and agree to the <NavLink exact to='/tos'>Terms of Service</NavLink> and <NavLink exact to='/privacy-policy'>Privacy Policy</NavLink>.</p>

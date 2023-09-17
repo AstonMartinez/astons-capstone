@@ -92,3 +92,7 @@
     color: rgb(189, 168, 255);
     padding-left: 10px;
 }
+
+#su-form-pw-match-error, #su-form-error-text {
+    color: red;
+}

@@ -14,7 +14,7 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
     const [tags, setTags] = useState(habitData.tags)
     const [errors, setErrors] = useState([])
     const [status, setStatus] = useState(habitData.status)
-    console.log("TOP FILL: ", fillType)
+    // console.log("TOP FILL: ", fillType)
     const [showTagDropdown, setShowTagDropdown] = useState("hidden")
     const [showDifficultyDropdown, setShowDifficultyDropdown] = useState(false)
 
@@ -29,7 +29,7 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
     }
 
     const initFill = determineTopFill()
-    console.log(initFill)
+    // console.log(initFill)
 
 
     const [topFill, setTopFill] = useState(initFill)
@@ -58,7 +58,10 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
     const [negativeFill, setNegativeFill] = useState(initialNegButtonFill)
 
     const trivialOption = (
-        <div className='difficulty-option-outer-container' onClick={() => setDifficulty("Trivial")}>
+        <div className='difficulty-option-outer-container' onClick={() => {
+            setDifficulty("Trivial")
+            setShowDifficultyDropdown(false)
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Trivial</span>
             </div>
@@ -69,7 +72,11 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
     )
 
     const easyOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Easy")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Easy")
+            setShowDifficultyDropdown(false)
+            return
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Easy</span>
             </div>
@@ -81,7 +88,9 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
     )
 
     const mediumOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Medium")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Medium")
+            setShowDifficultyDropdown(false)}}>
             <div className='individual-difficulty-option'>
                 <span>Medium</span>
             </div>
@@ -94,7 +103,10 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
     )
 
     const hardOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Hard")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Hard")
+            setShowDifficultyDropdown(false)
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Hard</span>
             </div>
@@ -181,6 +193,11 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if(!title) {
+            setErrors("Please enter a title for this Habit.")
+            return
+        }
         // console.log("submitting")
         const updatedHabit = {
             title: title,
@@ -284,6 +301,7 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
                                     onChange={(e) => setTitle(e.target.value)}
                                 />
                             </div>
+                            {errors ? (<p id='no-title-error'>{errors}</p>) : ''}
                             <div id={`habit-notes-container`}>
                                 <label htmlFor='notes'>Notes</label>
                                 <textarea

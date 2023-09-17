@@ -40,7 +40,10 @@ const CreateDailyModal = ({ onSubmit, onClose }) => {
     let startDateDisplay
 
     const trivialOption = (
-        <div className='difficulty-option-outer-container' onClick={() => setDifficulty("Trivial")}>
+        <div className='difficulty-option-outer-container' onClick={() => {
+            setDifficulty("Trivial")
+            setShowDifficultyDropdown(false)
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Trivial</span>
             </div>
@@ -51,7 +54,11 @@ const CreateDailyModal = ({ onSubmit, onClose }) => {
     )
 
     const easyOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Easy")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Easy")
+            setShowDifficultyDropdown(false)
+            return
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Easy</span>
             </div>
@@ -63,7 +70,9 @@ const CreateDailyModal = ({ onSubmit, onClose }) => {
     )
 
     const mediumOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Medium")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Medium")
+            setShowDifficultyDropdown(false)}}>
             <div className='individual-difficulty-option'>
                 <span>Medium</span>
             </div>
@@ -76,7 +85,10 @@ const CreateDailyModal = ({ onSubmit, onClose }) => {
     )
 
     const hardOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Hard")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Hard")
+            setShowDifficultyDropdown(false)
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Hard</span>
             </div>
@@ -235,6 +247,10 @@ const CreateDailyModal = ({ onSubmit, onClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if(!title) {
+            setErrors("Please enter a title for this Daily.")
+            return
+        }
         // console.log("submitting")
 
         // console.log(startDate.toDateString())
@@ -286,7 +302,10 @@ const CreateDailyModal = ({ onSubmit, onClose }) => {
     if(showCal) {
         calDisplay = (
             <div id='react-calendar-container'>
-                <Calendar onChange={setStartDate} value={startDate} />
+                <Calendar onChange={(date) => {
+                    setShowCal(false)
+                    setStartDate(date)
+                    }} value={startDate} />
             </div>
         )
     } else {
@@ -480,6 +499,7 @@ const CreateDailyModal = ({ onSubmit, onClose }) => {
                                     onChange={(e) => setTitle(e.target.value)}
                                     placeholder="Add a title"
                                 />
+                                {errors ? (<p id='no-title-error'>{errors}</p>) : ''}
                         </div>
                         <div id='reward-notes-container'>
                             <label htmlFor='notes'>Notes</label>

@@ -38,7 +38,10 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
     let startDateDisplay
 
     const trivialOption = (
-        <div className='difficulty-option-outer-container' onClick={() => setDifficulty("Trivial")}>
+        <div className='difficulty-option-outer-container' onClick={() => {
+            setDifficulty("Trivial")
+            setShowDifficultyDropdown(false)
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Trivial</span>
             </div>
@@ -49,7 +52,11 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
     )
 
     const easyOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Easy")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Easy")
+            setShowDifficultyDropdown(false)
+            return
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Easy</span>
             </div>
@@ -61,7 +68,9 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
     )
 
     const mediumOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Medium")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Medium")
+            setShowDifficultyDropdown(false)}}>
             <div className='individual-difficulty-option'>
                 <span>Medium</span>
             </div>
@@ -74,7 +83,10 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
     )
 
     const hardOption = (
-        <div className='difficulty-option-outer-container'  onClick={() => setDifficulty("Hard")}>
+        <div className='difficulty-option-outer-container'  onClick={() => {
+            setDifficulty("Hard")
+            setShowDifficultyDropdown(false)
+            }}>
             <div className='individual-difficulty-option'>
                 <span>Hard</span>
             </div>
@@ -233,6 +245,11 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if(!title) {
+            setErrors("Please enter a title for this Daily.")
+            return
+        }
         // console.log("submitting")
         let dateInfo
         // console.log(startDate.toDateString())
@@ -302,7 +319,10 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
     if(showCal) {
         calDisplay = (
             <div id='react-calendar-container'>
-                <Calendar onChange={setStartDate} value={startDate} />
+                <Calendar onChange={(date) => {
+                    setShowCal(false)
+                    setStartDate(date)
+                    }} value={startDate} />
             </div>
         )
     } else {
@@ -496,6 +516,7 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
                                     onChange={(e) => setTitle(e.target.value)}
                                 />
                         </div>
+                        {errors ? (<p id='no-title-error'>{errors}</p>) : ''}
                         <div id='daily-notes-container'>
                             <label htmlFor='notes'>Notes</label>
                             <textarea
