@@ -65,7 +65,7 @@ const SignUpPage = () => {
                                 onChange={(e) => setUsername(e.target.value)}
                                 placeholder="Username"
                                 />
-                                {errors?.username && (<p>{errors.username}</p>)}
+                                {errors?.username && (<p className='landing-page-error-text'>{errors.username}</p>)}
                             </div>
                         </div>
                         <div>
@@ -77,7 +77,7 @@ const SignUpPage = () => {
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="Email"
                             />
-                            {errors?.email && (<p>{errors.email}</p>)}
+                            {errors?.email && (<p className='landing-page-error-text'>{errors.email}</p>)}
                         </div>
                         <div>
                             <input
@@ -88,7 +88,7 @@ const SignUpPage = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Password"
                             />
-                            {errors?.password && (<p>{errors.password}</p>)}
+                            {errors?.password && (<p className='landing-page-error-text'>{errors.password}</p>)}
                         </div>
                         <div>
                             <input
@@ -99,10 +99,10 @@ const SignUpPage = () => {
                             onChange={(e) => setPasswordConfirm(e.target.value)}
                             placeholder="Confirm Password"
                             />
-                            <p>{passwordMatchError}</p>
+                            <p className='landing-page-error-text'>{passwordMatchError}</p>
                         </div>
                         {errors.length ? errors.map(error => (
-                            <p>{error}</p>
+                            <p className='landing-page-error-text'>{error}</p>
                         )) : ''}
                         <div id='agreement-text-container'>
                             <p id='agreement-text'>By clicking the button below, you are indicating that you have read and agree to the Terms of Service and Privacy Policy.</p>

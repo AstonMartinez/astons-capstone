@@ -302,3 +302,7 @@
     width: 420px;
     margin-bottom: 20px;
 }
+
+.landing-page-error-text {
+    color: red;
+}
