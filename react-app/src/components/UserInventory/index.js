@@ -6,12 +6,16 @@ import UserOverview from '../UserOverview';
 import IndividualItem from '../IndividualItem'
 import AvatarDisplay from '../AvatarDisplay'
 import { useHistory } from 'react-router-dom'
+import EquipItemModal from './EquipItemModal';
 
 const UserInventory = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
     const userEquipment = useSelector(state => state.equipment)
+    const [showEquipItemModal, setShowEquipItemModal] = useState(false)
+    const [selectedItem, setSelectedItem] = useState(null)
+
     // console.log("USER EQUIPMENT: ", userEquipment)
 
     if(!sessionUser) {
@@ -46,11 +50,27 @@ const UserInventory = () => {
             {noEquipmentMsg}
             <div id='equipment-display-wrapper'>
                 {equipmentToMap && equipmentToMap.map((item) => (
-                    <div className='individual-equipment-item'>
-                        <IndividualItem itemData={item} />
-                    </div>
+                    <>
+                        <div className='individual-equipment-item' onClick={() => setSelectedItem(item)}>
+                            <IndividualItem itemData={item} />
+                        </div>
+                    </>
                 ))}
             </div>
+            {selectedItem && showEquipItemModal && (
+            <EquipItemModal
+                itemId={selectedItem.id}
+                itemData={selectedItem}
+                onSubmit={() => {
+                    setShowEquipItemModal(false)
+                    setSelectedItem(null)
+                }}
+                onClose={() => {
+                    setShowEquipItemModal(false)
+                    setSelectedItem(null)
+                }}
+            />
+            )}
         </div>
     )
 }

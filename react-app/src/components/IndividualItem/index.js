@@ -1,8 +1,12 @@
 import { useState } from 'react'
+import EquipItemModal from '../UserInventory/EquipItemModal'
+import EquipItem from './EquipItem'
 
 const IndividualItem = ({ itemData }) => {
     const [itemActive, setItemActive] = useState("inactive")
     const [showStats, setShowStats] = useState(false)
+    const [showEquipItemModal, setShowEquipItemModal] = useState(false)
+    const [selectedItem, setSelectedItem] = useState(null)
 
     const toolTip = (
         <div id={`tool-tip-${itemActive}`}>
@@ -66,13 +70,30 @@ const IndividualItem = ({ itemData }) => {
                     setItemActive("inactive")
                 }}
                 onClick={() => {
-                    showStats ? setShowStats(false) : setShowStats(true)
+                    // setSelectedItem(itemData)
+                    // setShowEquipItemModal(true)
+                    alert("Using / Equipping Items Feature Coming Soon!")
                 }}>
                 <div id='item-image-container'>
                     <img className='equipment-item-image' src={itemData.image} alt='equipment item' />
                 </div>
+                <EquipItem item={itemData} />
             </div>
-            {itemStats}
+            {/* {itemStats} */}
+            {showEquipItemModal && (
+                <EquipItemModal
+                    itemId={itemData.id}
+                    itemData={itemData}
+                    onSubmit={() => {
+                        setShowEquipItemModal(false)
+                        setSelectedItem(null)
+                    }}
+                    onClose={() => {
+                        setShowEquipItemModal(false)
+                        setSelectedItem(null)
+                    }}
+                />
+            )}
         </>
     )
 

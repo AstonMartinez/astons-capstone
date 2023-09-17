@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Confirmation from "./Confirmation";
 import ConfirmationModal from "./ConfirmationModal";
 import './ShopsComponent.css'
+import AvatarDisplay from "../AvatarDisplay";
 
 const ShopsComponent = () => {
     const [itemOneActive, setItemOneActive] = useState(false)
@@ -371,6 +372,7 @@ const ShopsComponent = () => {
         <>
 
         <UserOverview />
+        <AvatarDisplay />
         {/* <div id="side-placeholder"></div> */}
         <div id='shops-parent-container'>
             <div id='shop-banner-container'>
