@@ -132,7 +132,6 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
     const processAddTags = (value) => {
         const tagsArr = tags.split(", ")
         const checker = tagsArr.filter((tag) => tag.toLowerCase() === value.toLowerCase())
-        // console.log(checker)
         if(checker.length === 1) {
             return
         } else {
@@ -167,7 +166,6 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
                 setSundayFill('filled')
                 setDayOfRepeat(dayOfRepeat + ", sunday")
             }
-            // console.log(dayOfRepeat)
         } else if(day.toLowerCase() === "monday") {
             if(mondayFill === 'filled') {
                 setMondayFill('empty')
@@ -217,7 +215,6 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
                 setDayOfRepeat(dayOfRepeat + ", saturday")
             }
         }
-        console.log(dayOfRepeat)
         return
     }
 
@@ -230,7 +227,6 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
     const processDeleteTags = (item) => {
         const allTags = tags.split(", ")
         const checkExist = allTags.filter((tag) => tag.toLowerCase() === item.toLowerCase())
-        // console.log(checkExist.length)
         if(checkExist.length !== 0) {
             const index = allTags.indexOf(item)
             allTags.splice(index, 1)
@@ -250,29 +246,20 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
             setErrors("Please enter a title for this Daily.")
             return
         }
-        // console.log("submitting")
         let dateInfo
-        // console.log(startDate.toDateString())
-        // console.log(dailyData.start_date)
+
 
         if(startDate === dailyData.start_date) {
             const dateArr = startDate.split(" ")
-            // console.log("START DATE SPLIT: ", dateArr)
             const newMonth = stringToInt(dateArr)
             dateArr.splice(2, 1, newMonth)
-            // console.log("FINAL: ", `${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`) // "23 09 2023"
             dateInfo = `${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`
-            // console.log("START DATE === ")
-            // console.log(dateInfo)
-
         } else {
             const dateString = startDate.toDateString()
             const splitDateString = dateString.split(" ")
             const newMonth = stringToInt2(splitDateString)
             splitDateString.splice(1, 1, newMonth)
-            // console.log("REACT DATE SPLIT: ", splitDateString)
             dateInfo = `${splitDateString[2]} ${splitDateString[1]} ${splitDateString[3]}`
-            // console.log("REACT DATE SPLIT: ", dateInfo)
         }
         const updatedDaily = {
             title: title,
@@ -287,7 +274,6 @@ const UpdateDeleteDailyModal = ({ onSubmit, onClose, dailyId, dailyData }) => {
             count: dailyData.count,
             status: dailyData.status
         }
-        // console.log("UPDATED HABIT: ", updatedDaily)
 
         dispatch(updateUserDaily(dailyId, updatedDaily))
         .then(() => dispatch(getUserDailies()))

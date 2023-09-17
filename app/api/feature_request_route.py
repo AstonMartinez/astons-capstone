@@ -13,7 +13,6 @@ def submit_feature_request():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        # print("HITTING VALIDATION")
         email = request.json["email"]
         category = request.json["category"]
         response = request.json["response"]
@@ -29,5 +28,4 @@ def submit_feature_request():
         db.session.add(new_request)
         db.session.commit()
         return new_request.to_dict()
-    print(form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}

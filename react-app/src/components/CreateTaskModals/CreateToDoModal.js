@@ -104,7 +104,6 @@ const CreateToDoModal = ({ onSubmit, onClose }) => {
     const processAddTags = (value) => {
         const tagsArr = tags.split(", ")
         const checker = tagsArr.filter((tag) => tag.toLowerCase() === value.toLowerCase())
-        // console.log(checker)
         if(checker.length === 1) {
             return
         } else {
@@ -114,21 +113,6 @@ const CreateToDoModal = ({ onSubmit, onClose }) => {
             return
         }
     }
-
-    // console.log("DUE DATE: ", dueDate)
-
-    // const handleClickOutside = useCallback((e) => {
-    //     if (modalOverlayRef.current === e.target) {
-    //         onClose();
-    //     }
-    // }, [onClose]);
-
-    // useEffect(() => {
-    //     document.addEventListener('mousedown', handleClickOutside)
-    //     return () => {
-    //         document.removeEventListener('mousedown', handleClickOutside)
-    //     }
-    // }, [handleClickOutside])
 
     const processDeleteChecklistItem = (item) => {
         const allItems = checklist.split(", ")
@@ -155,7 +139,6 @@ const CreateToDoModal = ({ onSubmit, onClose }) => {
     const processDeleteTags = (item) => {
         const allTags = tags.split(", ")
         const checkExist = allTags.filter((tag) => tag.toLowerCase() === item.toLowerCase())
-        // console.log(checkExist.length)
         if(checkExist.length !== 0) {
             const index = allTags.indexOf(item)
             allTags.splice(index, 1)
@@ -175,12 +158,10 @@ const CreateToDoModal = ({ onSubmit, onClose }) => {
             setErrors("Please enter a title for this To-Do.")
             return
         }
-        // console.log("submitting")
         const dateString = dueDate.toDateString()
         const splitDateString = dateString.split(" ")
         const newMonth = stringToInt2(splitDateString)
         splitDateString.splice(1, 1, newMonth)
-        // console.log("REACT DATE SPLIT: ", splitDateString)
         const dateInfo = `${splitDateString[2]} ${splitDateString[1]} ${splitDateString[3]}`
 
         const newToDo = {
@@ -192,12 +173,10 @@ const CreateToDoModal = ({ onSubmit, onClose }) => {
             tags: tags,
             status: status
         }
-        // console.log("UPDATED HABIT: ", updatedDaily)
 
         dispatch(createNewToDo(newToDo))
         .then(async(res) => {
             if(res.message) {
-                // console.log(res.message)
                 setErrors("Title field is required.")
             } else {
                 dispatch(getUserToDos())

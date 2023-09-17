@@ -50,9 +50,6 @@ def create_todo():
         db.session.add(new_todo)
         db.session.commit()
         return new_todo.to_dict()
-    # print("""
-    #       LOOK HERE
-    #       """, form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 @login_required
@@ -74,10 +71,6 @@ def update_todo(id):
     current_due_date = curr_todo.due_date.strftime("%d %m %Y").split()
     new_due_date = due_date.split()
 
-    print("""
-          CURRENT START DATE + NEW START DATE
-          """, current_due_date, new_due_date)
-
     if form.validate_on_submit():
         if current_due_date != new_due_date:
             new_day = int(new_due_date[0])
@@ -88,15 +81,12 @@ def update_todo(id):
         curr_todo.title = title
         curr_todo.notes = notes
         curr_todo.checklist = checklist
-        # curr_todo.due_date = datetime(new_due_date)
         curr_todo.tags = tags
         curr_todo.status = status
         curr_todo.difficulty = difficulty
 
         updated_todo = curr_todo
         updated_todo_dict = updated_todo.to_dict()
-        # print("""
-        #   LOOOOOOOOOOOOOOK""", updated_daily_dict)
         db.session.commit()
         return updated_todo_dict
     return {'errors': validation_errors_to_error_messages(form.errors)}

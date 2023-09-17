@@ -10,23 +10,18 @@ const ConfirmationModal = ({itemId, itemData, onSubmit, onClose}) => {
     const selectedItemId = itemId
     const selectedItemCose = itemData.cost
 
-    console.log("ITEM ID: ", itemData.id)
-
     const handleBuyNow = async() => {
         if(sessionUser.gold < itemData.cost) {
             setCostError("You don't have enoough gold to buy this item!")
             return
         } else {
             const userNewGold = sessionUser.gold - itemData.cost
-            console.log(userNewGold)
             const updatedUserInfo = {
                 gold: userNewGold,
                 health: sessionUser.health,
                 experience_points: sessionUser.experience_points,
                 level: sessionUser.level
             }
-
-            console.log(updatedUserInfo)
 
             const newUserEquipment = {
                 user_id: sessionUser.id,

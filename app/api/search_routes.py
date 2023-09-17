@@ -15,7 +15,6 @@ search_routes = Blueprint('search', __name__)
 
 @search_routes.route('/custom/<path:query>')
 def get_custom_search(query):
-    print("QUERY *********************** ", query)
     title_split = query.split('/')
     joined_title = " ".join(title_split)
     result = {
@@ -34,7 +33,6 @@ def get_custom_search(query):
     habits = Habit.query.filter(or_(Habit.title.ilike(f"%{joined_title}%"), Habit.notes.ilike(f"%{joined_title}%")))
     if habits:
         for habit in habits:
-            # print(habit.id)
             habit_dict = habit.to_dict()
             habit_result[habit.id] = habit_dict
 
@@ -58,7 +56,6 @@ def get_custom_search(query):
             reward_dict = reward.to_dict()
             reward_result[reward.id] = reward_dict
 
-    print("FINAL RESULT: ", result)
     result["habits"] = habit_result
     result["dailies"] = daily_result
     result["ToDos"] = todo_result
@@ -82,13 +79,10 @@ def get_search_result(tags):
     todo_result = {}
     reward_result = {}
 
-    print("""TAG LIST: """, tagList)
     for tag in tagList:
-        print("""INDIVIDUAL TAG: """, tag)
         habits = Habit.query.filter(Habit.tags.like(f"%{tag}%"))
         if habits:
             for habit in habits:
-                # print(habit.id)
                 habit_dict = habit.to_dict()
                 habit_result[habit.id] = habit_dict
 
@@ -112,13 +106,10 @@ def get_search_result(tags):
                 reward_dict = reward.to_dict()
                 reward_result[reward.id] = reward_dict
 
-
-        print("""INDIVIDUAL TAG: """, tag)
         habits_last_tag = Habit.query.filter(Habit.tags.ilike(f"%{tagList[-1]}%"))
 
         if habits_last_tag:
             for habit in habits_last_tag:
-                # print(habit.id)
                 habit_dict = habit.to_dict()
                 habit_result[habit.id] = habit_dict
 
@@ -142,7 +133,6 @@ def get_search_result(tags):
                 reward_dict = reward.to_dict()
                 reward_result[reward.id] = reward_dict
 
-    print("FINAL RESULT: ", result)
     result["habits"] = habit_result
     result["dailies"] = daily_result
     result["ToDos"] = todo_result

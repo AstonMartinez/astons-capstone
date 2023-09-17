@@ -13,17 +13,9 @@ avatar_routes = Blueprint('avatar', __name__)
 @avatar_routes.route('/current')
 def get_user_avatar():
     avatar = current_user.avatar
-    # print("STEP 1 **************: ", avatar)
     avatar_id = avatar[0].id
     queried_avatar = Avatar.query.get(avatar_id)
-    # print("STEP 2 **************: ", queried_avatar)
     avatar_dict = queried_avatar.to_dict()
-    # print("STEP 3 **************: ", avatar_dict)
-    # user_avatar = Avatar.query.filter(Avatar.user_id == user_id)
-    # if user_avatar:
-    #     # avatar_dict = user_avatar.to_dict()
-    #     print("RESULT *******************", user_avatar['user_id'])
-    #     # return avatar_dict
     return avatar_dict
 
 @avatar_routes.route('/update', methods=["PUT"])

@@ -57,60 +57,36 @@ const getOne = (data) => {
 
 export const getSearchedHabits = (query) => async (dispatch) => {
     try {
-        // console.log("DISPATCHED")
         const response = await fetch(`/api/search/custom/${query}`)
         if(response.ok) {
             const data = await response.json()
             const habitData = data["habits"]
             dispatch(search(habitData))
-
-
-
-        // const response = await fetch(`/api/habits/filter/search`)
-        // if(response.ok) {
-        //     console.log("SUCCESSFUL")
-        //     const data = await response.json()
-        //     dispatch(filter(data))
-        //     return data
         } else {
-            console.log("FAILED")
             const errors = await response.json();
             return errors;
         }
 
     } catch (error) {
         const errors = (error && error.json) ? await error.json() : { message: error.toString() }
-        console.log("ERROR: ", errors)
         return errors
     }
 }
 
 export const getFilteredHabits = (tags) => async (dispatch) => {
     try {
-        console.log("DISPATCHED")
         const response = await fetch(`/api/search/${tags}`)
         if(response.ok) {
             const data = await response.json()
             const habitData = data["habits"]
             dispatch(filter(habitData))
-
-
-
-        // const response = await fetch(`/api/habits/filter/search`)
-        // if(response.ok) {
-        //     console.log("SUCCESSFUL")
-        //     const data = await response.json()
-        //     dispatch(filter(data))
-        //     return data
         } else {
-            console.log("FAILED")
             const errors = await response.json();
             return errors;
         }
 
     } catch (error) {
         const errors = (error && error.json) ? await error.json() : { message: error.toString() }
-        console.log("ERROR: ", errors)
         return errors
     }
 }

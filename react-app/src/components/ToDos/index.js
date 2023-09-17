@@ -27,7 +27,6 @@ const ToDosComponent = () => {
     const validateTitle = (title) => {
         if(toDoTitle.length > 255) {
             setErrors(["A To-Do title must be 255 characters or less."])
-            // console.log("ERRORS: *******************", errors)
             return false
         }
         return true

@@ -30,7 +30,6 @@ const HabitComponent = () => {
     const validateTitle = (title) => {
         if(habitTitle.length > 255) {
             setErrors(["A Habit title must be 255 characters or less."])
-            // console.log("ERRORS: *******************", errors)
             return false
         }
         return true

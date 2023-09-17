@@ -14,7 +14,6 @@ def submit_report():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        # print("HITTING VALIDATION")
         user_email = request.json["email"]
         bug_description = request.json["bug_description"]
 
@@ -27,7 +26,6 @@ def submit_report():
         db.session.add(new_report)
         db.session.commit()
         return new_report.to_dict()
-    print(form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 @bug_routes.route('/<int:id>/status', methods=["PUT"])

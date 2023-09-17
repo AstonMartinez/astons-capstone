@@ -25,7 +25,6 @@ const DailiesComponent = () => {
     const validateTitle = (title) => {
         if(dailyTitle.length > 255) {
             setErrors(["A Daily title must be 255 characters or less."])
-            // console.log("ERRORS: *******************", errors)
             return false
         }
         return true

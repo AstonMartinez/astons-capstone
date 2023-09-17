@@ -101,7 +101,6 @@ const CreateHabitModal = ({onSubmit, onClose}) => {
     const processDeleteTags = (item) => {
         const allTags = tags.split(", ")
         const checkExist = allTags.filter((tag) => tag.toLowerCase() === item.toLowerCase())
-        // console.log(checkExist.length)
         if(checkExist.length !== 0) {
             const index = allTags.indexOf(item)
             allTags.splice(index, 1)
@@ -117,7 +116,6 @@ const CreateHabitModal = ({onSubmit, onClose}) => {
     const processAddTags = (value) => {
         const tagsArr = tags.split(", ")
         const checker = tagsArr.filter((tag) => tag.toLowerCase() === value.toLowerCase())
-        // console.log(checker)
         if(checker.length === 1) {
             return
         } else {
@@ -134,7 +132,6 @@ const CreateHabitModal = ({onSubmit, onClose}) => {
             setErrors("Please enter a title for this Habit.")
             return
         }
-        // console.log("submitting")
         const newHabit = {
             title: title,
             notes: notes,
@@ -145,29 +142,17 @@ const CreateHabitModal = ({onSubmit, onClose}) => {
             status: status,
             tags: tags
         }
-        // console.log("UPDATED HABIT: ", updatedHabit)
 
         dispatch(createNewHabit(newHabit))
         .then(async(res) => {
-            // console.log(res)
             if(res.message) {
-                // console.log(res.message)
                 setErrors("Title field is required.")
             } else {
                 dispatch(getUserHabits())
                 return onSubmit()
             }
-            // const data = await res.json()
-
-            // if(data.errors) {
-            //     setErrors(data.errors)
-            //     return
-            // } else {
-            //     dispatch(getUserHabits())
-            //     return onSubmit()
-            // }
         })
-        // return onSubmit()
+
     }
 
     const handlePosButtonClick = () => {
@@ -197,12 +182,10 @@ const CreateHabitModal = ({onSubmit, onClose}) => {
     const handleNegButtonClick = () => {
         if(negativeFill === "filled") {
             if(type === "negative") {
-                console.log("type is neg")
                 setType("")
                 setNegativeFill("empty")
                 return
             } else if(type === "positive, negative") {
-                console.log("type is pos,neg")
                 setType("positive")
                 setNegativeFill("empty")
                 return

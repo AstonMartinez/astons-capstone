@@ -15,25 +15,6 @@ const getCurrent = (data) => {
     }
 }
 
-// export const updateUserAvatar = (updatedAvatar) => async (dispatch) => {
-//     try {
-//         const response = await fetch('/api/avatar/update', {
-//             method: "PUT",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify(updatedAvatar)
-//         })
-//         if(response.ok) {
-//             const data = await response.json()
-//             dispatch(update(data))
-//         }
-//     } catch (error) {
-//         console.log(error)
-//         return error
-//     }
-// }
-
 export const getUserEquipment = () => async (dispatch) => {
     try {
         const response = await fetch('/api/users/inventory')
@@ -42,7 +23,6 @@ export const getUserEquipment = () => async (dispatch) => {
             dispatch(getCurrent(data))
         }
     } catch (error) {
-        console.log(error)
         return error
     }
 }

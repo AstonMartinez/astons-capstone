@@ -14,7 +14,6 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
     const [tags, setTags] = useState(habitData.tags)
     const [errors, setErrors] = useState([])
     const [status, setStatus] = useState(habitData.status)
-    // console.log("TOP FILL: ", fillType)
     const [showTagDropdown, setShowTagDropdown] = useState("hidden")
     const [showDifficultyDropdown, setShowDifficultyDropdown] = useState(false)
 
@@ -29,9 +28,6 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
     }
 
     const initFill = determineTopFill()
-    // console.log(initFill)
-
-
     const [topFill, setTopFill] = useState(initFill)
 
     const determinePosFill = () => {
@@ -137,13 +133,11 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
     const processDeleteTags = (item) => {
         const allTags = tags.split(", ")
         const checkExist = allTags.filter((tag) => tag.toLowerCase() === item.toLowerCase())
-        // console.log(checkExist.length)
         if(checkExist.length !== 0) {
             const index = allTags.indexOf(item)
             allTags.splice(index, 1)
             const res = allTags.join(", ")
             setTags(res)
-            // setTagsToDisplay(tags)
             return
         } else {
             return
@@ -153,7 +147,6 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
     const processAddTags = (value) => {
         const tagsArr = tags.split(", ")
         const checker = tagsArr.filter((tag) => tag.toLowerCase() === value.toLowerCase())
-        // console.log(checker)
         if(checker.length === 1) {
             return
         } else {
@@ -198,7 +191,7 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
             setErrors("Please enter a title for this Habit.")
             return
         }
-        // console.log("submitting")
+
         const updatedHabit = {
             title: title,
             notes: notes,
@@ -209,7 +202,6 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
             status: status,
             tags: tags
         }
-        // console.log("UPDATED HABIT: ", updatedHabit)
 
         dispatch(updateUserHabit(habitId, updatedHabit))
         .then(() => dispatch(getUserHabits()))
@@ -254,12 +246,10 @@ const UpdateHabitModal = ({ onSubmit, onClose, habitId, habitData, fillType }) =
     const handleNegButtonClick = () => {
         if(negativeFill === "filled") {
             if(type === "negative") {
-                console.log("type is neg")
                 setType("")
                 setNegativeFill("empty")
                 return
             } else if(type === "positive, negative") {
-                console.log("type is pos,neg")
                 setType("positive")
                 setNegativeFill("empty")
                 return

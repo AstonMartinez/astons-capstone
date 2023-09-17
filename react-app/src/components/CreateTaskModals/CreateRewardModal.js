@@ -34,13 +34,11 @@ const CreateRewardModal = ({ onSubmit, onClose }) => {
     const processDeleteTags = (item) => {
         const allTags = tags.split(", ")
         const checkExist = allTags.filter((tag) => tag.toLowerCase() === item.toLowerCase())
-        // console.log(checkExist.length)
         if(checkExist.length !== 0) {
             const index = allTags.indexOf(item)
             allTags.splice(index, 1)
             const res = allTags.join(", ")
             setTags(res)
-            // setTagsToDisplay(tags)
             return
         } else {
             return
@@ -50,7 +48,6 @@ const CreateRewardModal = ({ onSubmit, onClose }) => {
     const processAddTags = (value) => {
         const tagsArr = tags.split(", ")
         const checker = tagsArr.filter((tag) => tag.toLowerCase() === value.toLowerCase())
-        // console.log(checker)
         if(checker.length === 1) {
             return
         } else {
@@ -84,7 +81,6 @@ const CreateRewardModal = ({ onSubmit, onClose }) => {
         dispatch(createNewReward(newReward))
         .then(async(res) => {
             if(res.message) {
-                // console.log(res.message)
                 setErrors("Title field is required.")
             } else {
                 dispatch(getUserRewards())

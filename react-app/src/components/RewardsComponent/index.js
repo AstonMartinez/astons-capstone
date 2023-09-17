@@ -24,7 +24,6 @@ const RewardsComponent = () => {
     const validateTitle = (title) => {
         if(rewardName.length > 255) {
             setErrors(["A Reward title must be 255 characters or less."])
-            // console.log("ERRORS: *******************", errors)
             return false
         }
         return true

@@ -134,7 +134,6 @@ const CreateDailyModal = ({ onSubmit, onClose }) => {
     const processAddTags = (value) => {
         const tagsArr = tags.split(", ")
         const checker = tagsArr.filter((tag) => tag.toLowerCase() === value.toLowerCase())
-        // console.log(checker)
         if(checker.length === 1) {
             return
         } else {
@@ -169,7 +168,6 @@ const CreateDailyModal = ({ onSubmit, onClose }) => {
                 setSundayFill('filled')
                 setDayOfRepeat(dayOfRepeat + ", sunday")
             }
-            // console.log(dayOfRepeat)
         } else if(day.toLowerCase() === "monday") {
             if(mondayFill === 'filled') {
                 setMondayFill('empty')
@@ -219,7 +217,6 @@ const CreateDailyModal = ({ onSubmit, onClose }) => {
                 setDayOfRepeat(dayOfRepeat + ", saturday")
             }
         }
-        console.log(dayOfRepeat)
         return
     }
 
@@ -232,7 +229,6 @@ const CreateDailyModal = ({ onSubmit, onClose }) => {
     const processDeleteTags = (item) => {
         const allTags = tags.split(", ")
         const checkExist = allTags.filter((tag) => tag.toLowerCase() === item.toLowerCase())
-        // console.log(checkExist.length)
         if(checkExist.length !== 0) {
             const index = allTags.indexOf(item)
             allTags.splice(index, 1)
@@ -251,17 +247,12 @@ const CreateDailyModal = ({ onSubmit, onClose }) => {
             setErrors("Please enter a title for this Daily.")
             return
         }
-        // console.log("submitting")
 
-        // console.log(startDate.toDateString())
-        // console.log(dailyData.start_date)
         const dateString = startDate.toDateString()
         const splitDateString = dateString.split(" ")
         const newMonth = stringToInt2(splitDateString)
         splitDateString.splice(1, 1, newMonth)
-        // console.log("REACT DATE SPLIT: ", splitDateString)
         const dateInfo = `${splitDateString[2]} ${splitDateString[1]} ${splitDateString[3]}`
-        // console.log("REACT DATE SPLIT: ", dateInfo)
 
         const newDaily = {
             title: title,
@@ -276,12 +267,10 @@ const CreateDailyModal = ({ onSubmit, onClose }) => {
             count: 0,
             status: "due"
         }
-        // console.log("UPDATED HABIT: ", updatedDaily)
 
         dispatch(createNewDaily(newDaily))
         .then(async(res) => {
             if(res.message) {
-                // console.log(res.message)
                 setErrors("Title field is required.")
             } else {
                 dispatch(getUserDailies())

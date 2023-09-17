@@ -13,14 +13,9 @@ const IndividualReward = ({rewardData}) => {
     const sessionUser = useSelector(state => state.session.user)
     const [showModal, setShowModal] = useState(false)
     const [selectedReward, setSelectedReward] = useState(null)
-    // console.log("REWARD DATA FROM INDIV REWARD: ", rewardData)
 
-    // useEffect(() => {
-    //     dispatch(getOneReward(rewardData.id))
-    // }, [dispatch])
 
     const handleUpdateDeleteClick = async () => {
-        // console.log("FROM HANDLE UPDATE DELETE CLICK: ", rewardData)
         setSelectedReward(rewardData)
         setShowModal(true)
         return <Redirect to='/my-dashboard' />

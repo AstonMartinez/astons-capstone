@@ -13,33 +13,14 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
     const [showTagDropdown, setShowTagDropdown] = useState("hidden")
     const [titleError, setTitleError] = useState('')
 
-    // const handleClickOutside = useCallback((e) => {
-    //     e.preventDefault()
-    //     if (modalOverlayRef.current === e.target) {
-    //         onClose()
-    //     } else {
-    //         return
-    //     }
-    // }, [onClose]);
-
-    // useEffect(() => {
-    //     document.addEventListener('mousedown', handleClickOutside)
-    //     return () => {
-    //         document.removeEventListener('mousedown', handleClickOutside)
-    //     }
-    // }, [handleClickOutside])
-
-
     const processDeleteTags = (item) => {
         const allTags = tags.split(", ")
         const checkExist = allTags.filter((tag) => tag.toLowerCase() === item.toLowerCase())
-        // console.log(checkExist.length)
         if(checkExist.length !== 0) {
             const index = allTags.indexOf(item)
             allTags.splice(index, 1)
             const res = allTags.join(", ")
             setTags(res)
-            // setTagsToDisplay(tags)
             return
         } else {
             return
@@ -49,7 +30,6 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
     const processAddTags = (value) => {
         const tagsArr = tags.split(", ")
         const checker = tagsArr.filter((tag) => tag.toLowerCase() === value.toLowerCase())
-        // console.log(checker)
         if(checker.length === 1) {
             return
         } else {

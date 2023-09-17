@@ -38,19 +38,13 @@ def user(id):
 def update_user_stats():
     user_id = current_user.id
     curr_user = User.query.get(user_id)
-    # print(request.json)
-    # if request.json["gold"]:
+
     curr_user.gold = request.json["gold"]
-
-    # if request.json["health"]:
     curr_user.health = request.json["health"]
-
     curr_user.experience_points = request.json["experience_points"]
-
     curr_user.level = request.json["level"]
 
     updated_user = curr_user
-    # print("UPDATED USER: ", updated_user.to_dict())
     db.session.commit()
     return updated_user.to_dict()
 
@@ -60,13 +54,10 @@ def get_user_inventory():
     result = {}
 
     if curr_user_equip_items:
-        # print("HAVE ITEMS")
         for item in curr_user_equip_items:
-            # print("ITEM: ", item)
             equipment_item = EquipmentItem.query.get(item.equipment_id)
             if equipment_item:
 
                 equipment_item_dict = equipment_item.to_dict()
-                # print("EQUIPMENT ITEM: ", equipment_item.to_dict())
                 result[equipment_item_dict['id']] = equipment_item_dict
     return result

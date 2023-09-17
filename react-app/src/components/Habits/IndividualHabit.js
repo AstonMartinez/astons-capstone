@@ -19,13 +19,8 @@ const IndividualHabit = ({habitData}) => {
 
     let countDisplay
 
-    // useEffect(() => {
-    //     dispatch(getOneHabit(habitData.id))
-    // }, [dispatch])
-
     const healthBar = document.getElementById('health-bar-inner')
     let xpBar = document.getElementById('experience-bar-inner')
-    // console.log(healthBar, xpBar)
 
 
     const initialPosFill = () => {
@@ -88,7 +83,6 @@ const IndividualHabit = ({habitData}) => {
 
     const handlePosClick = async() => {
         if(habitData.type === "negative") {
-            // console.log("THIS HABIT IS ONLY NEGATIVE")
             return
         }
 
@@ -158,7 +152,6 @@ const IndividualHabit = ({habitData}) => {
             neg_count: habitData.neg_count,
             status: status
         }
-        // console.log(updatedhabitInfo)
         await dispatch(updateUserHabit(habitData.id, updatedhabitInfo))
         await dispatch(updateUserInfo(result)).then(() => {
             return <Redirect to='/my-dashboard' />
@@ -169,7 +162,6 @@ const IndividualHabit = ({habitData}) => {
 
     const handleNegClick = async() => {
         if(habitData.type === "positive") {
-            // console.log("THIS HABIT IS ONLY POSITIVE")
             return
         }
 
@@ -177,9 +169,7 @@ const IndividualHabit = ({habitData}) => {
         const currCount = negativeCount
         setNegativeCount(currCount + 1)
         const incremented = negativeCount
-        // console.log("CURR COUNT: ", currCount)
         if(habitData.type === "negative" && currCount === 0) {
-            // console.log("STARTING")
 
             const userInfo = {
                 gold: sessionUser.gold,
@@ -190,12 +180,7 @@ const IndividualHabit = ({habitData}) => {
 
             await dispatch(updateUserInfo(userInfo))
             return
-            // console.log("WORKED")
-            // return <Redirect to='/my-dashboard' />
         } else {
-            // const incremented = currCount + 1
-            // count = incremented
-            // let status
             if(habitData.type === "positive, negative") {
                 if(habitData.pos_count > habitData.neg_count) {
                     setStatus("strong")
@@ -303,7 +288,6 @@ const IndividualHabit = ({habitData}) => {
                     </div>
                 </div>
                 <div id='single-habit-text-div' onClick={() => {
-                    // console.log(showModal)
                     return handleUpdateDeleteClick(habitData)}}>
                     <p className='habit-title-text'>{habitData.title}</p>
                     <p className='habit-notes-text'>{habitData.notes}</p>

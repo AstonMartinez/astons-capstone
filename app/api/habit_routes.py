@@ -18,7 +18,6 @@ def get_user_habits():
     result = {}
     if user_habits:
         for habit in user_habits:
-            # print(habit.id)
             habit_dict = habit.to_dict()
             result[habit.id] = habit_dict
     return result
@@ -31,7 +30,6 @@ def create_habit():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        # print(request.json)
         user_id = current_user.id
         title = request.json["title"]
         notes = ''
@@ -59,9 +57,6 @@ def update_habit(id):
     curr_habit = Habit.query.get(id)
     form = UpdateHabitForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("""
-          LOOK HERE
-          """, request.json)
 
     title = request.json["title"]
     notes = request.json["notes"]
@@ -71,8 +66,6 @@ def update_habit(id):
     pos_count = request.json["pos_count"]
     neg_count = request.json["neg_count"]
     status = request.json["status"]
-
-    print(status)
 
     if form.validate_on_submit():
         curr_habit.title = title

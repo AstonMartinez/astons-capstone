@@ -22,7 +22,6 @@ function SignupFormPage() {
         const res = await dispatch(signUp(username, email, password))
         if(res) {
             setErrors(res)
-            // console.log("RESPONSE: ", res)
             return
         } else {
             return <Redirect to='/my-dashboard' />

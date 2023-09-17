@@ -64,9 +64,6 @@ def update_daily(id):
     curr_daily = Daily.query.get(id)
     form = UpdateDailyForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # print("""
-    #       LOOK HERE
-    #       """, request.json)
 
     title = request.json["title"]
     notes = request.json["notes"]
@@ -82,10 +79,6 @@ def update_daily(id):
 
     current_start_date = curr_daily.start_date.strftime("%d %m %Y").split()
     new_start_date = start_date.split()
-
-    # print("""
-    #       CURRENT START DATE + NEW START DATE
-    #       """, current_start_date, new_start_date)
 
     if form.validate_on_submit():
         if current_start_date != new_start_date:
@@ -107,8 +100,6 @@ def update_daily(id):
 
         updated_daily = curr_daily
         updated_daily_dict = updated_daily.to_dict()
-        # print("""
-        #   LOOOOOOOOOOOOOOK""", updated_daily_dict)
         db.session.commit()
         return updated_daily_dict
     return {'errors': validation_errors_to_error_messages(form.errors)}

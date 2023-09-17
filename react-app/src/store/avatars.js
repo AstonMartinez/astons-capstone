@@ -29,7 +29,6 @@ export const updateUserAvatar = (updatedAvatar) => async (dispatch) => {
             dispatch(update(data))
         }
     } catch (error) {
-        console.log(error)
         return error
     }
 }
@@ -42,7 +41,6 @@ export const getUserAvatar = () => async (dispatch) => {
             dispatch(getCurrent(data))
         }
     } catch (error) {
-        console.log(error)
         return error
     }
 }

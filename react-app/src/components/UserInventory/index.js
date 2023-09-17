@@ -16,7 +16,6 @@ const UserInventory = () => {
     const [showEquipItemModal, setShowEquipItemModal] = useState(false)
     const [selectedItem, setSelectedItem] = useState(null)
 
-    // console.log("USER EQUIPMENT: ", userEquipment)
 
     if(!sessionUser) {
         history.push('/login')
