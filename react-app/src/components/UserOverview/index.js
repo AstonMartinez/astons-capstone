@@ -49,17 +49,17 @@ const UserOverview = () => {
                         <div>
                             <img id="health-heart" src="https://i.ibb.co/sbhZwgt/love-always-wins.png" alt="love-always-wins" border="0" />
                         </div>
-                        <div id='health-bar-outer'>
-                            <div id='health-bar-inner' style={{"width": `${sessionUser.health}%`}}></div>
-                        </div><span>{sessionUser.health}/{userHealthGoal}</span>
+                        <progress id='health-bar-outer' value={sessionUser.health} max={userHealthGoal}>
+                            <progress id='health-bar-inner' style={{"width": `${sessionUser.health / userHealthGoal}%`}}></progress>
+                        </progress><span>{sessionUser.health}/{userHealthGoal}</span>
                     </div>
                     <div id='experience-container'>
                         <div>
                             <img id='experience-star' src="https://i.ibb.co/rGg2VJ7/star2.png" alt="star2" border="0" />
                         </div>
-                        <div id='experience-bar-outer'>
-                            <div id='experience-bar-inner' style={{"width": `${sessionUser.experience_points}%`}}></div>
-                        </div>
+                        <progress id='experience-bar-outer' value={sessionUser.experience_points} max={userXPGoal}>
+                            <progress id='experience-bar-inner' style={{"width": `${sessionUser.experience_points / userXPGoal}%`}}></progress>
+                        </progress>
                         <div></div><span>{sessionUser.experience_points}/{userXPGoal}</span>
                     </div>
                 </div>

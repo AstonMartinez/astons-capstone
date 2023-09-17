@@ -20,7 +20,7 @@ export const getRankHealth = (user) => {
     } else if(user.experience_points > 225 && user.experience_points < 250) {
         return [10, "Legend", 500, 250]
     } else {
-        return [11, "TBD"]
+        return [2, "Wanderer", 100, 50]
     }
 }
 

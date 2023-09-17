@@ -271,7 +271,7 @@
 
 #username-input-field::placeholder, #email-input-field::placeholder, #password-field::placeholder, #password-confirm-field::placeholder {
     color: rgb(189, 168, 255);
-    padding-left: 10px;
+    padding-left: 15px;
 }
 
 #signup-submit-button {

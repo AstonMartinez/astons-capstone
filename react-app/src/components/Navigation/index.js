@@ -26,9 +26,9 @@ function Navigation({ isLoaded }){
 					<div className='nav-section-wrapper'>
 						<NavLink exact to='/inventory'><h2 className='logged-in-nav-section'>Inventory</h2></NavLink>
 					</div>
-					{/* <div className='nav-section-wrapper'>
+					<div className='nav-section-wrapper'>
 						<NavLink exact to='/shops'><h2 className='logged-in-nav-section'>Shops</h2></NavLink>
-					</div> */}
+					</div>
 				</div>
 				<div id='logged-in-right-nav'>
 					<div id='nav-bar-coin-container'>

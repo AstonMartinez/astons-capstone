@@ -23,6 +23,10 @@ const IndividualHabit = ({habitData}) => {
     //     dispatch(getOneHabit(habitData.id))
     // }, [dispatch])
 
+    const healthBar = document.getElementById('health-bar-inner')
+    let xpBar = document.getElementById('experience-bar-inner')
+    // console.log(healthBar, xpBar)
+
 
     const initialPosFill = () => {
         if(habitData.type === "negative") {
@@ -87,6 +91,8 @@ const IndividualHabit = ({habitData}) => {
             // console.log("THIS HABIT IS ONLY NEGATIVE")
             return
         }
+
+        xpBar += 5
 
         // const currCount = habitData.pos_count
         const incremented = positiveCount + 1

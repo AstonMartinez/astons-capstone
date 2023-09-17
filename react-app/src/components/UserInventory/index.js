@@ -5,15 +5,23 @@ import { getUserEquipment } from '../../store/equipment';
 import UserOverview from '../UserOverview';
 import IndividualItem from '../IndividualItem'
 import AvatarDisplay from '../AvatarDisplay'
+import { useHistory } from 'react-router-dom'
 
 const UserInventory = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
+    const sessionUser = useSelector(state => state.session.user)
     const userEquipment = useSelector(state => state.equipment)
-    let equipmentToMap
-    let noEquipmentMsg
+    // console.log("USER EQUIPMENT: ", userEquipment)
 
-    if(userEquipment.length) {
-        equipmentToMap = Object.values(userEquipment)
+    if(!sessionUser) {
+        history.push('/login')
+    }
+    let noEquipmentMsg
+    const equipmentToMap = Object.values(userEquipment)
+
+    if(equipmentToMap.length >= 1) {
+
         noEquipmentMsg = ''
     } else {
         // userEquipment = ''
