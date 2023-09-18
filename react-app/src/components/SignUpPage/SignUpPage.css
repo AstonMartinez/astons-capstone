@@ -259,7 +259,7 @@
 #username-input-field, #email-input-field, #password-field, #password-confirm-field {
     width: 420px;
     background-color: #432874;
-    border: none;
+    /* border: none; */
     height: 30px;
     margin-bottom: 20px;
     color: white;

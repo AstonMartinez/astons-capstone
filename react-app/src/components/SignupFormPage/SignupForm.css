@@ -78,9 +78,8 @@
 }
 
 .su-form-page-input:focus {
-    margin-top: 8px;
+    /* margin-top: 8px; */
     color: white;
-
 }
 #password-field::placeholder, #email-input-field::placeholder, #password-field::placeholder, #password-confirm-field::placeholder {
     color: rgb(189, 168, 255);
@@ -88,11 +87,16 @@
 }
 
 .su-form-page-input {
-    border: 3px solid red;
+    border: 3px solid #432874;
     color: rgb(189, 168, 255);
     padding-left: 10px;
 }
 
 #su-form-pw-match-error, #su-form-error-text {
     color: red;
+}
+
+#su-form-page-un-label {
+    margin-bottom: 5px;
+    /* color: red; */
 }
