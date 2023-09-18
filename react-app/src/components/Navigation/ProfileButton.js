@@ -43,7 +43,7 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout())
-    return history.push('/login')
+    return <Redirect exact to='/' />
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
