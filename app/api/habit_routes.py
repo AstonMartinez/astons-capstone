@@ -41,7 +41,7 @@ def create_habit():
             user_id=user_id,
             title=title,
             notes=notes,
-            type=type,
+            type='positive',
             difficulty=difficulty,
             tags=tags
         )

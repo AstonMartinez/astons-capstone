@@ -3,7 +3,7 @@ import UpdateHabitModal from "../UserDashboard/UpdateHabitModal"
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-import { updateUserHabit, getOneHabit } from "../../store/habits"
+import { updateUserHabit, getOneHabit, getUserHabits } from "../../store/habits"
 import { updateUserInfo } from "../../store/session"
 import './Habits.css'
 import { updateUserDaily } from "../../store/dailies"
@@ -11,6 +11,9 @@ import { updateUserDaily } from "../../store/dailies"
 const IndividualHabit = ({habitData}) => {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user)
+    const allHabits = useSelector(state => state.habits.allHabits)
+    const currentHabit = allHabits[habitData.id]
+    // console.log(currentHabit)
     const [showModal, setShowModal] = useState(false)
     const [selectedHabit, setSelectedHabit] = useState(null)
     const [positiveCount, setPositiveCount] = useState(habitData.pos_count)
@@ -24,12 +27,12 @@ const IndividualHabit = ({habitData}) => {
 
 
     const initialPosFill = () => {
-        if(habitData.type === "negative") {
+        if(currentHabit.type === "negative") {
             return "gray"
         }
 
-        if (habitData.type === "positive") {
-            if(habitData.pos_count >= 1) {
+        if (currentHabit.type === "positive") {
+            if(currentHabit.pos_count >= 1) {
                 // setPositiveFill("green")
                 return "green"
             } else {
@@ -38,11 +41,11 @@ const IndividualHabit = ({habitData}) => {
             }
         }
 
-        if(habitData.type === "positive, negative") {
-            if(habitData.pos_count > habitData.neg_count) {
+        if(currentHabit.type === "positive, negative") {
+            if(currentHabit.pos_count > currentHabit.neg_count) {
                 // setPositiveFill("green")
                 return "green"
-            } else if(habitData.pos_count === habitData.neg_count) {
+            } else if(currentHabit.pos_count === currentHabit.neg_count) {
                 // setPositiveFill("orange")
                 return "orange"
             } else {
@@ -53,19 +56,19 @@ const IndividualHabit = ({habitData}) => {
     }
 
     const initialNegFill = () => {
-        if(habitData.type === "positive") {
+        if(currentHabit.type === "positive") {
             return "gray"
         }
 
-        if (habitData.type === "negative") {
+        if (currentHabit.type === "negative") {
             return "dark-orange"
         }
 
-        if(habitData.type === "positive, negative") {
-            if(habitData.pos_count > habitData.neg_count) {
+        if(currentHabit.type === "positive, negative") {
+            if(currentHabit.pos_count > currentHabit.neg_count) {
                 // setPositiveFill("green")
                 return "orange"
-            } else if(habitData.pos_count === habitData.neg_count) {
+            } else if(currentHabit.pos_count === currentHabit.neg_count) {
                 // setPositiveFill("orange")
                 return "orange"
             } else {
@@ -75,11 +78,22 @@ const IndividualHabit = ({habitData}) => {
         }
     }
 
+
     const starterPosFill = initialPosFill()
     const starterNegFill = initialNegFill()
 
     const [positiveFill, setPositiveFill] = useState(starterPosFill)
     const [negativeFill, setNegativeFill] = useState(starterNegFill)
+
+
+    useEffect(() => {
+        dispatch(getUserHabits)
+        const starterPosFill = initialPosFill()
+        setPositiveFill(starterPosFill)
+        const starterNegFill = initialNegFill()
+        setNegativeFill(starterNegFill)
+
+    }, [dispatch])
 
     const handlePosClick = async() => {
         if(habitData.type === "negative") {
@@ -282,8 +296,8 @@ const IndividualHabit = ({habitData}) => {
     return (
         <>
             <div id='single-habit-container'>
-                <div className='sidebar left-habit-sidebar' id={`left-sidebar-${positiveFill}`}>
-                    <div id='habit-positive-div' className={`sidebar-positive-${positiveFill}`} onClick={() => handlePosClick()}>
+                <div className='sidebar left-habit-sidebar' id={`left-sidebar-${initialPosFill()}`}>
+                    <div id='habit-positive-div' className={`sidebar-positive-${initialPosFill()}`} onClick={() => handlePosClick()}>
                         <p>+</p>
                     </div>
                 </div>
@@ -293,8 +307,8 @@ const IndividualHabit = ({habitData}) => {
                     <p className='habit-notes-text'>{habitData.notes}</p>
                     {countDisplay}
                 </div>
-                <div className='sidebar right-habit-sidebar' id={`right-sidebar-${negativeFill}`}>
-                    <div id='habit-negative-div' className={`sidebar-negative-${negativeFill}`} onClick={() => handleNegClick()}>
+                <div className='sidebar right-habit-sidebar' id={`right-sidebar-${initialNegFill()}`}>
+                    <div id='habit-negative-div' className={`sidebar-negative-${initialNegFill()}`} onClick={() => handleNegClick()}>
                         <p>_</p>
                     </div>
                 </div>
@@ -308,10 +322,15 @@ const IndividualHabit = ({habitData}) => {
                         onSubmit={() => {
                             setShowModal(false)
                             setSelectedHabit(null)
+                            dispatch(getUserHabits())
+                            if(currentHabit.type === 'positive') {
+
+                            }
                         }}
                         onClose={() => {
                             setShowModal(false)
                             setSelectedHabit(null)
+                            dispatch(getUserHabits())
                         }}
                     />
                 )}
