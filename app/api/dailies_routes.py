@@ -92,6 +92,7 @@ def update_daily(id):
         curr_daily.checklist = checklist
         curr_daily.difficulty = difficulty
         curr_daily.count = count
+        curr_daily.start_date = start_date
         curr_daily.repeats = repeats
         curr_daily.num_repeats = num_repeats
         curr_daily.day_of_repeat = day_of_repeat
@@ -125,3 +126,12 @@ def update_daily_count(id):
     daily.count = request.json["count"]
     db.session.commit()
     return daily.to_dict()
+
+
+@dailies_routes.route('/<int:id>/status', methods=["PUT"])
+def update_status(id):
+    daily = Daily.query.get(id)
+    daily.status = request.json["status"]
+    daily_dict = daily.to_dict()
+    db.session.commit()
+    return daily_dict

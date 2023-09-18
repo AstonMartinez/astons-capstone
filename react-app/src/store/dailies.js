@@ -5,6 +5,14 @@ const DELETE_DAILY = '/dailies/deleteDaily'
 const GET_SINGLE_DAILY = '/dailies/getOne'
 const GET_FILTERED_DAILIES = '/dailies/filter'
 const GET_SEARCHED_DAILIES = '/dailies/search'
+const UPDATE_DAILY_STATUS = '/dailies/updateStatus'
+
+const updateStatus = (data) => {
+    return {
+        type: UPDATE_DAILY_STATUS,
+        payload: data
+    }
+}
 
 const search = (data) => {
     return {
@@ -52,6 +60,30 @@ const deleteDaily = (data) => {
     return {
         type: DELETE_DAILY,
         payload: data,
+    }
+}
+
+export const updateDailyStatus = (id, updatedStatus) => async (dispatch) => {
+    try {
+        const response = await fetch(`/api/dailies/${id}/status`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedStatus)
+        })
+
+        if(response.ok) {
+            const data = await response.json()
+            dispatch(updateStatus(data))
+        } else {
+            const errors = await response.json();
+            return errors;
+        }
+
+    } catch (error) {
+        const errors = (error && error.json) ? await error.json() : { message: error.toString() }
+        return errors
     }
 }
 
@@ -231,6 +263,10 @@ const dailiesReducer = (state = initialState, action) => {
         case GET_SEARCHED_DAILIES:
             newState = Object.assign({ ...state })
             newState.allDailies = action.payload
+            return newState
+        case UPDATE_DAILY_STATUS:
+            newState = Object.assign({ ...state })
+            newState.singleDaily = action.payload
             return newState
         default:
             return state

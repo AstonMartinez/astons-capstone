@@ -3,9 +3,10 @@ import UpdateDeleteDailyModal from "./UpdateDeleteDailyModal";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { Redirect } from 'react-router-dom'
-import { updateUserDaily, getOneDaily } from "../../store/dailies";
+import { updateUserDaily, getOneDaily, updateDailyStatus } from "../../store/dailies";
 import { updateUserInfo } from "../../store/session";
 import './Dailies.css'
+// import { stringToInt, stringToInt2 } from './DateFunctions'
 
 const IndividualDaily = ({dailyData}) => {
     const dispatch = useDispatch()
@@ -32,6 +33,13 @@ const IndividualDaily = ({dailyData}) => {
     }
 
     const checkBox = async () => {
+        // let dateInfo
+
+        // const dateArr = dailyData.start_date.split(" ")
+        // const newMonth = stringToInt(dateArr)
+        // dateArr.splice(2, 1, newMonth)
+        // dateInfo = `${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`
+
         if(status === 'due') {
             setIsChecked(true)
             setSidebarFill("gray")
@@ -42,15 +50,16 @@ const IndividualDaily = ({dailyData}) => {
             setExp(exp+5)
 
             const updatedDaily = {
-                title: dailyData.title,
-                notes: dailyData.notes,
-                checklist: dailyData.checklist,
-                difficulty: dailyData.difficulty,
-                count: count,
-                repeats: dailyData.repeats,
-                num_repeats: dailyData.num_repeats,
-                day_of_repeat: dailyData.day_of_repeat,
-                tags: dailyData.tags,
+                // title: dailyData.title,
+                // notes: dailyData.notes,
+                // checklist: dailyData.checklist,
+                // difficulty: dailyData.difficulty,
+                // count: count,
+                // start_date: dateInfo,
+                // repeats: dailyData.repeats,
+                // num_repeats: dailyData.num_repeats,
+                // day_of_repeat: dailyData.day_of_repeat,
+                // tags: dailyData.tags,
                 status: status
             }
 
@@ -61,7 +70,7 @@ const IndividualDaily = ({dailyData}) => {
                 level: sessionUser.level
             }
 
-            await(dispatch(updateUserDaily(dailyData.id, updatedDaily)))
+            await(dispatch(updateDailyStatus(dailyData.id, updatedDaily)))
             await dispatch(updateUserInfo(updatedData)).then(() => {
                 return <Redirect to='/my-dashboard' />
             })
@@ -76,15 +85,16 @@ const IndividualDaily = ({dailyData}) => {
             setExp(exp-5)
 
             const updatedDaily = {
-                title: dailyData.title,
-                notes: dailyData.notes,
-                checklist: dailyData.checklist,
-                difficulty: dailyData.difficulty,
-                count: count,
-                repeats: dailyData.repeats,
-                num_repeats: dailyData.num_repeats,
-                day_of_repeat: dailyData.day_of_repeat,
-                tags: dailyData.tags,
+                // title: dailyData.title,
+                // notes: dailyData.notes,
+                // checklist: dailyData.checklist,
+                // difficulty: dailyData.difficulty,
+                // count: count,
+                // start_date: dateInfo,
+                // repeats: dailyData.repeats,
+                // num_repeats: dailyData.num_repeats,
+                // day_of_repeat: dailyData.day_of_repeat,
+                // tags: dailyData.tags,
                 status: status
             }
 
@@ -95,7 +105,7 @@ const IndividualDaily = ({dailyData}) => {
                 level: sessionUser.level
             }
 
-            await(dispatch(updateUserDaily(dailyData.id, updatedDaily)))
+            await(dispatch(updateDailyStatus(dailyData.id, updatedDaily)))
             await dispatch(updateUserInfo(updatedData)).then(() => {
                 return <Redirect to='/my-dashboard' />
             })
