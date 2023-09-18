@@ -13,6 +13,8 @@ const CreateRewardModal = ({ onSubmit, onClose }) => {
     const [errors, setErrors] = useState([])
     const [titleError, setTitleError] = useState('')
     const [showTagDropdown, setShowTagDropdown] = useState("hidden")
+    const [rewardCostError, setRewardCostError] = useState('')
+
 
     // const handleClickOutside = useCallback((e) => {
     //     e.preventDefault()
@@ -68,6 +70,11 @@ const CreateRewardModal = ({ onSubmit, onClose }) => {
 
         if(!title) {
             setTitleError("Please enter a title for this Reward.")
+            return
+        }
+
+        if(cost <= 0) {
+            setRewardCostError("Please choose a value that is between 1 and 1,000")
             return
         }
 
@@ -149,6 +156,7 @@ const CreateRewardModal = ({ onSubmit, onClose }) => {
                         </div>
                     </div>
                     {errors ? (<p id='reward-cost-error-text'>{errors}</p>) : ''}
+                    {rewardCostError ? (<p id='reward-cost-error-text'>{rewardCostError}</p>) : ''}
                         {/* <div> */}
                         <div id='tags-outer-wrapper'>
                             {/* <div id='tags-outer-wrapper'> */}

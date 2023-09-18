@@ -12,6 +12,7 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
     const [errors, setErrors] = useState([])
     const [showTagDropdown, setShowTagDropdown] = useState("hidden")
     const [titleError, setTitleError] = useState('')
+    const [rewardCostError, setRewardCostError] = useState('')
 
     const processDeleteTags = (item) => {
         const allTags = tags.split(", ")
@@ -52,6 +53,12 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
             setErrors("Please choose a value that is less than or equal to 1,000")
             return
         }
+
+        if(cost <= 0) {
+            setRewardCostError("Please choose a value that is between 1 and 1,000")
+            return
+        }
+
         const updatedReward = {
             title: title,
             notes: notes,
@@ -136,6 +143,7 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
                         </div>
                     </div>
                     {errors ? (<p id='reward-cost-error-text'>{errors}</p>) : ''}
+                    {rewardCostError ? (<p id='reward-cost-error-text'>{rewardCostError}</p>) : ''}
                         {/* <div> */}
                         <div id='tags-outer-wrapper'>
                             {/* <div id='tags-outer-wrapper'> */}
