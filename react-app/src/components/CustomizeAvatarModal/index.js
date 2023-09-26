@@ -66,7 +66,7 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
     const [blondeHairTwo, setBlondeHairTwo] = useState(false)
     const [blondeHairThree, setBlondeHairThree] = useState(false)
     const [blondeHairFour, setBlondeHairFour] = useState(false)
-    const [blondekHairFive, setBlondeHairFive] = useState(false)
+    const [blondeHairFive, setBlondeHairFive] = useState(false)
 
     const [whiteHairOne, setWhiteHairOne] = useState(false)
     const [whiteHairTwo, setWhiteHairTwo] = useState(false)
@@ -857,7 +857,7 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
                             }}>
                                 <img src={allHairOptions.blonde.four} alt='blonde hair four' />
                             </di>
-                            <div className={`customization-item cust-opt-active-${blondekHairFive}`} id='no-bangs-option-display' onClick={() => {
+                            <div className={`customization-item cust-opt-active-${blondeHairFive}`} id='no-bangs-option-display' onClick={() => {
                                 setHair(allHairOptions.blonde.one)
                                 setBangs(allHairOptions.blonde.one)
                                 setHasBangs(false)
