@@ -90,16 +90,25 @@ const UserDashboard = () => {
 
         const tagArr = searchTags.split(", ")
         const final = tagArr.join('/')
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
         await dispatch(getFilteredHabits(searchTags))
         await dispatch(getFilteredDailies(searchTags))
         await dispatch(getFilteredToDos(searchTags))
         await dispatch(getFilteredRewards(searchTags))
         .then(() => {
+            // setLoading(false)
             return <Redirect to='/my-dashboard' />
         })
     }
 
     const processDeleteTags = (item) => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
         const allTags = searchTags.split(", ")
         const checkExist = allTags.filter((tag) => tag.toLowerCase() === item.toLowerCase())
         if(checkExist.length !== 0) {
