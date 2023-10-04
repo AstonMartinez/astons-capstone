@@ -197,6 +197,10 @@
     color: white;
 }
 
+.single-shop-item-container:hover {
+    cursor: pointer;
+}
+
 #shop-item-str-container {
     border-right:1px solid #3c3842;
 }

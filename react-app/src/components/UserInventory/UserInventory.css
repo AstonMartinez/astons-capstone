@@ -13,6 +13,10 @@
 
 }
 
+.individual-equipment-item:hover {
+    cursor: pointer;
+}
+
 #upper-item-div {
     display: flex;
     justify-content: center;

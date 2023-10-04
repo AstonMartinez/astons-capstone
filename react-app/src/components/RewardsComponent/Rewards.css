@@ -39,6 +39,7 @@
 
 #single-reward-container:hover {
     border: 1px solid purple;
+    cursor: pointer;
 }
 
 #single-reward-text-div {

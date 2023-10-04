@@ -63,7 +63,7 @@ const ShopsComponent = () => {
     const itemOneDisplay = (
         <>
             {/* {itemOneInfo} */}
-            <div className='shop-item-container' id='shop-item-one-container' onMouseEnter={() => setItemOneActive(true)} onMouseLeave={() => setItemOneActive(false)} onClick={() => {
+            <div className='single-shop-item-container' id='shop-item-one-container' onMouseEnter={() => setItemOneActive(true)} onMouseLeave={() => setItemOneActive(false)} onClick={() => {
                 setSelectedItem(itemOne)
                 setShowConfirmModal(true)
                 }}>
@@ -120,7 +120,7 @@ const ShopsComponent = () => {
     const itemTwoDisplay = (
         <>
             {/* {itemTwoInfo} */}
-            <div id='shop-item-two-container' onMouseEnter={() => setItemTwoActive(true)} onMouseLeave={() => setItemTwoActive(false)} onClick={() => {
+            <div id='shop-item-two-container' className='single-shop-item-container' onMouseEnter={() => setItemTwoActive(true)} onMouseLeave={() => setItemTwoActive(false)} onClick={() => {
                 setSelectedItem(itemTwo)
                 setShowConfirmModal(true)
                 }}>
@@ -177,7 +177,7 @@ const ShopsComponent = () => {
     const itemThreeDisplay = (
         <>
             {/* {itemThreeInfo} */}
-            <div id='shop-item-three-container' onMouseEnter={() => setItemThreeActive(true)} onMouseLeave={() => setItemThreeActive(false)} onClick={() => {
+            <div id='shop-item-three-container' className='single-shop-item-container' onMouseEnter={() => setItemThreeActive(true)} onMouseLeave={() => setItemThreeActive(false)} onClick={() => {
                 setSelectedItem(itemThree)
                 setShowConfirmModal(true)
                 }}>
@@ -234,7 +234,7 @@ const ShopsComponent = () => {
     const itemFourDisplay = (
         <>
             {/* {itemFourInfo} */}
-            <div id='shop-item-four-container' onMouseEnter={() => setItemFourActive(true)} onMouseLeave={() => setItemFourActive(false)} onClick={() => {
+            <div id='shop-item-four-container' className='single-shop-item-container' onMouseEnter={() => setItemFourActive(true)} onMouseLeave={() => setItemFourActive(false)} onClick={() => {
                 setSelectedItem(itemFour)
                 setShowConfirmModal(true)
                 }}>
@@ -291,7 +291,7 @@ const ShopsComponent = () => {
     const itemFiveDisplay = (
         <>
             {/* {itemFiveInfo} */}
-            <div id='shop-item-five-container' onMouseEnter={() => setItemFiveActive(true)} onMouseLeave={() => setItemFiveActive(false)} onClick={() => {
+            <div id='shop-item-five-container' className='single-shop-item-container' onMouseEnter={() => setItemFiveActive(true)} onMouseLeave={() => setItemFiveActive(false)} onClick={() => {
                 setSelectedItem(itemFive)
                 setShowConfirmModal(true)
                 }}>
@@ -348,7 +348,7 @@ const ShopsComponent = () => {
     const itemSixDisplay = (
         <>
             {/* {itemSixInfo} */}
-            <div id='shop-item-six-container' onMouseEnter={() => setItemSixActive(true)} onMouseLeave={() => setItemSixActive(false)} onClick={() => {
+            <div id='shop-item-six-container' className='single-shop-item-container' onMouseEnter={() => setItemSixActive(true)} onMouseLeave={() => setItemSixActive(false)} onClick={() => {
                 setSelectedItem(itemSix)
                 setShowConfirmModal(true)
                 }}>
