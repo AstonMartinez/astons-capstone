@@ -7,11 +7,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserAvatar, updateUserAvatar } from '../../store/avatars'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { authenticate } from '../../store/session'
+import LoadingScreen from '../LoadingScreen'
 
 const CustomizeAvatarModal = ({onSubmit, onClose}) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const modalOverlayRef = useRef()
+
+    const [loading, setLoading] = useState(false)
 
     const userAvatar = useSelector(state => state.avatar)
     const [background, setBackground] = useState(userAvatar.background)
@@ -326,6 +329,10 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
             <div className='customization-bottom-div'>
                 <div className='subpages-container'>
                     <div id={`size-button-${sizeActive}`} onClick={() => {
+                        setLoading(true)
+                        setTimeout(() => {
+                            setLoading(false)
+                        }, 1000)
                         setSubCategory("Size")
                         setSizeActive("active")
                         setShirtActive("inactive")
@@ -334,6 +341,10 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
                         setBangsActive("inactive")
                     }}>Size</div>
                     <div id={`shirt-button-${shirtActive}`} onClick={() => {
+                                                setLoading(true)
+                                                setTimeout(() => {
+                                                    setLoading(false)
+                                                }, 1000)
                         setSubCategory("Shirt")
                         setSizeActive("inactive")
                         setShirtActive("active")
@@ -960,6 +971,10 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
             <div className='customization-bottom-div'>
                 <div id='hair-bangs-subpage-wrap' className='subpages-container'>
                     <div id={`color-button-${hairColorActive}`} onClick={() => {
+                        setLoading(true)
+                        setTimeout(() => {
+                            setLoading(false)
+                        }, 1000)
                         setSubCategory("Hair-Color")
                         setSizeActive("inactive")
                         setShirtActive("inactive")
@@ -968,6 +983,10 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
                         setBangsActive("inactive")
                     }}>Color</div>
                     <div id={`bangs-button-${bangsActive}`} onClick={() => {
+                        setLoading(true)
+                        setTimeout(() => {
+                            setLoading(false)
+                        }, 1000)
                         setSubCategory("Bangs")
                         setSizeActive("inactive")
                         setShirtActive("inactive")
@@ -1078,6 +1097,7 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
         <>
             <div className='habit-update-modal-backdrop'  ref={modalOverlayRef}></div>
             <div id='avatar-customization-wrapper'>
+                {loading && <LoadingScreen />}
                 <div id='exit-button-wrapper'>
                     <button id='customization-exit-button' onClick={handleSubmit}>x</button>
 
@@ -1095,6 +1115,10 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
                     </div>
                     <div id='customization-category-icons'>
                         <div className='category-icon' onClick={() => {
+                                                    setLoading(true)
+                                                    setTimeout(() => {
+                                                        setLoading(false)
+                                                    }, 1000)
                             setCategory("Body")
                             setSubCategory("Size")
                             setSizeActive("active")
@@ -1107,6 +1131,10 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
                             <svg id='body-category-icon' data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.49 32"><path d="M29.79 18.8C29.43 12.11 26.01 0 15.35 0a11.9 11.9 0 0 0-5.11 1.11l-.12.05C3.59 4.32 1.24 13.19.93 18.64a1.85 1.85 0 1 0 2.31.41c.09-1.31.83-9.79 5.5-14.14A53.73 53.73 0 0 0 7.18 16.5a76.9 76.9 0 0 0 1.43 13.16H6.83a1.17 1.17 0 0 0 0 2.34H10.34a1.13 1.13 0 0 0 .23-.1l.17-.11a1.12 1.12 0 0 0 .37-.57 1.12 1.12 0 0 0 0-.2.33.33 0 0 0 0-.26 1.09 1.09 0 0 0 0-.11c0-.05-.82-3.82-1.3-8.26a39.75 39.75 0 0 1 5.62-.45 33.72 33.72 0 0 1 5.21.43c-.48 4.44-1.29 8.23-1.3 8.28a1.17 1.17 0 0 0 .9 1.39h3.6a1.17 1.17 0 0 0 0-2.34h-1.86a76.9 76.9 0 0 0 1.43-13.2 54 54 0 0 0-1.6-11.72C26.4 8.91 27.29 17 27.44 18.84a1.85 1.85 0 1 0 2.35-.04zm-8.72-2.3c0 1.13-.05 2.3-.14 3.46a35.84 35.84 0 0 0-5.42-.43 41.52 41.52 0 0 0-5.84.46c-.09-1.17-.14-2.35-.14-3.48A57.14 57.14 0 0 1 11.65 3a10.15 10.15 0 0 1 7.28 0 57.16 57.16 0 0 1 2.14 13.5z" fill-rule="evenodd"></path></svg>
                         </div>
                         <div className='category-icon' onClick={() => {
+                                                    setLoading(true)
+                                                    setTimeout(() => {
+                                                        setLoading(false)
+                                                    }, 1000)
                             setCategory("Skin")
                             setSubCategory("Skin-Color")
                             setSizeActive("inactive")
@@ -1119,6 +1147,10 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
                             <svg id='customize-skin-icon' data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.8 28.4"><path d="M31.7 26.72a7.44 7.44 0 0 0-3.69-3.63 8.72 8.72 0 0 0-3.82-.26c-1.21.09-2.57.19-3.08-.3-.72-.71-.15-2.6.24-3.4a1.13 1.13 0 0 0 0-.18 12 12 0 0 0 3.75-8.41c0-6.2-3.84-10.53-9.33-10.53S6.48 4.33 6.48 10.53a12.19 12.19 0 0 0 3.94 8.46 1.13 1.13 0 0 0 0 .13c.39.8 1 2.7.24 3.41-.5.5-1.87.39-3.08.3a8.75 8.75 0 0 0-3.82.26A7.43 7.43 0 0 0 .1 26.72a1.208 1.208 0 1 0 2.2 1 5 5 0 0 1 2.37-2.36 7.3 7.3 0 0 1 2.76-.16c1.72.13 3.66.28 4.94-1a3.9 3.9 0 0 0 1-3.11 5.72 5.72 0 0 0 2.39.64 6.15 6.15 0 0 0 2.57-.67 3.92 3.92 0 0 0 1 3.14c1.28 1.26 3.22 1.12 4.94 1a7.34 7.34 0 0 1 2.76.1 5 5 0 0 1 2.37 2.36 1.242 1.242 0 1 0 2.3-.94zM8.9 10.53c0-4.94 2.7-8.13 6.91-8.13s6.93 3.19 6.93 8.13-4.62 8.84-6.93 8.84c-1.91 0-6.91-3.92-6.91-8.84z"></path></svg>
                         </div>
                         <div className='category-icon' onClick={() => {
+                                                    setLoading(true)
+                                                    setTimeout(() => {
+                                                        setLoading(false)
+                                                    }, 1000)
                             setCategory("Hair")
                             setSubCategory("Hair-Color")
                             setSizeActive("inactive")
@@ -1139,6 +1171,10 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
                     </div>
                     <div id='customization-category-text'>
                         <div id='body-option' onClick={() => {
+                                                    setLoading(true)
+                                                    setTimeout(() => {
+                                                        setLoading(false)
+                                                    }, 1000)
                             setCategory("Body")
                             setSubCategory("Size")
                             setSizeActive("active")
@@ -1151,6 +1187,10 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
                             <p>Body</p>
                         </div>
                         <div className={``} id='skin-option' onClick={() => {
+                                                    setLoading(true)
+                                                    setTimeout(() => {
+                                                        setLoading(false)
+                                                    }, 1000)
                             setCategory("Skin")
                             setSubCategory("Skin-Color")
                             setSizeActive("inactive")
@@ -1163,6 +1203,10 @@ const CustomizeAvatarModal = ({onSubmit, onClose}) => {
                             <p>Skin</p>
                         </div>
                         <div className='category-button' id='hair-option' onClick={() => {
+                                                    setLoading(true)
+                                                    setTimeout(() => {
+                                                        setLoading(false)
+                                                    }, 1000)
                             setCategory("Hair")
                             setSubCategory("Hair-Color")
                             setSizeActive("inactive")

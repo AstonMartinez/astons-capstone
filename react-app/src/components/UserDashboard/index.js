@@ -17,6 +17,7 @@ import { getFilteredRewards, getSearchedRewards, getUserRewards } from '../../st
 import { getFilteredDailies, getSearchedDailies, getUserDailies } from '../../store/dailies';
 import { getFilteredToDos, getSearchedToDos, getUserToDos } from '../../store/todos';
 import AvatarDisplay from '../AvatarDisplay';
+import LoadingScreen from '../LoadingScreen';
 
 
 const UserDashboard = () => {
@@ -40,6 +41,7 @@ const UserDashboard = () => {
     const [choresChecked, setChoresChecked] = useState(false)
     const [creativityChecked, setCreativityChecked] = useState(false)
     const [searchBarVal, setSearchBarVal] = useState('')
+    const [loading, setLoading] = useState(false)
 
     if(!sessionUser) {
         return <Redirect to='/login' />
@@ -53,16 +55,26 @@ const UserDashboard = () => {
         setTeamsChecked(false)
         setChoresChecked(false)
         setCreativityChecked(false)
+        setLoading(true)
+        // setTimeout(() => {
+        //     setLoading(false)
+        // }, 3000)
         await dispatch(getUserHabits())
         await dispatch(getUserDailies())
         await dispatch(getUserToDos())
-        await dispatch(getUserRewards())
+        await dispatch(getUserRewards()).then(() => {
+            setLoading(false)
+        })
         return
     }
 
     const handleSearchEnter = async (val) => {
         const searchArr = val.split(" ")
         const final = searchArr.join('/')
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
         await dispatch(getSearchedHabits(final))
         await dispatch(getSearchedDailies(final))
         await dispatch(getSearchedToDos(final))
@@ -153,6 +165,7 @@ const UserDashboard = () => {
 
     return (
         <div id='dashboard-parent'>
+            {loading && <LoadingScreen />}
             <div>
             <div id='avatar-display-container'>
                     <AvatarDisplay />
