@@ -132,6 +132,7 @@
 .customization-item:hover {
     border-radius: 25px;
     background-color: #f5f1ff;
+    cursor: pointer;
 }
 
 /* !!! SIZE BUTTON */
