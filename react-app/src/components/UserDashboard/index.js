@@ -56,15 +56,13 @@ const UserDashboard = () => {
         setChoresChecked(false)
         setCreativityChecked(false)
         setLoading(true)
-        // setTimeout(() => {
-        //     setLoading(false)
-        // }, 3000)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
         await dispatch(getUserHabits())
         await dispatch(getUserDailies())
         await dispatch(getUserToDos())
-        await dispatch(getUserRewards()).then(() => {
-            setLoading(false)
-        })
+        await dispatch(getUserRewards())
         return
     }
 
@@ -191,10 +189,15 @@ const UserDashboard = () => {
                         value={searchBarVal}
                         onChange={(e) => {
                             setSearchBarVal(e.target.value)
-                            handleSearchEnter(e.target.value)
                         }}
                         />
-
+                        <button onClick={() => {
+                            handleSearchEnter(searchBarVal)
+                        }} id='submit-search-button'>Search</button>
+                        <button id='clear-search-button' onClick={() => {
+                            setSearchBarVal('')
+                            removeSearchFilters()
+                        }}>Clear</button>
                         <div id='search-tags-button' onClick={() => showHideDropdown()}>
                             <div id='filter-icon-div'>
                                 <img id='filter-icon' src="https://i.ibb.co/6wKhD2Q/setting-filter.png" alt="setting-filter" border="0" />

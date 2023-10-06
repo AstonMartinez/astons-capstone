@@ -276,3 +276,26 @@
 #user-overview-elem {
     left: 160px;
 }
+
+
+#submit-search-button, #clear-search-button {
+    font-family: "Roboto Condensed", sans-serif;
+    /* width: 90px; */
+    /* justify-content: space-evenly; */
+    /* background-color: #e0dfe1; */
+    border: none;
+    box-shadow: 0 1px 3px 0 rgba(26,24,29,.12),0 1px 2px 0 rgba(26,24,29,.24);
+}
+
+#submit-search-button {
+    /* border: .5px 0 .5px 0 solid black; */
+    margin-left: 5px;
+}
+
+#clear-search-button {
+    border: .5px .5px .5px 0 solid black;
+}
+
+#submit-search-button:hover, #clear-search-button:hover {
+    border: 1px solid purple;
+}
