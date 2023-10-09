@@ -14,8 +14,10 @@ const IndividualDaily = ({dailyData}) => {
     const [showModal, setShowModal] = useState(false)
     const [selectedDaily, setSelectedDaily] = useState(null)
     const [count, setCount] = useState(dailyData.count)
-    const [isChecked, setIsChecked] = useState(false)
-    const [sidebarFill, setSidebarFill] = useState("orange")
+    const checkedOrNo = dailyData.status === "not due" ? true : false
+    const [isChecked, setIsChecked] = useState(checkedOrNo)
+    const greyOrOrange = dailyData.status === "not due" ? "gray" : "orange"
+    const [sidebarFill, setSidebarFill] = useState(greyOrOrange)
     const [gold, setGold] = useState(sessionUser.gold)
     const [exp, setExp] = useState(sessionUser.experience_points)
     const [finished, setFinished] = useState(false)
@@ -63,16 +65,6 @@ const IndividualDaily = ({dailyData}) => {
             setExp(exp-5)
 
             const updatedDaily = {
-                // title: dailyData.title,
-                // notes: dailyData.notes,
-                // checklist: dailyData.checklist,
-                // difficulty: dailyData.difficulty,
-                // count: count,
-                // start_date: dateInfo,
-                // repeats: dailyData.repeats,
-                // num_repeats: dailyData.num_repeats,
-                // day_of_repeat: dailyData.day_of_repeat,
-                // tags: dailyData.tags,
                 status: status
             }
 

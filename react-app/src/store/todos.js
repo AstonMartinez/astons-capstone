@@ -167,7 +167,7 @@ export const createNewToDo = (title) => async (dispatch) => {
 
 export const updateUserToDo = (id, updatedToDo) => async (dispatch) => {
     try {
-        const request = await fetch(`/api/todos/${id}/update`, {
+        const request = await fetch(`/api/todos/${id}/update-status`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
