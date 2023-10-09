@@ -15,7 +15,7 @@ function Navigation({ isLoaded }){
 			<div id='logged-in-nav-bar'>
 				<div id='logged-in-left-nav'>
 					<div>
-						<NavLink to='/'><img src="https://i.ibb.co/B6kVtcs/small-lion-logo.png" id='questforge-logo' alt="lion-logo" border="0" /></NavLink>
+						<NavLink to='/my-dashboard'><img src="https://i.ibb.co/B6kVtcs/small-lion-logo.png" id='questforge-logo' alt="lion-logo" border="0" /></NavLink>
 					</div>
 					<div className='nav-section-wrapper' id='questforge-h1-wrapper'>
 						<NavLink to='/'><h1 className='questforge-h1'>QuestForge</h1></NavLink>
