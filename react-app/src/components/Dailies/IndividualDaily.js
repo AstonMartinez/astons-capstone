@@ -21,11 +21,6 @@ const IndividualDaily = ({dailyData}) => {
     const [finished, setFinished] = useState(false)
     const [status, setStatus] = useState(dailyData.status)
 
-    // useEffect(() => {
-    //     dispatch(getOneDaily(dailyData.id))
-    // }, [dispatch])
-
-    // Handles opening the modal for deleting/updating
     const handleUpdateDeleteClick = async () => {
         setSelectedDaily(dailyData)
         setShowModal(true)
@@ -33,13 +28,6 @@ const IndividualDaily = ({dailyData}) => {
     }
 
     const checkBox = async () => {
-        // let dateInfo
-
-        // const dateArr = dailyData.start_date.split(" ")
-        // const newMonth = stringToInt(dateArr)
-        // dateArr.splice(2, 1, newMonth)
-        // dateInfo = `${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`
-
         if(status === 'due') {
             setIsChecked(true)
             setSidebarFill("gray")
@@ -50,23 +38,13 @@ const IndividualDaily = ({dailyData}) => {
             setExp(exp+5)
 
             const updatedDaily = {
-                // title: dailyData.title,
-                // notes: dailyData.notes,
-                // checklist: dailyData.checklist,
-                // difficulty: dailyData.difficulty,
-                // count: count,
-                // start_date: dateInfo,
-                // repeats: dailyData.repeats,
-                // num_repeats: dailyData.num_repeats,
-                // day_of_repeat: dailyData.day_of_repeat,
-                // tags: dailyData.tags,
                 status: status
             }
 
             const updatedData = {
                 gold: gold,
                 health: sessionUser.health,
-                experience_points: exp,
+                experience_points: exp+5,
                 level: sessionUser.level
             }
 
@@ -101,7 +79,7 @@ const IndividualDaily = ({dailyData}) => {
             const updatedData = {
                 gold: gold,
                 health: sessionUser.health,
-                experience_points: exp,
+                experience_points: exp-5,
                 level: sessionUser.level
             }
 
