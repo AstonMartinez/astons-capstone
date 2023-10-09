@@ -40,11 +40,11 @@ const IndividualDaily = ({dailyData}) => {
             setExp(exp+5)
 
             const updatedDaily = {
-                status: status
+                status: "not due"
             }
 
             const updatedData = {
-                gold: gold,
+                gold: gold+1,
                 health: sessionUser.health,
                 experience_points: exp+5,
                 level: sessionUser.level
@@ -65,11 +65,11 @@ const IndividualDaily = ({dailyData}) => {
             setExp(exp-5)
 
             const updatedDaily = {
-                status: status
+                status: "due"
             }
 
             const updatedData = {
-                gold: gold,
+                gold: gold-1,
                 health: sessionUser.health,
                 experience_points: exp-5,
                 level: sessionUser.level
