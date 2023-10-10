@@ -62,7 +62,7 @@ const IndividualItem = ({ itemData }) => {
 
     return (
         <>
-            {toolTip}
+            {/* {toolTip} */}
             <div onMouseEnter={() => {
                     setItemActive("active")
                 }}

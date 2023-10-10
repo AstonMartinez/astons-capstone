@@ -18,6 +18,7 @@ import { getFilteredDailies, getSearchedDailies, getUserDailies } from '../../st
 import { getFilteredToDos, getSearchedToDos, getUserToDos } from '../../store/todos';
 import AvatarDisplay from '../AvatarDisplay';
 import LoadingScreen from '../LoadingScreen';
+import Footer from '../Footer';
 
 
 const UserDashboard = () => {
@@ -171,6 +172,7 @@ const UserDashboard = () => {
     }
 
     return (
+        <>
         <div id='dashboard-parent'>
             {loading && <LoadingScreen />}
             <div>
@@ -415,6 +417,8 @@ const UserDashboard = () => {
                 />
             )}
         </div>
+        {/* <Footer /> */}
+        </>
     )
 }
 

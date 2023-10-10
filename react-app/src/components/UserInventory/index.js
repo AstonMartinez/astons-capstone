@@ -7,6 +7,8 @@ import IndividualItem from '../IndividualItem'
 import AvatarDisplay from '../AvatarDisplay'
 import { useHistory } from 'react-router-dom'
 import EquipItemModal from './EquipItemModal';
+import Footer from '../Footer';
+import { Tooltip } from '@mui/material';
 
 const UserInventory = () => {
     const dispatch = useDispatch()
@@ -40,6 +42,150 @@ const UserInventory = () => {
         dispatch(getUserEquipment())
     }, [dispatch])
 
+    const itemSevenDisplay = (
+        <div id='shop-item-six-container' className='single-shop-item-container'>
+    <div>
+        <img src="https://habitica-assets.s3.amazonaws.com/mobileApp/images/Pet_Egg_BearCub.png" alt='enchanted armoire' />
+    </div>
+    <div className='shop-item-cost-container'>
+        <div className='shops-coin-circle'>
+            <div className='shops-inner-coin-circle'><p>Q</p></div>
+        </div>
+        <div id='shops-cost-num'>
+            <p className='shops-cost-num-p'>20</p>
+        </div>
+    </div>
+</div>
+)
+
+const itemEightDisplay = (
+<div id='shop-item-six-container' className='single-shop-item-container'>
+    <div>
+        <img src="https://habitica-assets.s3.amazonaws.com/mobileApp/images/Pet_Egg_Cactus.png" alt='enchanted armoire' />
+    </div>
+    <div className='shop-item-cost-container'>
+        <div className='shops-coin-circle'>
+            <div className='shops-inner-coin-circle'><p>Q</p></div>
+        </div>
+        <div id='shops-cost-num'>
+            <p className='shops-cost-num-p'>20</p>
+        </div>
+    </div>
+</div>
+)
+
+const itemNineDisplay = (
+<div id='shop-item-six-container' className='single-shop-item-container'>
+    <div>
+        <img src="https://habitica-assets.s3.amazonaws.com/mobileApp/images/Pet_Egg_Dragon.png" alt='enchanted armoire' />
+    </div>
+    <div className='shop-item-cost-container'>
+        <div className='shops-coin-circle'>
+            <div className='shops-inner-coin-circle'><p>Q</p></div>
+        </div>
+        <div id='shops-cost-num'>
+            <p className='shops-cost-num-p'>20</p>
+        </div>
+    </div>
+</div>
+)
+
+const itemTenDisplay = (
+<div id='shop-item-six-container' className='single-shop-item-container'>
+    <div>
+        <img src="https://habitica-assets.s3.amazonaws.com/mobileApp/images/Pet_HatchingPotion_Base.png" alt='enchanted armoire' />
+    </div>
+    <div className='shop-item-cost-container'>
+        <div className='shops-coin-circle'>
+            <div className='shops-inner-coin-circle'><p>Q</p></div>
+        </div>
+        <div id='shops-cost-num'>
+            <p className='shops-cost-num-p'>15</p>
+        </div>
+    </div>
+</div>
+)
+
+const itemElevenDisplay = (
+<div id='shop-item-six-container' className='single-shop-item-container'>
+    <div>
+        <img src="https://habitica-assets.s3.amazonaws.com/mobileApp/images/Pet_HatchingPotion_CottonCandyBlue.png" alt='enchanted armoire' />
+    </div>
+    <div className='shop-item-cost-container'>
+        <div className='shops-coin-circle'>
+            <div className='shops-inner-coin-circle'><p>Q</p></div>
+        </div>
+        <div id='shops-cost-num'>
+            <p className='shops-cost-num-p'>15</p>
+        </div>
+    </div>
+</div>
+)
+
+const itemTwelveDisplay = (
+<div id='shop-item-six-container' className='single-shop-item-container'>
+    <div>
+        <img src="https://habitica-assets.s3.amazonaws.com/mobileApp/images/Pet_HatchingPotion_CottonCandyPink.png" alt='enchanted armoire' />
+    </div>
+    <div className='shop-item-cost-container'>
+        <div className='shops-coin-circle'>
+            <div className='shops-inner-coin-circle'><p>Q</p></div>
+        </div>
+        <div id='shops-cost-num'>
+            <p className='shops-cost-num-p'>15</p>
+        </div>
+    </div>
+</div>
+)
+
+const itemThirteenDisplay = (
+<div id='shop-item-six-container' className='single-shop-item-container'>
+    <div>
+        <img src="https://habitica-assets.s3.amazonaws.com/mobileApp/images/Pet_Food_CottonCandyBlue.png" alt='enchanted armoire' />
+    </div>
+    <div className='shop-item-cost-container'>
+        <div className='shops-coin-circle'>
+            <div className='shops-inner-coin-circle'><p>Q</p></div>
+        </div>
+        <div id='shops-cost-num'>
+            <p className='shops-cost-num-p'>10</p>
+        </div>
+    </div>
+</div>
+)
+
+const itemFourteenDisplay = (
+<div id='shop-item-six-container' className='single-shop-item-container'>
+    <div>
+        <img src="https://habitica-assets.s3.amazonaws.com/mobileApp/images/Pet_Food_Chocolate.png" alt='enchanted armoire' />
+    </div>
+    <div className='shop-item-cost-container'>
+        <div className='shops-coin-circle'>
+            <div className='shops-inner-coin-circle'><p>Q</p></div>
+        </div>
+        <div id='shops-cost-num'>
+            <p className='shops-cost-num-p'>10</p>
+        </div>
+    </div>
+</div>
+)
+
+const itemFifteenDisplay = (
+<div id='shop-item-six-container' className='single-shop-item-container'>
+    <div>
+        <img src="https://habitica-assets.s3.amazonaws.com/mobileApp/images/Pet_Food_CottonCandyPink.png" alt='enchanted armoire' />
+    </div>
+    <div className='shop-item-cost-container'>
+        <div className='shops-coin-circle'>
+            <div className='shops-inner-coin-circle'><p>Q</p></div>
+        </div>
+        <div id='shops-cost-num'>
+            <p className='shops-cost-num-p'>10</p>
+        </div>
+    </div>
+</div>
+)
+
     return (
         <div id='inventory-page-wrapper'>
             <AvatarDisplay />
@@ -50,9 +196,11 @@ const UserInventory = () => {
             <div id='equipment-display-wrapper'>
                 {equipmentToMap && equipmentToMap.map((item) => (
                     <>
-                        <div className='individual-equipment-item' onClick={() => setSelectedItem(item)}>
-                            <IndividualItem itemData={item} />
-                        </div>
+                        <Tooltip title={`${item.name}\n${item.description}`}>
+                            <div className='individual-equipment-item' onClick={() => setSelectedItem(item)}>
+                                <IndividualItem itemData={item} />
+                            </div>
+                        </Tooltip>
                     </>
                 ))}
             </div>
@@ -70,6 +218,53 @@ const UserInventory = () => {
                 }}
             />
             )}
+            <div>
+            <div id='shops-equipment-text-container'>
+                <h3 id='shops-equipment-h3'>More Items Coming Soon!</h3>
+            </div>
+            <div id='shop-items-display'>
+                <div id='shops-top-row'>
+                    <div id='shops-top-row-display'>
+                        <Tooltip title="Bear Cub Egg">
+                            {itemSevenDisplay}
+                        </Tooltip>
+                        <Tooltip title="Cactus Egg">
+                            {itemEightDisplay}
+                        </Tooltip>
+                        <Tooltip title="Dragon Egg">
+                            {itemNineDisplay}
+                        </Tooltip>
+                    </div>
+                </div>
+                <div id='shops-bottom-row'>
+                    <div id='shops-bottom-row-display'>
+                        <Tooltip title="Potion">
+                            {itemTenDisplay}
+                        </Tooltip>
+                        <Tooltip title="Potion">
+                            {itemElevenDisplay}
+                        </Tooltip>
+                        <Tooltip title="Potion">
+                            {itemTwelveDisplay}
+                        </Tooltip>
+                    </div>
+                </div>
+                <div id='shops-bottom-row'>
+                    <div id='shops-bottom-row-display'>
+                        <Tooltip title="Blue Cotton Candy">
+                            {itemThirteenDisplay}
+                        </Tooltip>
+                        <Tooltip title="Chocolate Bar">
+                            {itemFourteenDisplay}
+                        </Tooltip>
+                        <Tooltip title="Pink Cotton Candy">
+                            {itemFifteenDisplay}
+                        </Tooltip>
+                    </div>
+                </div>
+            </div>
+            </div>
+
         </div>
     )
 }

@@ -1,10 +1,11 @@
 #shops-parent-container {
     display: flex;
     flex-direction: column;
-    height: 700px;
+    min-height: 100vh;
     /* position: absolute; */
     margin-top: 184px;
     width: 100%;
+    margin-bottom: 20px;
     /* border: 1px solid blue; */
 }
 
@@ -56,7 +57,7 @@
 
 #shop-items-display {
     width: 50%;
-    margin: 0 auto;
+    margin: 0 auto 15px auto;
     /* border: 1px solid green; */
 }
 
@@ -259,6 +260,19 @@
 
 #shops-equipment-h3 {
     margin-left: 35px;
+}
+
+#shops-subcat-text {
+    margin-left: 250px;
+    margin-right: 200px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+    /* border: 1px solid red; */
+}
+
+#shops-subcat-h4 {
+    color: rgb(104, 98, 116);
 }
 
 #confirmation-modal-wrapper {

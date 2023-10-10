@@ -45,7 +45,7 @@ function App() {
           </Route>
           <Route exact path='/inventory'>
             <UserInventory />
-            <Footer />
+            <Footer style={{"position": "absolute"}} />
           </Route>
           <Route exact path='/shops'>
             <ShopsComponent />
