@@ -131,7 +131,7 @@ const UpdateDeleteRewardModal = ({ onSubmit, onClose, rewardId, rewardData }) =>
                                     <div className='inner-coin-circle'><p>Q</p></div>
                                 </div>
                             </div>
-                            <div>
+                            <div id='rci-outer'>
                                 <input
                                     name='cost'
                                     id='reward-cost-input'

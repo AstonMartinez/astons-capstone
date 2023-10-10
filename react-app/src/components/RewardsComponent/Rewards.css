@@ -169,6 +169,9 @@
     color: white;
 }
 
+#rci-outer {
+    width: 75%;
+}
 
 #reward-update-cancel-button {
     background-color: transparent;

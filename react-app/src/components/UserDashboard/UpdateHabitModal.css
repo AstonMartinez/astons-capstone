@@ -17,8 +17,8 @@
     flex-direction: column;
     background-color: white;
     align-items: center;
-    position: absolute;
-    top: 40%;
+    position: fixed;
+    top: 35%;
     width: 400px;
     height: fit-content;
     left: 40%;
